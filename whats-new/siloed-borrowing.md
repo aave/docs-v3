@@ -26,7 +26,7 @@ OR
 
 * Existing user debt is of the same _siloed asset._
 
-To check if user is in Siloed Borrowing state, you can see if underlying asset borrowed by user is s_iloed_ using  [`getSiloedBorrowing()`](https://app.gitbook.com/o/-M3C70U6u8KvfI48VhfC/s/yDw3RAf1nkR3haH9P6Zl/\~/changes/ShqJceNEVzojIUJTfByx/periphery-contracts/aaveprotocoldataprovider#getsiloedborrowing) method on AaveProtocolDataProvider.sol.
+To check if user is in Siloed Borrowing state, you can see if underlying asset borrowed by user is s_iloed_ using  [`getSiloedBorrowing()`](../core-contracts/aaveprotocoldataprovider.md#getsiloedborrowing) method on AaveProtocolDataProvider.sol.
 
 ### Check if Reserved for Siloed Borrowing
 

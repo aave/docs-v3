@@ -74,7 +74,7 @@ The non-transferable interest accruing, variable rate tokenised borrows.
 
 Contract to get asset prices, manage price sources and update the fallback oracle.
 
-#### AaveProtocolDataProvider
+#### [AaveProtocolDataProvider](../core-contracts/aaveprotocoldataprovider.md)
 
 Peripheral contract to collect and pre-process information from the Pool.
 

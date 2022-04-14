@@ -24,9 +24,9 @@ This can help bridging protocols like Connext, Hop Protocol, Anyswap, xPollinate
 
 In order to support _**Portal,**_ following three additional features are required by the protocol:
 
-* **Mint Unbacked Tokens**: Allows contracts, with `BRIDGE` role permission, to mint unbacked _aTokens_ to the `onBehalfOf` address\*\*\*.\*\*\*
+* **Mint Unbacked Tokens**: Allows addresses, with `BRIDGE` role permission, to mint unbacked _aTokens_ to the `onBehalfOf` address.
 * **Back Unbacked Tokens**: Allows contracts, with `BRIDGE` role permission, to back the currently unbacked aTokens with `amount` of underlying asset and pay `fee`.
-* **Whitelist Bridges**: allows the \*Bridge Role Admin \*\*\*\*\*to add/remove addresses for `BRIDGE_ROLE`.
+* **Whitelist Bridges**: allows the *Bridge Role Admin* to add/remove addresses for `BRIDGE_ROLE`.
 
 {% hint style="info" %}
 &#x20;Check out [Portal](whats-new/portal.md) for more technical details.
@@ -65,7 +65,7 @@ In Aave V3, it will be possible to lower the borrowing power of any asset to as 
 
 ### Risk Admins
 
-Aave V3 introduces the ability for the Aave Governance to grant entities permission to update the risk parameters with going through governance vote for every change. These entities can be DAOs (eg RiskDAO, Gauntlet) or automated agents (RiskDAO, Gauntlet) that can build on top of this feature to react automatically in case of unanticipated events.
+Aave V3 introduces the ability for the Aave Governance to grant entities permission to update the risk parameters with going through governance vote for every change. These entities can be DAOs or automated agents (eg. RiskDAO, Gauntlet) that can build on top of this feature to react automatically in case of unanticipated events.
 
 {% hint style="info" %}
 Aave Governance will have the ability to revoke access to existing Risk Admins or add new Risk Admins.
