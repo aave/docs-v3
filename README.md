@@ -18,7 +18,7 @@ Aave V3 provides new system role - `BRIDGE` - with permission to leverage Portal
 [Aave Governance](https://docs.aave.com/governance/) holds the ability to grant `BRIDGE_ROLE` to any of the cross-chain protocol.
 {% endhint %}
 
-![](<.gitbook/assets/image (2).png>)
+![](<.gitbook/assets/image (1).png>)
 
 This can help bridging protocols like Connext, Hop Protocol, Anyswap, xPollinate and novel solutions that can be specifically built to leverage Portal, to tap into Aave Protocol liquidity to facilitate seamless cross-chain interactions.
 
@@ -26,10 +26,10 @@ In order to support _**Portal,**_ following three additional features are requir
 
 * **Mint Unbacked Tokens**: Allows addresses, with `BRIDGE` role permission, to mint unbacked _aTokens_ to the `onBehalfOf` address.
 * **Back Unbacked Tokens**: Allows contracts, with `BRIDGE` role permission, to back the currently unbacked aTokens with `amount` of underlying asset and pay `fee`.
-* **Whitelist Bridges**: allows the *Bridge Role Admin* to add/remove addresses for `BRIDGE_ROLE`.
+* **Whitelist Bridges**: allows the _Bridge Role Admin_ to add/remove addresses for `BRIDGE_ROLE`.
 
 {% hint style="info" %}
-&#x20;Check out [Portal](whats-new/portal.md) for more technical details.
+Check out [Portal](whats-new/portal.md) for more technical details.
 {% endhint %}
 
 ### [Efficiency Mode (eMode)](whats-new/efficiency-mode-emode.md)

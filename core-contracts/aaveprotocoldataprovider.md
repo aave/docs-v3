@@ -15,4 +15,3 @@ Returns true if the asset is _**siloed for borrowing**_.
 | Name  | Type      | Description                                        |
 | ----- | --------- | -------------------------------------------------- |
 | asset | `address` | The address of the underlying asset of the reserve |
-

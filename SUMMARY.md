@@ -31,6 +31,7 @@
 ## Core Contracts
 
 * [ACLManager](core-contracts/aclmanager.md)
+* [AaveProtocolDataProvider](core-contracts/aaveprotocoldataprovider.md)
 * [PoolAddressesProvider](core-contracts/pooladdressesprovider.md)
 * [PoolAddressesProviderRegistry](core-contracts/pooladdressesproviderregistry.md)
 * [PriceOracleSentinel](core-contracts/priceoraclesentinel.md)
@@ -40,7 +41,6 @@
 
 ## Periphery Contracts
 
-* [AaveProtocolDataProvider](periphery-contracts/aaveprotocoldataprovider.md)
 * [RewardsController](periphery-contracts/rewardscontroller.md)
 * [UiIncentiveDataProviderV3](periphery-contracts/uiincentivedataproviderv3.md)
 * [UiPoolDataProviderV3](periphery-contracts/uipooldataproviderv3.md)
