@@ -186,7 +186,9 @@ Remove given address from the list of members in `FLASH_BORROWER` role.
 
 Add contract address to the list of _**bridges**_. Holders of this role can leverage the Portal feature to seamlessly move supplied assets across Aave V3 markets on different networks.
 
-ℹ️ Can be called only by \*Role Admin,\* specified by Aave Governance\*,\* responsible for managing \`BRIDGE\` role.
+{% hint style="info" %}
+ℹ️ Can be called only by *Role Admin*, specified by *Aave Governance*, responsible for managing `BRIDGE` role.
+{% endhint %}
 
 | Name   | Type    | Description                                |
 | ------ | ------- | ------------------------------------------ |
@@ -198,7 +200,9 @@ Add contract address to the list of _**bridges**_. Holders of this role can leve
 
 Remove contract address from the list of _**bridges**_.
 
-ℹ️ Can be called only by \*Role Admin,\* specified by Aave Governance\*,\* responsible for managing \`BRIDGE\` role.
+{% hint style="info" %}
+ℹ️ Can be called only by *Role Admin*, specified by *Aave Governance*, responsible for managing `BRIDGE` role.
+{% endhint %}
 
 | Name   | Type    | Description                                                |
 | ------ | ------- | ---------------------------------------------------------- |
