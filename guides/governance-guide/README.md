@@ -9,8 +9,8 @@ With the addition of new features in Aave V3, the scope for potential governance
 
 All proposals follow the same general process from idea to execution, which is detailed in this guide. There are also pages with templates for completing these steps with standard proposal types:
 
-* [🪙 Asset Listing](broken-reference)
-* [🎁 Rewards](broken-reference)
+* [🪙 Asset Listing](asset-listing.md)
+* [🎁 Rewards](rewards.md)
 * [🧑‍⚖️ Permissions](broken-reference)
 * [🔬 Parameter Tuning](broken-reference)
 
