@@ -61,5 +61,31 @@ Sample AIPs:
 
 Once the AIP has been reviewed and merged to generate an ipfs hash, and the payload has been created, the proposal can now be submitted on-chain.
 
+## Create Proposal
+Once the AIP has been reviewed, the next step is to create the proposal on-chain.  To do this, the `[create](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#create)` function is called on the AaveGovernanceV2 contract. 
 
+`create` can only be called if the user has more proposition power than the [proposal threshold](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#proposition_threshold). The required proposition power depends on the executor being used.
+
+The short executor is used for non-governance related proposals such as asset listing, parameter updates, ecosystem reserve spending, etc. 
+
+The long executor is used for changing the Aave Protocol in ways that affect governance consensus.
+
+### Voting and Execution
+
+The proposal life cycle is detailed in the diagram or in text form below:
+
+![](<.gitbook/assets/Proposal Lifecycle.png>)
+
+Once a proposal is created, it’s status is set to `PENDING` and will move to `ACTIVE` once the [voting delay](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#getvotingdelay) period has elapsed.
+
+Once the delay period is passed and [voting duration](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#voting_duration) has elapsed, the proposal is status is set to `SUCCEEDED` if:
+
+- The voting power (in % of total voting power) of for-votes reaches the quorum set by the [minimum quorum](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#minimum_quorum) parameter, AND
+- The difference between for-votes and against-votes (in % of total voting power) exceeds the vote differential threshold set by the [vote differential](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#vote_differential) parameter
+
+Or set to `FAILED` otherwise.
+
+A `SUCCEEDED` proposal can be queued and will be executed after the execution [delay](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#getdelay) and before [grace period](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#grace_period) expiration. 
+
+The validation and execution of the proposal is performed by the time lock executor. The proposal is set to `QUEUED` until it is `EXECUTED` , or if a queued proposal is not executed before expiration, it is set to `EXPIRED`.
 
