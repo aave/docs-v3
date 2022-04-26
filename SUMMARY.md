@@ -27,6 +27,9 @@
 * [Testing Guide](guides/testing-guide.md)
 * [Governance Guide](guides/governance-guide/README.md)
   * [Asset Listing](guides/governance-guide/asset-listing.md)
+  * [Rewards](guides/governance-guide/rewards.md)
+  * [Permissions](guides/governance-guide/permissions.md)
+  * [Parameter Tuning](guides/governance-guide/parameterTuning.md)
 * [Aaveeconomics](https://aave.com/Aavenomics.pdf)
 
 ## Core Contracts
