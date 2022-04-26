@@ -46,7 +46,7 @@ Check out [eMode](whats-new/efficiency-mode-emode.md) for more technical details
 
 New assets can be listed as _**isolated**_ in Aave protocol V3. Borrowers supplying an isolated asset as collateral cannot supply other assets as collateral (though they can still supply to capture yield). Borrowers using an isolated collateral can only borrow stablecoins that have been permitted by the Aave governance to be borrowable in isolation mode, up to a specified debt ceiling.
 
-![](<.gitbook/assets/image (3).png>)
+![](<.gitbook/assets/image (5).png>)
 
 ## Risk Management
 

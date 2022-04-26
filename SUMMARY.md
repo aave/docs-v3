@@ -25,7 +25,8 @@
 * [Flash Loans](guides/flash-loans.md)
 * [Liquidations](guides/liquidations.md)
 * [Testing Guide](guides/testing-guide.md)
-* [Governance Guide](guides/governance-guide.md)
+* [Governance Guide](guides/governance-guide/README.md)
+  * [Asset Listing](guides/governance-guide/asset-listing.md)
 * [Aaveeconomics](https://aave.com/Aavenomics.pdf)
 
 ## Core Contracts
