@@ -11,8 +11,8 @@ All proposals follow the same general process from idea to execution, which is d
 
 * [🪙 Asset Listing](asset-listing.md)
 * [🎁 Rewards](rewards.md)
-* [🧑‍⚖️ Permissions](broken-reference)
-* [🔬 Parameter Tuning](broken-reference)
+* [🧑‍⚖️ Permissions](permissions.md)
+* [🔬 Parameter Tuning](parameterTuning.md)
 
 ## General Governance Process
 
