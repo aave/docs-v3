@@ -71,6 +71,7 @@
 
 ***
 
+* [FAQ] (market-feature-summary.md)
 * [Security & Audits](security-and-audits.md)
 * [FAQ](https://docs.aave.com/faq/)
 * [Careers](https://apply.workable.com/aave/)
