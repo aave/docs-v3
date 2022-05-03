@@ -51,7 +51,7 @@ The long executor is used for changing the Aave Protocol in ways that affect gov
 
 The proposal life cycle is detailed in the diagram or in text form below:
 
-![](<.gitbook/assets/Proposal Lifecycle.png>)
+![](<.gitbook/assets/Proposal\ Lifecycle.png>)
 
 Once a proposal is created, it’s status is set to `PENDING` and will move to `ACTIVE` once the [voting delay](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#getvotingdelay) period has elapsed.
 
