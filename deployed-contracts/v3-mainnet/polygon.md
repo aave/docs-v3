@@ -23,8 +23,8 @@ _Pool_, _PoolConfigurator_, _Incentives_ and _Treasury_ addresses mentioned belo
 | AaveOracle                    | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveOracle.sol)                                              | 0xb023e699F5a33916Ea823A16485e259257cA8Bd1 |
 | Treasury                      | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/treasury/Collector.sol)                                      | 0xe8599F3cc5D38a9aD6F3684cd5CEa72f10Dbc383 |
 | TreasuryController            | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/treasury/CollectorController.sol)                            | 0x73D435AFc15e35A9aC63B2a81B5AA54f974eadFe |
-| ParaSwapLiquiditySwapAdapter  | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapLiquiditySwapAdapter.sol)          | 0x00d48554f570B6f1c474EBe56116159c3B1D625f |
-| ParaSwapRepayAdapter          | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapRepayAdapter.sol)                  | 0xD0E8f168d297DfA0f3EE1711c538BcC0663320aF |
+| ParaSwapLiquiditySwapAdapter  | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapLiquiditySwapAdapter.sol)          | [0x00d48554f570B6f1c474EBe56116159c3B1D625f](https://polygonscan.com/address/0x00d48554f570B6f1c474EBe56116159c3B1D625f#code) |
+| ParaSwapRepayAdapter          | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapRepayAdapter.sol)                  | [0xD0E8f168d297DfA0f3EE1711c538BcC0663320aF](https://polygonscan.com/address/0xD0E8f168d297DfA0f3EE1711c538BcC0663320aF#code) |
 | FallbackOracle                | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/mocks/oracle/PriceOracle.sol)                                     | 0xaA5890362f36FeaAe91aF248e84e287cE6eCD1A9 |
 
 ## Tokens
