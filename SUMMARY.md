@@ -30,7 +30,7 @@
   * [Rewards](guides/governance-guide/rewards.md)
   * [Permissions](guides/governance-guide/permissions.md)
   * [Parameter Tuning](guides/governance-guide/parameterTuning.md)
-* [Aaveeconomics](https://aave.com/Aavenomics.pdf)
+* [Aavenomics](https://aave.com/Aavenomics.pdf)
 
 ## Core Contracts
 
