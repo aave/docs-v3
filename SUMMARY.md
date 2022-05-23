@@ -68,9 +68,6 @@
   * [Avalanche](deployed-contracts/v3-mainnet/avalanche.md)
   * [Harmony](deployed-contracts/v3-mainnet/harmony.md)
 * [Deployed Contracts](deployed-contracts/deployed-contracts.md)
-
-***
-
 * [Protocol Features] (protocol-feature-summary.md)
 * [Security & Audits](security-and-audits.md)
 * [FAQ](https://docs.aave.com/faq/)
