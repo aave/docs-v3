@@ -112,7 +112,7 @@ Call Params
 Borrows `amount` of `asset` with `interestRateMode`, sending the `amount` to `msg.sender`, with the debt being incurred by `onBehalfOf`.
 
 {% hint style="info" %}
-Note: `onBehalfOf` must have supplied enough collateral via `supply()` or have delegated credit to `msg.sender` via `approveDelegation()`.
+Note: If `onBehalfOf` is not same as `msg.sender`, then `onBehalfOf` must have supplied enough collateral via `supply()` and have delegated credit to `msg.sender` via `approveDelegation()`.
 {% endhint %}
 
 Call Params
