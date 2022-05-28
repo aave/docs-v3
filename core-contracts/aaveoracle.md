@@ -4,7 +4,7 @@
 
 Contract to get asset prices, manage price sources and update the fallback oracle.
 
-Protocol V3 uses Chainlink Aggregators as the source of all asset prices.
+Protocol V3 uses Chainlink Aggregators as the source of all asset prices. Chainlink Aggregators are upgradable contracts that are controlled by a 4/9 multi-signiture safe (multisig). AAVE does not have information about the handling of said multisig, but trusts Chainlink with implied security management requirements. Chainlink has proven itself as a reliable partner for many years and throughout various market conditions. You can find details about their architecture [here](https://docs.chain.link/docs/using-chainlink-reference-contracts/).
 
 {% hint style="warning" %}
 The fallback oracles from V1 and V2 of the protocol are now deprecated and no longer maintained.
