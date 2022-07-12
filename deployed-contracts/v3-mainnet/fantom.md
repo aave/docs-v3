@@ -21,7 +21,7 @@ _Pool_, _PoolConfigurator_, _Incentives_ and _Treasury_ addresses mentioned belo
 | WETHGateway                   | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/WETHGateway.sol)                                        | 0x17d013C19FE25cf4D911CE85eD5f40FE8880F46f |
 | WalletBalanceProvider         | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/WalletBalanceProvider.sol)                              | 0xBc790382B3686abffE4be14A030A96aC6154023a |
 | AaveOracle                    | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveOracle.sol)                                              | 0xfd6f3c1845604C8AE6c6E402ad17fb9885160754 |
-| Treasury                      | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/treasury/Collector.sol)                                      | 0xfd6f3c1845604C8AE6c6E402ad17fb9885160754 |
+| Treasury                      | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/treasury/Collector.sol)                                      | 0xBe85413851D195fC6341619cD68BfDc26a25b928 |
 | TreasuryController            | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/treasury/CollectorController.sol)                            | 0xc0F0cFBbd0382BcE3B93234E4BFb31b2aaBE36aD |
 | FallbackOracle                | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/mocks/oracle/PriceOracle.sol)                                     | 0x8aA68Ca9e25aAb6f9f41bF341d12Ab407AE099E2 |
 
