@@ -8,7 +8,7 @@
   * [L2Pool](getting-started/l2-optimization/l2pool.md)
   * [L2Encoder](getting-started/l2-optimization/l2encoder.md)
 * [V3 Whitepaper](https://github.com/aave/aave-v3-core/blob/master/techpaper/Aave\_V3\_Technical\_Paper.pdf)
-* [Protocol Features Summary](protocol-feature-summary.md)
+* [Protocol Features Summary](getting-started/protocol-feature-summary.md)
 
 ## What's New?
 
@@ -30,7 +30,7 @@
   * [Asset Listing](guides/governance-guide/asset-listing.md)
   * [Rewards](guides/governance-guide/rewards.md)
   * [Permissions](guides/governance-guide/permissions.md)
-  * [Parameter Tuning](guides/governance-guide/parameterTuning.md)
+  * [Parameter Tuning](guides/governance-guide/parametertuning.md)
 * [Aavenomics](https://aave.com/Aavenomics.pdf)
 
 ## Core Contracts
@@ -69,9 +69,7 @@
   * [Avalanche](deployed-contracts/v3-mainnet/avalanche.md)
   * [Harmony](deployed-contracts/v3-mainnet/harmony.md)
 * [Deployed Contracts](deployed-contracts/deployed-contracts.md)
-
-
-* [Security & Audits](security-and-audits.md)
+* [Security & Audits](deployed-contracts/security-and-audits.md)
 * [FAQ](https://docs.aave.com/faq/)
 * [Careers](https://apply.workable.com/aave/)
 * [Bug Bounty](https://github.com/aave/bug-bounty)
