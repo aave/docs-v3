@@ -6,54 +6,19 @@ The `pool.sol` contract is the main user facing contract of the protocol. It exp
 
 ## Write Methods
 
-### mintUnbacked
-
-`mintUnbacked (asset, amount, onBehalfOf, referralCode)`
-
-Allows contracts, with `BRIDGE` role permission, to mint unbacked _aTokens_ to the `onBehalfOf` address. This method is part of the V3 [Portal](../whats-new/portal.md) feature.
-
-{% hint style="info" %}
-Only available to the addresses with`BRIDGE`role. Bridge addresses can be whitelisted by the governance.
-{% endhint %}
-
-| Param        | Type    | Description                                                                                                                                                                  |
-| ------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| asset        | address | address of the underlying asset token                                                                                                                                        |
-| amount       | uint256 | the amount to be minted                                                                                                                                                      |
-| onBehalfOf   | address | the address which will receive the aTokens                                                                                                                                   |
-| referralCode | uint16  | <p>Code used to register the integrator originating the operation, for potential rewards<br><br>0 if the action is executed directly by the user, without any middle-man</p> |
-
-### backUnbacked
-
-`backUnbacked (asset, amount, fee)`
-
-Allows contracts, with `BRIDGE` role permission, to back the currently unbacked aTokens with `amount` of underlying asset and pay `fee`. This method is part of the V3 [Portal](../whats-new/portal.md) feature.
-
-{% hint style="info" %}
-Only available to the addresses with`BRIDGE`role. Bridge addresses can be whitelisted by the governance.
-{% endhint %}
-
-| Param  | Type    | Description                                          |
-| ------ | ------- | ---------------------------------------------------- |
-| asset  | address | address of the underlying asset to repay             |
-| amount | uint256 | amount of asset supplied to back the unbacked tokens |
-| fee    | uint256 | amount paid in fee                                   |
-
-### rescueTokens
-
-`function rescueTokens(address token, address to, uint256 amount)`
-
-Rescue and transfer tokens locked in this contract`.`
-
-{% hint style="danger" %}
-Only available to`POOL_ADMIN`role. Pool admin is selected by the governance.
-{% endhint %}
-
 ### supply
 
 **`function supply(address asset, uint256 amount, address onBehalfOf, uint16 referralCode)`**
 
 The `referralCode` is emitted in Supply event and can be for third party referral integrations. To activate referral feature and obtain a unique referral code, integrators need to submit proposal to Aave Governance.
+
+{% hint style="warning" %}
+When supplying, the `Pool` contract must have**`allowance()`**to spend funds on behalf of**`msg.sender`** for at-least**`amount`** for the **`asset`** being supplied. This can be done via the standard ERC20 `approve()`method on the underlying token contract
+{% endhint %}
+
+{% hint style="info" %}
+Referral supply is currently inactive, you can pass `0` as `referralCode`. This program may be activated in the future through an Aave governance proposal
+{% endhint %}
 
 | Param Name   | Type    | Description                                                                                                                                        |
 | ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,14 +27,18 @@ The `referralCode` is emitted in Supply event and can be for third party referra
 | onBehalfOf   | address | <p>address that will receive the corresponding aTokens.<br><br>Note: only the onBehalfOf address will be able to withdraw asset from the pool.</p> |
 | referralCode | uint16  | unique code for 3rd party referral program integration. Use 0 for no referral.                                                                     |
 
-### supplyWithPermit&#x20;
+### supplyWithPermit
 
 `function supplyWithPermit(address asset, uint256 amount, address onBehalfOf, uint16 referralCode, uint256 deadline, uint8 permitV, permitR, bytes32 permitS)`
 
 Supply with transfer approval of supplied asset via permit function. This method removes the need for separate approval tx before supplying asset to the pool.
 
 {% hint style="info" %}
-Permit signature must be signed by `msg.sender` with spender as Pool address.&#x20;
+Permit signature must be signed by `msg.sender` with spender as Pool address.
+{% endhint %}
+
+{% hint style="info" %}
+Referral program is currently inactive, you can pass `0` as `referralCode`. This program may be activated in the future through an Aave governance proposal
 {% endhint %}
 
 Call Params
@@ -94,7 +63,7 @@ Withdraws `amount` of the underlying `asset`, i.e. redeems the underlying token 
 If user has any existing debt backed by the underlying token, then the max _amount_ available to withdraw is the _amount_ that will not leave user health factor < 1 after withdrawal.
 
 {% hint style="info" %}
-When withdrawing`to`another address, `msg.sender`should have `aToken`that will be burned by lendingPool .
+When withdrawing`to`another address, `msg.sender`should have `aToken`that will be burned by Pool .
 {% endhint %}
 
 Call Params
@@ -115,6 +84,12 @@ Borrows `amount` of `asset` with `interestRateMode`, sending the `amount` to `ms
 Note: If `onBehalfOf` is not same as `msg.sender`, then `onBehalfOf` must have supplied enough collateral via `supply()` and have delegated credit to `msg.sender` via `approveDelegation()`.
 {% endhint %}
 
+{% hint style="info" %}
+Referral program is currently inactive, you can pass `0` as `referralCode`. This program may be activated in the future through an Aave governance proposal
+{% endhint %}
+
+
+
 Call Params
 
 | Name             | Type    | Description                                                                                                           |
@@ -131,14 +106,22 @@ Call Params
 
 Repays `onBehalfOf`'s debt `amount` of `asset` which has a `rateMode`.
 
+{% hint style="warning" %}
+When repaying, the `Pool` contract must have**`allowance()`**to spend funds on behalf of**`msg.sender`** for at-least**`amount`** for the **`asset`** you are repaying with. This can be done via the standard ERC20 `approve()`method on the underlying token contract.
+{% endhint %}
+
+{% hint style="info" %}
+Referral program is currently inactive, you can pass `0` as `referralCode`. This program may be activated in the future through an Aave governance proposal
+{% endhint %}
+
 Call Params
 
-| Name       | Type    | Description                                                                                                                                                                                                                                                                                                   |
-| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| asset      | address | address of the underlying asset                                                                                                                                                                                                                                                                               |
-| amount     | uint256 | <p>amount to be borrowed, expressed in wei units.<br>Use uint(-1) to repay the entire debt,  ONLY when the repayment is not executed on behalf of a 3rd party. <br>In case of repayments on behalf of another user, it's recommended to send an _amount slightly higher than the current borrowed amount.</p> |
-| rateMode   | uint256 | <p>the type of debt being repaid.<br>Stable: 1, Variable: 2</p>                                                                                                                                                                                                                                               |
-| onBehalfOf | address | <p>address of user who will incur the debt.<br>Use msg.sender when not calling on behalf of a different user.</p>                                                                                                                                                                                             |
+| Name       | Type    | Description                                                                                                                                                                                                                                                                                                 |
+| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| asset      | address | address of the underlying asset                                                                                                                                                                                                                                                                             |
+| amount     | uint256 | <p>amount to be borrowed, expressed in wei units.<br>Use uint(-1) to repay the entire debt, ONLY when the repayment is not executed on behalf of a 3rd party.<br>In case of repayments on behalf of another user, it's recommended to send an _amount slightly higher than the current borrowed amount.</p> |
+| rateMode   | uint256 | <p>the type of debt being repaid.<br>Stable: 1, Variable: 2</p>                                                                                                                                                                                                                                             |
+| onBehalfOf | address | <p>address of user who will incur the debt.<br>Use msg.sender when not calling on behalf of a different user.</p>                                                                                                                                                                                           |
 
 ### repayWithPermit
 
@@ -224,7 +207,7 @@ Call Params
 | asset           | address | address of the underlying asset to be used as collateral |
 | useAsCollateral | bool    | true if the asset should be used as collateral           |
 
-### liquidationCall&#x20;
+### liquidationCall
 
 **`function liquidationCall(address collateral, address debt, address user, uint256 debtToCover, bool receiveAToken)`**
 
@@ -268,6 +251,10 @@ If no debt position is opened, receiver must approve the _Pool_ contract for at 
 Flash loan fee is waived for the approved _flashBorrowers_
 {% endhint %}
 
+{% hint style="info" %}
+Referral program is currently inactive, you can pass `0` as `referralCode`. This program may be activated in the future through an Aave governance proposal
+{% endhint %}
+
 Call Params
 
 | Name            | Type       | Description                                                                                                                                                                                                             |
@@ -294,7 +281,9 @@ Receiver must approve the _Pool_ contract for at least the _amount borrowed + fe
 Does not waive few for approved _flashBorrowers_ nor allow opening a debt position instead of repaying.
 {% endhint %}
 
-
+{% hint style="info" %}
+Referral program is currently inactive, you can pass `0` as `referralCode`. This program may be activated in the future through an Aave governance proposal
+{% endhint %}
 
 Call Params
 
@@ -328,13 +317,54 @@ Updates the user efficiency mode category. The category id must be a valid id al
 Will revert if user is borrowing non-compatible asset or change will drop HF < `HEALTH_FACTOR_LIQUIDATION_THRESHOLD`
 {% endhint %}
 
-
-
 Call Params
 
-| Name       | Type  | Description                                                                                                           |
-| ---------- | ----- | --------------------------------------------------------------------------------------------------------------------- |
-| categoryId | uint8 | <p>eMode category id (0 - 255) defined by Risk or Pool Admins.<br><em></em>categoryId == 0 ⇒ non E-mode category.</p> |
+| Name       | Type  | Description                                                                                                  |
+| ---------- | ----- | ------------------------------------------------------------------------------------------------------------ |
+| categoryId | uint8 | <p>eMode category id (0 - 255) defined by Risk or Pool Admins.<br>categoryId == 0 ⇒ non E-mode category.</p> |
+
+### mintUnbacked
+
+`mintUnbacked (asset, amount, onBehalfOf, referralCode)`
+
+Allows contracts, with `BRIDGE` role permission, to mint unbacked _aTokens_ to the `onBehalfOf` address. This method is part of the V3 [Portal](../whats-new/portal.md) feature.
+
+{% hint style="info" %}
+Only available to the addresses with`BRIDGE`role. Bridge addresses can be whitelisted by the governance.
+{% endhint %}
+
+| Param        | Type    | Description                                                                                                                                                                  |
+| ------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| asset        | address | address of the underlying asset token                                                                                                                                        |
+| amount       | uint256 | the amount to be minted                                                                                                                                                      |
+| onBehalfOf   | address | the address which will receive the aTokens                                                                                                                                   |
+| referralCode | uint16  | <p>Code used to register the integrator originating the operation, for potential rewards<br><br>0 if the action is executed directly by the user, without any middle-man</p> |
+
+### backUnbacked
+
+`backUnbacked (asset, amount, fee)`
+
+Allows contracts, with `BRIDGE` role permission, to back the currently unbacked aTokens with `amount` of underlying asset and pay `fee`. This method is part of the V3 [Portal](../whats-new/portal.md) feature.
+
+{% hint style="info" %}
+Only available to the addresses with`BRIDGE`role. Bridge addresses can be whitelisted by the governance.
+{% endhint %}
+
+| Param  | Type    | Description                                          |
+| ------ | ------- | ---------------------------------------------------- |
+| asset  | address | address of the underlying asset to repay             |
+| amount | uint256 | amount of asset supplied to back the unbacked tokens |
+| fee    | uint256 | amount paid in fee                                   |
+
+### rescueTokens
+
+`function rescueTokens(address token, address to, uint256 amount)`
+
+Rescue and transfer tokens locked in this contract`.`
+
+{% hint style="danger" %}
+Only available to`POOL_ADMIN`role. Pool admin is selected by the governance.
+{% endhint %}
 
 ## View Methods
 
@@ -491,8 +521,6 @@ Returns eModeCategory Id of the user’s eMode. 0 ⇒ no eMode.
 
 Returns the percent of total flashloan premium paid by the borrower.\
 A part of this premium is added to reserve's liquidity index i.e. paid to the liquidity provider and the other part is paid to the protocol i.e. accrued to the treasury.
-
-
 
 ### FLASHLOAN\_PREMIUM\_TO\_PROTOCOL
 

@@ -122,8 +122,7 @@ Return Value
 
 ### getPoolDataProvider
 
-`function getPoolDataProvider() external view override returns (address)`
-Fetch address of latest pool data provider.
+`function getPoolDataProvider() external view override returns (address)` Fetch address of latest pool data provider.
 
 Return Value
 
@@ -140,10 +139,10 @@ Return Value
 Updates the identifier of the Aave market
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newMarketId | `string` | The new id of the market |
 
+| Name        | Type     | Description              |
+| ----------- | -------- | ------------------------ |
+| newMarketId | `string` | The new id of the market |
 
 ### setAddress
 
@@ -154,11 +153,11 @@ Sets the address of protocol contract stored at given id.
 Eg. `utils.keccak256(utils.toUtf8Bytes("INCENTIVES_CONTROLLER"))` is set to address of `INCENTIVES_CONTROLLER`
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| id | `bytes32` | keccak256 hash of UTF8Bytes string representing Contract |
-| newAddress | `address` | The new address to be set corresponding to the `id` |
 
+| Name       | Type      | Description                                              |
+| ---------- | --------- | -------------------------------------------------------- |
+| id         | `bytes32` | keccak256 hash of UTF8Bytes string representing Contract |
+| newAddress | `address` | The new address to be set corresponding to the `id`      |
 
 ### setAddressAsProxy
 
@@ -171,31 +170,34 @@ If there is no proxy registered with the given identifier, it creates the proxy 
 {% endhint %}
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| id | `bytes32` | id of Proxy contract |
+
+| Name                     | Type      | Description                                                           |
+| ------------------------ | --------- | --------------------------------------------------------------------- |
+| id                       | `bytes32` | id of Proxy contract                                                  |
 | newImplementationAddress | `address` | The address of new implementation contract corresponding to the proxy |
 
 ### setPoolImpl
 
-`function setPoolImpl(address newPoolImpl) external override onlyOwner `
+`function setPoolImpl(address newPoolImpl) external override onlyOwner`
 
 Sets/update the implementation of the POOL proxy contract.
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
+
+| Name        | Type      | Description                                     |
+| ----------- | --------- | ----------------------------------------------- |
 | newPoolImpl | `address` | The address of new Pool implementation contract |
 
 ### setPoolConfiguratorImp
 
 `function setPoolConfiguratorImpl(address newPoolConfiguratorImpl) external override onlyOwner`
 
-Sets/updates the implementation of the POOL_CONFIGURATOR proxy contract.
+Sets/updates the implementation of the POOL\_CONFIGURATOR proxy contract.
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
+
+| Name                    | Type      | Description                                                 |
+| ----------------------- | --------- | ----------------------------------------------------------- |
 | newPoolConfiguratorImpl | `address` | The address of new PoolConfigurator implementation contract |
 
 ### setPriceOracle
@@ -205,19 +207,21 @@ Call Params
 Sets/updates address of the PriceOracle contract.
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
+
+| Name           | Type      | Description                             |
+| -------------- | --------- | --------------------------------------- |
 | newPriceOracle | `address` | The address of new PriceOracle contract |
 
 ### setACLAdmin
 
-`function setACLAdmin(address newAclAdmin) external override onlyOwner `
+`function setACLAdmin(address newAclAdmin) external override onlyOwner`
 
 Sets/updates address of the AclAdmin.
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
+
+| Name        | Type      | Description                  |
+| ----------- | --------- | ---------------------------- |
 | newAclAdmin | `address` | The address of new AclAdming |
 
 ### setPriceOracleSentinel
@@ -227,8 +231,9 @@ Call Params
 Sets/updates address of the Price oracle sentinel.
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
+
+| Name                   | Type      | Description                            |
+| ---------------------- | --------- | -------------------------------------- |
 | newPriceOracleSentinel | `address` | The address of new PriceOracleSentinel |
 
 ### setPoolDataProvider
@@ -238,6 +243,7 @@ Call Params
 Sets/updates address of PoolDataProvider.
 
 Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
+
+| Name            | Type      | Description                         |
+| --------------- | --------- | ----------------------------------- |
 | newDataProvider | `address` | The address of new PoolDataProvider |

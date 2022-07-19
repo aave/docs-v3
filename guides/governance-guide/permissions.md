@@ -2,13 +2,13 @@
 
 The `ACLManager` (Asset Control List Manager) contract manages the permissions of an Aave market. The Aave Governance serves as the `ROLE_ADMIN` and can approve any of the defined roles: `RISK_ADMIN`, `POOL_ADMIN`, `ASSET_LISTING_ADMIN`, `BRIDGE`, `FLASH_BORROWER`.
 
-More details on roles can be found [here](../../core-contracts/aclmanager.md/#roles).
+More details on roles can be found [here](../../core-contracts/aclmanager.md#roles).
 
 This guide details the steps for enabling or disabling permissions on the `ACLManager`:
 
-- [ARC]()
-- [AIP]()
-- [Creating the proposal]()
+- [ARC](permissions.md)
+- [AIP](permissions.md)
+- [Creating the proposal](permissions.md)
 
 ## ARC
 

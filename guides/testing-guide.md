@@ -21,7 +21,7 @@ Next, you’ll need to faucet some base currency for the test network to pay gas
 * Fuji: [Avalanche](https://faucet.avax-test.network), [Paradigm](https://faucet.paradigm.xyz), [Kyte](https://faucet.kyte.one)
 * Arbitrum Rinkeby: [Arbitrum](https://faucet.rinkeby.io)
 
-Each testnet market has a custom set of assets which can be fauceted from the Aave faucet. To access the faucet interface: switch to the market which you want to test, be sure your wallet is connected to the correct network and *testnet mode* is on. The faucet link is available at bottom of the supply column in _Dashboard_ or you can manually update url to `https://app.aave.com/faucet/`.
+Each testnet market has a custom set of assets which can be fauceted from the Aave faucet. To access the faucet interface: switch to the market which you want to test, be sure your wallet is connected to the correct network and _testnet mode_ is on. The faucet link is available at bottom of the supply column in _Dashboard_ or you can manually update url to `https://app.aave.com/faucet/`.
 
 Once you have test assets, you can supply, borrow, repay, withdraw, and test V3 features:
 
