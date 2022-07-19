@@ -8,6 +8,7 @@
   * [L2Pool](getting-started/l2-optimization/l2pool.md)
   * [L2Encoder](getting-started/l2-optimization/l2encoder.md)
 * [V3 Whitepaper](https://github.com/aave/aave-v3-core/blob/master/techpaper/Aave\_V3\_Technical\_Paper.pdf)
+* [Protocol Features Summary](getting-started/protocol-feature-summary.md)
 
 ## What's New?
 
@@ -25,12 +26,17 @@
 * [Flash Loans](guides/flash-loans.md)
 * [Liquidations](guides/liquidations.md)
 * [Testing Guide](guides/testing-guide.md)
-* [Governance Guide](guides/governance-guide.md)
-* [Aaveeconomics](https://aave.com/Aavenomics.pdf)
+* [Governance Guide](guides/governance-guide/README.md)
+  * [Asset Listing](guides/governance-guide/asset-listing.md)
+  * [Rewards](guides/governance-guide/rewards.md)
+  * [Permissions](guides/governance-guide/permissions.md)
+  * [Parameter Tuning](guides/governance-guide/parametertuning.md)
+* [Aavenomics](https://aave.com/Aavenomics.pdf)
 
 ## Core Contracts
 
 * [ACLManager](core-contracts/aclmanager.md)
+* [AaveProtocolDataProvider](core-contracts/aaveprotocoldataprovider.md)
 * [PoolAddressesProvider](core-contracts/pooladdressesprovider.md)
 * [PoolAddressesProviderRegistry](core-contracts/pooladdressesproviderregistry.md)
 * [PriceOracleSentinel](core-contracts/priceoraclesentinel.md)
@@ -40,7 +46,6 @@
 
 ## Periphery Contracts
 
-* [AaveProtocolDataProvider](periphery-contracts/aaveprotocoldataprovider.md)
 * [RewardsController](periphery-contracts/rewardscontroller.md)
 * [UiIncentiveDataProviderV3](periphery-contracts/uiincentivedataproviderv3.md)
 * [UiPoolDataProviderV3](periphery-contracts/uipooldataproviderv3.md)
@@ -64,10 +69,7 @@
   * [Avalanche](deployed-contracts/v3-mainnet/avalanche.md)
   * [Harmony](deployed-contracts/v3-mainnet/harmony.md)
 * [Deployed Contracts](deployed-contracts/deployed-contracts.md)
-
-***
-
-* [Security & Audits](security-and-audits.md)
+* [Security & Audits](deployed-contracts/security-and-audits.md)
 * [FAQ](https://docs.aave.com/faq/)
 * [Careers](https://apply.workable.com/aave/)
 * [Bug Bounty](https://github.com/aave/bug-bounty)

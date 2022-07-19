@@ -9,39 +9,22 @@ ACLManager allows a _**Role Admin**_ to manage roles. _**Role Admin**_ is itself
 `DEFAULT_ADMIN_ROLE` is held by the _ACLAdmin,_ which is initialised in `PoolAddressesProvider`.
 
 {% hint style="info" %}
-ℹ️ On Ethereum chain `PoolAddressesProvider`, is owned by Aave Governance. In networks other than Ethereum, either the *Crosschain Governance Bridges* or *Community Multisigs* are used to manage the `PoolAddressesProvider`.
+ℹ️ On Ethereum chain `PoolAddressesProvider`, is owned by Aave Governance. In networks other than Ethereum, either the _Crosschain Governance Bridges_ or _Community Multisigs_ are used to manage the `PoolAddressesProvider`.
 {% endhint %}
-
 
 ## Roles
 
 Below we outline the powers/responsibilities of the roles and the specific methods that are only accessible to the holders of these roles.
 
-
-
-| Role                  | Responsibilities / Powers                                                                                                                                                                                                                                             | Methods Accessible                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FLASH\_BORROWER       | <p>Flash loan premium is waived for the holders of this role.</p><p></p><p>\*\*Does not include flashLoanSimple</p>                                                                                                                                                       | `flashLoan`                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| BRIDGE                | Can leverage the Portal feature                                                                                                                                                                                                                                       | <p><code>mintUnbacked</code><br><code>backUnbacked</code></p>                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `ASSET_LISTING_ADMIN` | 
-<p>Can update
-  <ul>
-    <li> asset oracle sources</li>
-    <li>fallback oracle</li>
-    <li>add new assets to the Aave market</li>
-  </ul>
-</p>
-|
-<ul>
-  <li> setAssetSources </li>
-  <li> setFallbackOracle</li>
-  <li>initReserves</li>
-</ul>
-|
-| RISK\_ADMIN           | <p>Can update</p><ul><li>grace period of Oracle Sentinels</li><li>reserve params</li><li>unbacked mint cap</li><li>liquidation protocol fee</li><li>existing eMode categories and create new. (not category 0)</li><li>add/remove asset in silo mode</li></ul> | <ul><li>setGracePeriod</li><li>setReserveBorrowing</li><li>configureReserveAsCollateral</li><li>setReserveStableRateBorrowing</li><li>setReserveFreeze</li><li>setBorrowableInIsolation</li><li>setReserveFactor</li><li>setDebtCeiling</li><li>setBorrowCap</li><li>setSupplyCap</li><li>setLiquidationProtocolFee</li><li>setEModeCategory</li><li>setAssetEModeCategory</li><li>setUnbackedMintCap</li><li>setReserveInterestRateStrategyAddress</li><li>setSiloedBorrowing</li></ul> |
-| ACL\_ADMIN            | Manage the role admins in the ACLManager                                                                                                                                                                                                                              | setRoleAdmin, addPoolAdmin, removePoolAdmin, addEmergencyAdmin, removeEmergencyAdmin, addRiskAdmin, removeRiskAdmin, addFlashBorrower, removeFlashBorrower, addBridge, removeBridge, addAssetListingAdmin, removeAssetListingAdmin                                                                                                                                                                                                                                                       |
-| EMERGENCY\_ADMIN      | Can pause/unpause the pool or individual reserve                                                                                                                                                                                                                      | setPoolPause                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| POOL\_ADMIN           | <p></p><p>Can</p><ul><li>update token implementations</li><li>drop reserves</li><li>pause/unpause reserves</li><li>activate/deactivate reserves</li><li>update premiums</li><li>do all the things available to RISK_ADMIN &#x26; ASSET_LISTING_ADMIN</li></ul>        | <p>dropReserve, updateAToken, updateStableDebtToken, updateVariableDebtToken, setReserveActive, updateBridgeProtocolFee, updateFlashloanPremiumTotal, updateFlashloanPremiumToProtocol,</p><p>all methods available to RISK_ADMIN, all methods available to ASSET_LISTING_ADMIN</p>                                                                                                                                                                                                      |
+| Role                  | Responsibilities / Powers                                                                                                                                                                                                                                      | Methods Accessible                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `FLASH_BORROWER`      | <p>Flash loan premium is waived for the holders of this role.</p><p>⛔️ Does not include flashLoanSimple</p>                                                                                                                                                    | `flashLoan`                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `BRIDGE`              | Can leverage the Portal feature                                                                                                                                                                                                                                | <p>mintUnbacked<br>backUnbacked</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `ASSET_LISTING_ADMIN` | <p>Can update</p><ul><li>asset oracle sources</li><li>fallback oracle</li><li>add new assets to the Aave market</li></ul>                                                                                                                                      | <ul><li>setAssetSources</li><li>setFallbackOracle</li><li>initReserves</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `RISK_ADMIN`          | <p>Can update</p><ul><li>grace period of Oracle Sentinels</li><li>reserve params</li><li>unbacked mint cap</li><li>liquidation protocol fee</li><li>existing eMode categories and create new. (not category 0)</li><li>add/remove asset in silo mode</li></ul> | <ul><li>setGracePeriod</li><li>setReserveBorrowing</li><li>configureReserveAsCollateral</li><li>setReserveStableRateBorrowing</li><li>setReserveFreeze</li><li>setBorrowableInIsolation</li><li>setReserveFactor</li><li>setDebtCeiling</li><li>setBorrowCap</li><li>setSupplyCap</li><li>setLiquidationProtocolFee</li><li>setEModeCategory</li><li>setAssetEModeCategory</li><li>setUnbackedMintCap</li><li>setReserveInterestRateStrategyAddress</li><li>setSiloedBorrowing</li></ul> |
+| `ACL_ADMIN`           | Manage the role admins in the ACLManager                                                                                                                                                                                                                       | <ul><li>setRoleAdmin</li><li>addPoolAdmin</li><li>removePoolAdmin</li><li>addEmergencyAdmin</li><li>removeEmergencyAdmin</li><li>addRiskAdmin</li><li>removeRiskAdmin</li><li>addFlashBorrower</li><li>removeFlashBorrower</li><li>addBridge</li><li>removeBridge</li><li>addAssetListingAdmin</li><li>removeAssetListingAdmin</li></ul>                                                                                                                                                 |
+| `EMERGENCY_ADMIN`     | Can pause/unpause the pool or individual reserve                                                                                                                                                                                                               | setPoolPause                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `POOL_ADMIN`          | <p>Can</p><ul><li>update token implementations</li><li>drop reserves</li><li>pause/unpause reserves</li><li>activate/deactivate reserves</li><li>update premiums</li><li>do all the things available to RISK_ADMIN &#x26; ASSET_LISTING_ADMIN</li></ul>        | <ul><li>all methods available to <code>RISK_ADMIN</code></li><li>all methods available to <code>ASSET_LISTING_ADMIN</code></li><li>dropReserve</li><li>updateAToken</li><li>updateStableDebtToken</li><li>updateVariableDebtToken</li><li>setReserveActive</li><li>updateBridgeProtocolFee</li><li>updateFlashloanPremiumTotal</li><li>updateFlashloanPremiumToProtocol</li></ul>                                                                                                        |
 
 ## View Methods
 
@@ -87,7 +70,7 @@ Returns `true` if the address has `ASSET_LISTING_ADMIN` role.
 
 `setRoleAdmin(bytes32 role, bytes32 adminRole)`
 
-Setup admin to manage Roles.&#x20;
+Setup admin to manage Roles.
 
 {% hint style="info" %}
 This method can only be called by address with `DEFAULT_ADMIN_ROLE`.
@@ -200,7 +183,9 @@ Remove given address from the list of members in `FLASH_BORROWER` role.
 
 Add contract address to the list of _**bridges**_. Holders of this role can leverage the Portal feature to seamlessly move supplied assets across Aave V3 markets on different networks.
 
-ℹ️ Can be called only by \*Role Admin,\* specified by Aave Governance\*,\* responsible for managing \`BRIDGE\` role.
+{% hint style="info" %}
+ℹ️ Can be called only by _Role Admin_, specified by _Aave Governance_, responsible for managing `BRIDGE` role.
+{% endhint %}
 
 | Name   | Type    | Description                                |
 | ------ | ------- | ------------------------------------------ |
@@ -212,7 +197,9 @@ Add contract address to the list of _**bridges**_. Holders of this role can leve
 
 Remove contract address from the list of _**bridges**_.
 
-ℹ️ Can be called only by \*Role Admin,\* specified by Aave Governance\*,\* responsible for managing \`BRIDGE\` role.
+{% hint style="info" %}
+ℹ️ Can be called only by _Role Admin_, specified by _Aave Governance_, responsible for managing `BRIDGE` role.
+{% endhint %}
 
 | Name   | Type    | Description                                                |
 | ------ | ------- | ---------------------------------------------------------- |

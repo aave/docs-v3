@@ -6,7 +6,11 @@
 
 ## Test Markets
 
-The simplest way to interact with Aave V3 in a test environment is to connect your wallet and use the app with fauceted funds on a test network. All test markets can be accessed from the [staging app](https://v3-test.aave.com) or from cloning/forking the [Aave frontend](https://github.com/aave/aave-ui/).
+The simplest way to interact with Aave V3 in a test environment is to connect your wallet and use the app with fauceted funds on a test network. All test markets can be accessed from the [app](https://app.aave.com) or from cloning/forking the [Aave frontend](https://github.com/aave/interface).
+
+{% hint style="info" %}
+To interact with test markets make sure you toggle the **Testnet mode** _on_. The testnet option is available on [app](https://app.aave.com) in top right ⚙️ drop-down-menu.
+{% endhint %}
 
 First, you’ll need to add the test network to your wallet. You can directly add networks to your browser wallet with [Chainlist](https://chainlist.org).
 
@@ -17,7 +21,7 @@ Next, you’ll need to faucet some base currency for the test network to pay gas
 * Fuji: [Avalanche](https://faucet.avax-test.network), [Paradigm](https://faucet.paradigm.xyz), [Kyte](https://faucet.kyte.one)
 * Arbitrum Rinkeby: [Arbitrum](https://faucet.rinkeby.io)
 
-Each testnet market has a custom set of assets which can be fauceted from the Aave faucet. To access the faucet interface: switch to the market which you want to test, be sure your wallet is connected to the correct network, then in the header select More→Faucet
+Each testnet market has a custom set of assets which can be fauceted from the Aave faucet. To access the faucet interface: switch to the market which you want to test, be sure your wallet is connected to the correct network and _testnet mode_ is on. The faucet link is available at bottom of the supply column in _Dashboard_ or you can manually update url to `https://app.aave.com/faucet/`.
 
 Once you have test assets, you can supply, borrow, repay, withdraw, and test V3 features:
 

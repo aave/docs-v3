@@ -26,7 +26,7 @@ Aave Protocol V3 implements an access control list to segregate powers and/or be
 
 The main addresses register of the protocol, containing address of _core protocol contracts_ and _ACL admin_. It acts as factory of proxies and admin of those. The owner of this contract has the right to set/update implementation of the upgradable contracts. The latest contract addresses should be retrieved from this contract by making the appropriate calls.
 
-#### [PoolAddressesProviderRegistry](contracts-overview.md#pooladdressesproviderregistry)
+#### [PoolAddressesProviderRegistry](../core-contracts/pooladdressesproviderregistry.md)
 
 Contains a list of active `PoolAddressProvider` addresses, for different markets. It is used for indexing all Aave protocol’s markets.
 
@@ -70,7 +70,7 @@ The non-transferable interest accruing, variable rate tokenised borrows.
 
 ### Misc
 
-#### [AaveOracle](contracts-overview.md#aaveoracle)
+#### [AaveOracle](../core-contracts/aaveoracle.md)
 
 Contract to get asset prices, manage price sources and update the fallback oracle.
 

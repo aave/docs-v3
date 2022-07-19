@@ -2,7 +2,7 @@
 
 ## PoolAddressesProviderRegistry
 
-A register of the active `[PoolAddressesProvider](PoolAddressesProvider%20e4804383e03649a28386e289acf5e591.md)` contracts, covering all markets. This contract is immutable and the address will never change.
+A register of the active `[PoolAddressesProvider](./pooladdressesprovider.md)` contracts, covering all markets. This contract is immutable and the address will never change.
 
 For example, the Pool address for the main market is different from the Pool address for the AMM market.
 
