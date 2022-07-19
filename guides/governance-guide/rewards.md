@@ -28,7 +28,6 @@ Sample AIPs:
 Once the AIP has been reviewed and merged to generate an ipfs hash, and the payload has been created, the proposal can now be submitted on-chain.
 
 ## Create Proposal
-
 `EMISSION_ADMIN` set by owner of the EmissionManager contract can configure rewards by calling `configureAssets`.
 
 ## Add To Aave Ui

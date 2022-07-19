@@ -8,7 +8,7 @@ This feature allow assets with potentially manipulatable oracles (for example il
 
 ## Supply Siloed Assets
 
-A user can supply S\_iloed Asset\_ just like any other asset using [`supply()`](../core-contracts/pool.md#supply) method in `pool.sol`, though, the asset will not be enabled to use as collateral i.e. supplied amount will not add to total collateral balance of the user.
+A user can supply S_iloed Asset\_ just like any other asset using [`supply()`](../core-contracts/pool.md#supply) method in `pool.sol`, though, the asset will not be enabled to use as collateral i.e. supplied amount will not add to total collateral balance of the user.
 
 ### Borrow Siloed Assets
 
@@ -18,13 +18,13 @@ User borrowing a _siloed asset_ will \_ **not**\_ be allowed to \_\_ borrow \_\_
 
 User can borrow _Siloed Assets_ using [`borrow()`](../core-contracts/pool.md#borrow) method in `pool.sol` , only if:
 
-* It is first borrow onBehalf of the address
+- It is first borrow onBehalf of the address
 
 OR
 
-* Existing user debt is of the same _siloed asset._
+- Existing user debt is of the same _siloed asset._
 
-To check if user is in Siloed Borrowing state, you can see if underlying asset borrowed by user is s\_iloed\_ using [`getSiloedBorrowing()`](../core-contracts/aaveprotocoldataprovider.md#getsiloedborrowing) method on AaveProtocolDataProvider.sol.
+To check if user is in Siloed Borrowing state, you can see if underlying asset borrowed by user is s_iloed\_ using [`getSiloedBorrowing()`](../core-contracts/aaveprotocoldataprovider.md#getsiloedborrowing) method on AaveProtocolDataProvider.sol.
 
 ### Check if Reserved for Siloed Borrowing
 

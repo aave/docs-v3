@@ -358,8 +358,6 @@ Mintable Reserves and Rewards
 │ EURS-TestnetMintableERC20-Aave │ '0x7eEB186F13538e6795a0823e2D7283FEeD2738f5' │
 └────────────────────────────────┴──────────────────────────────────────────────┘
 ```
-
-
 {% endtab %}
 
 {% tab title="Kovan (deprecated, use Goerli)" %}

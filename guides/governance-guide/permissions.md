@@ -6,9 +6,9 @@ More details on roles can be found [here](../../core-contracts/aclmanager.md#rol
 
 This guide details the steps for enabling or disabling permissions on the `ACLManager`:
 
-* [ARC](permissions.md)
-* [AIP](permissions.md)
-* [Creating the proposal](permissions.md)
+- [ARC](permissions.md)
+- [AIP](permissions.md)
+- [Creating the proposal](permissions.md)
 
 ## ARC
 
