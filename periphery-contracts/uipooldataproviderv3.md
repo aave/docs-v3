@@ -2,7 +2,9 @@
 
 ## UiPoolDataProviderV3
 
-Contract used by Aave UI to collect and pre-process Pool data.
+Contract that returns an array of all reserve or user data for a particular market, used by the [Aave Interface](https://github.com/aave/interface/) to display Markets and Dashboard data. Compatible with both V2 and V3 of the Aave Protocol.
+
+The [Aave Utilities SDK](https://github.com/aave/aave-utilities#data-formatting-methods) includes an interface to make calls to this contract, and functions to format the response for frontend use-cases.
 
 ## Data Structures
 
