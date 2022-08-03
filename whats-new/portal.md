@@ -10,7 +10,7 @@ This feature can be used by _**bridging protocol**_. There are no core-protocol 
 
 Aave protocol V3 allows _**approved bridges**_ to burn _aTokens_ on the source network while instantly minting them on the destination network. The underlying assets can then be supplied to Aave on the destination network, in a deferred manner, by passing it to the pool after it has been moved through a bridge.
 
-![](<../.gitbook/assets/image (1).png>)
+![](<../.gitbook/assets/image (3).png>)
 
 ## How it works?
 

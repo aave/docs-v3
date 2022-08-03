@@ -18,7 +18,7 @@ Aave V3 provides new system role - `BRIDGE` - with permission to leverage Portal
 [Aave Governance](https://docs.aave.com/governance/) holds the ability to grant `BRIDGE_ROLE` to any of the cross-chain protocol.
 {% endhint %}
 
-![](<.gitbook/assets/image (1).png>)
+![](<.gitbook/assets/image (3).png>)
 
 This can help bridging protocols like Connext, Hop Protocol, Anyswap, xPollinate and novel solutions that can be specifically built to leverage Portal, to tap into Aave Protocol liquidity to facilitate seamless cross-chain interactions.
 
@@ -46,7 +46,7 @@ Check out [eMode](whats-new/efficiency-mode-emode.md) for more technical details
 
 New assets can be listed as _**isolated**_ in Aave protocol V3. Borrowers supplying an isolated asset as collateral cannot supply other assets as collateral (though they can still supply to capture yield). Borrowers using an isolated collateral can only borrow stablecoins that have been permitted by the Aave governance to be borrowable in isolation mode, up to a specified debt ceiling.
 
-![](<.gitbook/assets/image (5).png>)
+![](<.gitbook/assets/image (2).png>)
 
 ## Risk Management
 
