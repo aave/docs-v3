@@ -13,11 +13,9 @@ All proposals follow the same general process from idea to execution, which is d
 
 * [🪙 Asset Listing](asset-listing.md)
 * [🎁 Rewards](rewards.md)
-* [🧑‍⚖️ Permissions](permissions.md) <<<<<<< HEAD
-* [🔬 Parameter Tuning](parametertuning.md) =======
+* [🧑‍⚖️ Permissions](permissions.md) 
+* [🔬 Parameter Tuning](parametertuning.md) 
 * [🔬 Parameter Tuning](https://github.com/aave/docs-v3/blob/update/guides/governance-guide/parameterTuning.md)
-
-> > > > > > > main
 
 ### General Governance Process
 
@@ -45,8 +43,6 @@ The AIP text and implementation should be reviewed (e.g., devs through Aave Gran
 
 #### Create Proposal
 
-<<<<<<< HEAD
-
 Once the AIP has been reviewed, the next step is to create the proposal on-chain. To do this, the `[create](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#create)` function is called on the AaveGovernanceV2 contract.
 
 `create` can only be called if the user has more proposition power than the [proposal threshold](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#proposition\_threshold). The required proposition power depends on the executor being used.
@@ -59,8 +55,6 @@ Once the AIP has been reviewed, the next step is to create the proposal on-chain
 
 The short executor is used for non-governance related proposals such as asset listing, parameter updates, ecosystem reserve spending, etc.
 
-> > > > > > > main
-
 The long executor is used for changing the Aave Protocol in ways that affect governance consensus.
 
 #### Voting and Execution
@@ -71,7 +65,7 @@ The proposal life cycle is detailed in the diagram or in text form below:
 
 Once a proposal is created, it’s status is set to `PENDING` and will move to `ACTIVE` once the [voting delay](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#getvotingdelay) period has elapsed.
 
-<<<<<<< HEAD Once the delay period is passed and [voting duration](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#voting\_duration) has elapsed, the proposal is status is set to `SUCCEEDED` if:
+Once the delay period is passed and [voting duration](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#voting\_duration) has elapsed, the proposal is status is set to `SUCCEEDED` if:
 
 * The voting power (in % of total voting power) of for-votes reaches the quorum set by the [minimum quorum](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#minimum\_quorum) parameter, AND
 * The difference between for-votes and against-votes (in % of total voting power) exceeds the vote differential threshold set by the [vote differential](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#vote\_differential) parameter
@@ -92,5 +86,3 @@ Or set to `FAILED` otherwise.
 A `SUCCEEDED` proposal can be queued and will be executed after the execution [delay](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#getdelay) and before [grace period](https://docs.aave.com/developers/v/2.0/protocol-governance/governance#grace\_period) expiration.
 
 The validation and execution of the proposal is performed by the time lock executor. The proposal is set to `QUEUED` until it is `EXECUTED` , or if a queued proposal is not executed before expiration, it is set to `EXPIRED`.
-
-> > > > > > > main
