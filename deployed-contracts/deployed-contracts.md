@@ -27,7 +27,7 @@
 
 <summary>Aave V3</summary>
 
-* [Aave V3 Testnet Markets](v3-testnet-addresses.md) (ETH Rinkeby, ETH Kovan, ETH Ropsten, Optimistic Kovan, Arbitrum Rinkeby, Polygon Mumbai, Avalanche Fuji, Fantom Testnet, Harmony Testnet)&#x20;
+* [Aave V3 Testnet Markets](v3-testnet-addresses.md) (ETH Görli, Optimism Kovan, Optimism Görli, Arbitrum Rinkeby, Arbitrum Görli, Polygon Mumbai, Avalanche Fuji, Fantom Testnet, Harmony Testnet)
 * [Aave V3 Mainnet Markets](https://docs.aave.com/developers/deployed-contracts/v3-mainnet) (Optimism, Arbitrum, Polygon, Avalanche, Fantom, Harmony)
 
 </details>
