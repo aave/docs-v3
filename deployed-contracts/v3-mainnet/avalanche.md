@@ -24,7 +24,7 @@ _Pool_, _PoolConfigurator_, _Incentives_ and _Treasury_ addresses mentioned belo
 | TreasuryController            | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/treasury/CollectorController.sol)                    | 0xaCbE7d574EF8dC39435577eb638167Aca74F79f0 |
 | ParaSwapLiquiditySwapAdapter  | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapLiquiditySwapAdapter.sol)  | 0xF7fC20D9D1D8DFE55F5F2c3180272a5747dD327F |
 | ParaSwapRepayAdapter          | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapRepayAdapter.sol)          | 0x8a743090e9759E758d15a4CFd18408fb6332c625 |
-| FallbackOracle                | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/mocks/oracle/PriceOracle.sol)                             | 0x8aA68Ca9e25aAb6f9f41bF341d12Ab407AE099E2 |
+| FallbackOracle                | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/mocks/oracle/PriceOracle.sol)                             | 0x0000000000000000000000000000000000000000 |
 
 ## Tokens
 
