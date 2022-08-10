@@ -78,7 +78,7 @@ Deployments
 │           ReservesSetupHelper           │ '0x87A5b1cD19fC93dfeb177CCEc3686a48c53D65Ec' │
 │             ACLManager-Aave             │ '0x4c952A81A72A6BA2919a658feff1e7F023e4aadc' │
 │             AaveOracle-Aave             │ '0x5bed0810073cc9f0DacF73C648202249E87eF6cB' │
-│           FallbackOracle-Aave           │ '0x8d9ca9aADC3A0Fb904229744BF1270D8739e77Ff' │
+│           FallbackOracle-Aave           │ '0x0000000000000000000000000000000000000000' │
 │             Pool-Proxy-Aave             │ '0x368EedF3f56ad10b9bC57eed4Dac65B26Bb667f6' │
 │       PoolConfigurator-Proxy-Aave       │ '0x723d17Ee6a668C011F01553D19B850E425075665' │
 │             IncentivesProxy             │ '0x0C501fB73808e1BD73cBDdd0c99237bbc481Bb58' │
@@ -193,7 +193,7 @@ Mintable Reserves and Rewards
 3|arbitrum | │           ReservesSetupHelper           │ '0x98Ce88b74fe01C4814EaBE18874302223a0FB52a' │
 3|arbitrum | │           ACLManager-Arbitrum           │ '0x371cdFcbeA8f98e045184373d83c10762E193075' │
 3|arbitrum | │           AaveOracle-Arbitrum           │ '0x2560A04c24E8870bB12eE7A9E2DcC4186362F3A1' │
-3|arbitrum | │         FallbackOracle-Arbitrum         │ '0xa43Bf6Ff0B831E23C0b658e778a26E0fc8a4C47a' │
+3|arbitrum | │         FallbackOracle-Arbitrum         │ '0x0000000000000000000000000000000000000000' │
 3|arbitrum | │           Pool-Proxy-Arbitrum           │ '0x9C55a3C34de5fd46004Fa44a55490108f7cE388F' │
 3|arbitrum | │     PoolConfigurator-Proxy-Arbitrum     │ '0xCf7e77c25e04d5F44AA20C505fbda04BFCF60c0b' │
 3|arbitrum | │                L2Encoder                │ '0x3d0d309DC8f999f34c4E7296dB38F0e65D3115DF' │
@@ -296,7 +296,7 @@ Deployments
 │  EURS-TestnetPriceAggregator-Arbitrum   │ '0x3d87bb7EabFc87e8509bCd813dDf26637E7cC08D' │
 │     EURS-VariableDebtToken-Arbitrum     │ '0xC11e128c590Db7099EC1ad774eD5679310072eD1' │
 │             EmissionManager             │ '0xb023e699F5a33916Ea823A16485e259257cA8Bd1' │
-│         FallbackOracle-Arbitrum         │ '0x9BdB5fcc80A49640c7872ac089Cc0e00A98451B6' │
+│         FallbackOracle-Arbitrum         │ '0x0000000000000000000000000000000000000000' │
 │             FlashLoanLogic              │ '0xB8096bC53c3cE4c11Ebb0069Da0341d75264B104' │
 │             IncentivesProxy             │ '0xCf9C57744E10495490cB873612Db709417cFe4f4' │
 │       IncentivesV2-Implementation       │ '0xaA5890362f36FeaAe91aF248e84e287cE6eCD1A9' │
@@ -397,7 +397,7 @@ Mintable Reserves and Rewards
 2|optimism | │  DAI-TestnetPriceAggregator-Optimistic  │ '0x8d493C61838B3A05888bBc5B61d95C5A1edBd431' │
 2|optimism | │               EModeLogic                │ '0x3937800B8EbB13E892f2BC4a7f2fA7aDe02375ca' │
 2|optimism | │         ERC20Faucet-Optimistic          │ '0xed97140B58B97FaF70b70Ae26714Aa59705c74aE' │
-2|optimism | │        FallbackOracle-Optimistic        │ '0x9075aaBA90d54E491EA43498A171e1908b18731c' │
+2|optimism | │        FallbackOracle-Optimistic        │ '0x0000000000000000000000000000000000000000' │
 2|optimism | │             FlashLoanLogic              │ '0x19036f43D29C4A7B0d6Ae1ADF18a9ded6C0635fA' │
 2|optimism | │          L2Pool-Implementation          │ '0x84EEC5bC5543B7Facb1f07290dEa97fB9dC127F4' │
 2|optimism | │ LINK-TestnetPriceAggregator-Optimistic  │ '0x5B3D60512c077A779597031d1C91F828D9a39372' │
@@ -510,7 +510,7 @@ Deployments
 │  DAI-TestnetPriceAggregator-Optimistic  │ '0x1C4a4e31231F71Fc34867D034a9E68f6fC798249' │
 │               EModeLogic                │ '0xc130E6a5C1965d0afb8283a636aFB3b113985eB2' │
 │         ERC20Faucet-Optimistic          │ '0xC52eA1F19C22E5a3725105BC0cf4988614e84D98' │
-│        FallbackOracle-Optimistic        │ '0x4112a7f903271F776409774D8ecD273E7Fe22B73' │
+│        FallbackOracle-Optimistic        │ '0x0000000000000000000000000000000000000000' │
 │             FlashLoanLogic              │ '0x6A79D1C40489C6b4223527bE4c44f992CDe565A4' │
 │                L2Encoder                │ '0x5c0585B267279c7c932a665d5a9770c3709B054B' │
 │          L2Pool-Implementation          │ '0xD37616d809Fd1b1Ae21Cddf41D27CD4d9f5BF5C8' │
@@ -646,7 +646,7 @@ Mintable Reserves and Rewards
 5|avalanch | │           ReservesSetupHelper           │ '0x520D14AE678b41067f029Ad770E2870F85E76588' │
 5|avalanch | │          ACLManager-Avalanche           │ '0xAa6Fd640173bcA58e5a5CC373531F9038eF3F9e1' │
 5|avalanch | │          AaveOracle-Avalanche           │ '0xAc6D153BF94aFBdC296e72163735B0f94581F736' │
-5|avalanch | │        FallbackOracle-Avalanche         │ '0x14C0BF50D98287071E174d8F9E75D41C4d3e011C' │
+5|avalanch | │        FallbackOracle-Avalanche         │ '0x0000000000000000000000000000000000000000' │
 5|avalanch | │          Pool-Proxy-Avalanche           │ '0xb47673b7a73D78743AFF1487AF69dBB5763F00cA' │
 5|avalanch | │    PoolConfigurator-Proxy-Avalanche     │ '0x01743372F0F0318AaDF690f960A4c6c4eab58782' │
 5|avalanch | │             IncentivesProxy             │ '0x58Cd851c28dF05Edc7F018B533C0257DE57673f7' │
@@ -737,7 +737,7 @@ Deployments
 │      DelegationAwareAToken-Fantom       │ '0x4e62eB262948671590b8D967BDE048557bdd03eD' │
 │               EModeLogic                │ '0x4a1a1ec8a5B70bAe3996e43bD9fAa7407b6A4657' │
 │           ERC20Faucet-Fantom            │ '0x02D538e56A729C535F83b2DA20Ddf9AD7281FE6c' │
-│          FallbackOracle-Fantom          │ '0xAA60FA0f06bbb7a8Bd8eea037F32Fe664f46dB32' │
+│          FallbackOracle-Fantom          │ '0x0000000000000000000000000000000000000000' │
 │             FlashLoanLogic              │ '0xed63f99f010EF092ad8173ca8E35c4b7E6e164b5' │
 │             IncentivesProxy             │ '0x54Bc1D59873A5ABde98cf76B6EcF4075ff65d685' │
 │       IncentivesV2-Implementation       │ '0x7337e7FF9abc45c0e43f130C136a072F4794d40b' │
@@ -886,7 +886,7 @@ Deployments
 │           ReservesSetupHelper           │ '0xa645C7F315B03BFc2E6000A4885B4EF20b045c3b' │
 │           ACLManager-Polygon            │ '0x6437b6E14D7ECa1Fa9854df92eB067253D5f683A' │
 │           AaveOracle-Polygon            │ '0x520D14AE678b41067f029Ad770E2870F85E76588' │
-│         FallbackOracle-Polygon          │ '0x66404DD8A6CddD06158174a1C5817140eD724cb2' │
+│         FallbackOracle-Polygon          │ '0x0000000000000000000000000000000000000000' │
 │           Pool-Proxy-Polygon            │ '0x6C9fB0D5bD9429eb9Cd96B85B81d872281771E6B' │
 │     PoolConfigurator-Proxy-Polygon      │ '0x7b47e727eC539CB74A744ae5259ef26743294fca' │
 │             IncentivesProxy             │ '0xFfaDa869df79320120dfFd6eeE8cF664Dba43146' │
@@ -1030,7 +1030,7 @@ Mintable Reserves and Rewards
 4|harmony- | │           ReservesSetupHelper           │ '0x55E1267C2e587b6b5E94aD4f72E3eDA725D58b8D' │
 4|harmony- | │           ACLManager-Harmony            │ '0x1758d4e6f68166C4B2d9d0F049F33dEB399Daa1F' │
 4|harmony- | │           AaveOracle-Harmony            │ '0x29Ff3c19C6853A0b6544b3CC241c360f422aBaD1' │
-4|harmony- | │         FallbackOracle-Harmony          │ '0x99b97EB5948eA9aFEC4808F250f4fe245b8b3c02' │
+4|harmony- | │         FallbackOracle-Harmony          │ '0x0000000000000000000000000000000000000000' │
 4|harmony- | │           Pool-Proxy-Harmony            │ '0x85C1F3f1bB439180f7Bfda9DFD61De82e10bD554' │
 4|harmony- | │     PoolConfigurator-Proxy-Harmony      │ '0xdb903B5a28260E87cF1d8B56740a90Dba1c8fe15' │
 4|harmony- | │             IncentivesProxy             │ '0xC05FAA52459226aA19eDF47DD858Ff137D41Ce84' │
@@ -1119,7 +1119,7 @@ Deployments
 │            ERC20Faucet-Aave             │ '0xb7263ADfB7C094aa24b91A51b297A278e105584a' │
 │    EURS-TestnetPriceAggregator-Aave     │ '0x34368AC4e691Ed8d30a4A81846337C60B44A3B82' │
 │             EmissionManager             │ '0xA6987DD1E6948e5adcC660223727874298989bB7' │
-│           FallbackOracle-Aave           │ '0x947181854E115D9Fb846B2bB62f79d7258751A79' │
+│           FallbackOracle-Aave           │ '0x0000000000000000000000000000000000000000' │
 │             FlashLoanLogic              │ '0xdD7bf228dE74F4C0D0cFfFAA24CE77EBFb2F1e97' │
 │             IncentivesProxy             │ '0x0C501fB73808e1BD73cBDdd0c99237bbc481Bb58' │
 │       IncentivesV2-Implementation       │ '0x0e42c7E9aF11f4AcBe21cb0286C1Ea2aAd891428' │
@@ -1249,7 +1249,7 @@ Deployments
 │           ReservesSetupHelper           │ '0x3Bbac251F403026ddaE95e4a2352A622C9F340C5' │
 │             ACLManager-Aave             │ '0x74E3445f239f9915D57715Efb810f67b2a7E5758' │
 │             AaveOracle-Aave             │ '0xA323726989db5708B19EAd4A494dDe09F3cEcc69' │
-│           FallbackOracle-Aave           │ '0xb7F15f789e93D228c62e68807f3153da3aA4EdC8' │
+│           FallbackOracle-Aave           │ '0x0000000000000000000000000000000000000000' │
 │             Pool-Proxy-Aave             │ '0xE039BdF1d874d27338e09B55CB09879Dedca52D8' │
 │       PoolConfigurator-Proxy-Aave       │ '0x11E9F019FCC15AccB472Aa49C8fc0c61949c86d5' │
 │             IncentivesProxy             │ '0x17e7097C6Db59B13Da3f894A28946a3ec23502E0' │
@@ -1340,7 +1340,7 @@ te | Accounts after deployment
 1|kovan-te | │               EModeLogic                │ '0x14C0BF50D98287071E174d8F9E75D41C4d3e011C' │
 1|kovan-te | │            ERC20Faucet-Aave             │ '0x06Db7973d6D724Eb15404a0d178624f6e07834F9' │
 1|kovan-te | │    EURS-TestnetPriceAggregator-Aave     │ '0xB0782094001F15Fd0EA8e573D72b488b06574649' │
-1|kovan-te | │           FallbackOracle-Aave           │ '0x4aAded56bd7c69861E8654719195fCA9C670EB45' │
+1|kovan-te | │           FallbackOracle-Aave           │ '0x0000000000000000000000000000000000000000' │
 1|kovan-te | │             FlashLoanLogic              │ '0xAa344F7Bed7B971df25aaf0E87A7a73d434D340a' │
 1|kovan-te | │             IncentivesProxy             │ '0x6aEc12D18b9702778227F7EC09f2e640BEEBed3d' │
 1|kovan-te | │       IncentivesV2-Implementation       │ '0xC7fEC323B14aA86597933ada3583b118a893B786' │
