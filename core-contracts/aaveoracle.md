@@ -92,6 +92,9 @@ Call Params
 | fallbackOracle | address | The address of the fallback oracle. |
 
 ## ABI
+<details>
+<summary>AaveOracle ABI</summary>
+
 ```
 [
     {
@@ -323,3 +326,4 @@ Call Params
     }
 ]
 ```
+</details>

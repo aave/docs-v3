@@ -179,6 +179,9 @@ You can use data returned from [`encodeLiquidationCall`](l2encoder.md#liquidatio
 | args2 | `bytes32` | <p>Encoded params<br>bit 0-127: <code>uint128</code> shortened debt to cover from the original <code>uint256</code><br>bit 128: 0=> receive aToken, 1=> receive underlying asset</p>                                                                                     |
 
 ## ABI
+<details>
+<summary>L2Pool ABI</summary>
+
 ```
 [
     {
@@ -2082,3 +2085,4 @@ You can use data returned from [`encodeLiquidationCall`](l2encoder.md#liquidatio
     }
 ]
 ```
+</details>

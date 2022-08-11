@@ -97,6 +97,9 @@ Call Params
 * updateFlashloanPremiumToProtocol
 
 ## ABI
+<details>
+<summary>PoolConfigurator ABI</summary>
+
 ```
 [
     {
@@ -1353,3 +1356,4 @@ Call Params
     }
 ]
 ```
+</details>

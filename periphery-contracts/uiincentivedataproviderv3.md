@@ -92,6 +92,9 @@ Returns `UserReserveIncentiveData[]` for the given `user` for the pool associate
 Returns both `AggregatedReserveIncentiveData[]` and `UserReserveIncentiveData[]` for the given `user` for the pool associated with given [`provider`](../core-contracts/pooladdressesprovider.md).
 
 ## ABI
+<details>
+<summary>UiIncentiveDataProviderV3 ABI</summary>
+
 ```
 [
     {
@@ -1054,3 +1057,4 @@ Returns both `AggregatedReserveIncentiveData[]` and `UserReserveIncentiveData[]`
     }
 ]
 ```
+</details>

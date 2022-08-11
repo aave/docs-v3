@@ -29,6 +29,9 @@ Returns balances for a list of `users` and `tokens` (ETH included with `MOCK_ETH
 Provides balances of user wallet for all reserves available on the pool
 
 ## ABI
+<details>
+<summary>WalletBalanceProvider</summary>
+
 ```
 [
     {
@@ -114,3 +117,4 @@ Provides balances of user wallet for all reserves available on the pool
     }
 ]
 ```
+</details>

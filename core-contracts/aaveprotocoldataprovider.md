@@ -331,6 +331,9 @@ Return Value
 | `address` | The address of the Interest Rate strategy |
 
 ## ABI
+<details>
+<summary>AaveProtocolDataProvider</summary>
+
 ```
 [
     {
@@ -848,3 +851,4 @@ Return Value
     }
 ]
 ```
+</details>

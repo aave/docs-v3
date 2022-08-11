@@ -41,6 +41,9 @@ Return Values
 | uint256 | Id of the associated PoolAddressesProvider. 0 indicates not a valid PoolAddressesProvider address |
 
 ## ABI
+<details>
+<summary>PoolAddressesProviderRegistry ABI</summary>
+
 ```
 [
     {
@@ -558,3 +561,4 @@ Return Values
     }
 ]
 ```
+</details>

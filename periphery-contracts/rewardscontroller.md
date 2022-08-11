@@ -161,6 +161,9 @@ Call Params
 | assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses |
 
 ## ABI
+<details>
+<summary>RewardsController ABI</summary>
+
 ```
 [
     {
@@ -1077,3 +1080,4 @@ Call Params
     }
 ]
 ```
+</details>

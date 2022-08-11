@@ -119,6 +119,9 @@ Can be called only by the owner of the contract i.e. Aave Governance.
 Returns the WETH address used by the WETHGateway.
 
 ## ABI
+<details>
+<summary>WETHGateway ABI</summary>
+
 ```
 [
     {
@@ -411,3 +414,4 @@ Returns the WETH address used by the WETHGateway.
     }
 ]
 ```
+</details>

@@ -229,6 +229,10 @@ Remove address from the list of members in `ASSET_LISTING_ADMIN` role.
 | admin | address | address for which ASSET\_LISTING\_ADMIN role permissions must be revoked. |
 
 ## ABI
+
+<details>
+<summary>ACLManager ABI</summary>
+
 ```
 [
     {
@@ -827,3 +831,4 @@ Remove address from the list of members in `ASSET_LISTING_ADMIN` role.
     }
 ]
 ```
+</details>

@@ -529,6 +529,9 @@ A part of this premium is added to reserve's liquidity index i.e. paid to the li
 Returns the percent of flashloan premium that is accrued to the treasury.
 
 ## ABI
+<details>
+<summary>Pool ABI</summary>
+
 ```
 [
     {
@@ -2246,3 +2249,4 @@ Returns the percent of flashloan premium that is accrued to the treasury.
     }
 ]
 ```
+</details>

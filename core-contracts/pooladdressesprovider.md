@@ -243,6 +243,10 @@ Call Params
 | newDataProvider | `address` | The address of new PoolDataProvider |
 
 ## ABI
+
+<details>
+<summary>PoolAddressesProvider ABI</summary>
+
 ```
 [
     {
@@ -811,3 +815,4 @@ Call Params
     }
 ]
 ```
+</details>

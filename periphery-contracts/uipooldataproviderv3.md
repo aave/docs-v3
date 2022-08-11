@@ -56,6 +56,9 @@ Returns `BaseCurrencyInfo` of the Pool and `AggregatedReserveData[]` for all the
 Returns `UserReserveData[]` for all user reserves in the Pool associated with the given [`provider`](../core-contracts/pooladdressesprovider.md).
 
 ## ABI
+<details>
+<summary>UiPoolDataProviderV3</summary>
+
 ```
 [
     {
@@ -545,3 +548,4 @@ Returns `UserReserveData[]` for all user reserves in the Pool associated with th
     }
 ]
 ```
+</details>

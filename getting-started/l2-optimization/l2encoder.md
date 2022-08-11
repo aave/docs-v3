@@ -170,6 +170,9 @@ Call Params
 | receiveAToken | bool    | if true, the user receives the aTokens equivalent of the purchased collateral. If false, the user receives the underlying asset directly. |
 
 ## ABI
+<details>
+<summary>L2Encoder ABI</summary>
+
 ```
 [
     {
@@ -577,3 +580,4 @@ Call Params
     }
 ]
 ```
+</details>
