@@ -88,3 +88,22 @@ Aave V3 introduces a new system role - `ASSET_LISTING_ADMIN_ROLE` - that can be 
 ## Multiple Rewards Tokens
 
 Aave Protocol V3 offers the option to have _**multiple rewards**_ per token. Now, it is possible for an asset listing to enable additional incentives denominated in native protocol tokens. It is also possible for user to claim multiple reward types per asset in single transaction. Read more in [Multiple Rewards section](whats-new/multiple-rewards-and-claim.md).
+
+## Aave Interface
+
+The Aave interface is hosted on [IPFS](https://ipfs.tech/) in a decentralized manner. Aave maps the following DNS names to the Cloudflare IPFS gateway:
+* [https://app.aave.com](https://app.aave.com) will always point to the latest main IPFS hash with disabled test networks
+* [https://staging.aave.com](https://staging.aave.com) will always point to the latest main IPFS hash with all networks enabled
+
+### IPFS Troubleshooting
+
+If the Cloudflare gateway is not working and you are unable to connect to [app.aave.com](https://app.aave.com), you can use any public or private IPFS gateway supporting origin isolation to access the Aave interface:
+* Go to ```<your favorite public ipfs gateway>/ipns/app.aave.com```
+* Make sure the gateway supports origin isolation to avoid possible security issues
+* You should be redirected to a URL that looks like ```https://app-aave-com.<your gateway>```
+
+### Previous Links
+
+The following links have worked previously:
+* https://app-aave-com.ipns.cf-ipfs.com/#/
+* https://app-aave-com.ipns.dweb.link/#/
