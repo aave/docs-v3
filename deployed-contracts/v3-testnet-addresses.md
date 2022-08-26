@@ -117,8 +117,8 @@ Deployments
 │       EURS-VariableDebtToken-Aave       │ '0x257b4a23b3026E04790c39fD3Edd7101E5F31192' │
 │        EURS-StableDebtToken-Aave        │ '0x512ad2D2fb3Bef82ca0A15d4dE6544246e2D32c7' │
 │          MockFlashLoanReceiver          │ '0x1931722c81F8A6b27d21a8Abfc167134D2F1a790' │
-│        UiIncentiveDataProviderV3        │ '0x2A15b87783b9d590a6c528E7b1Df71ee73540F5A' │
-│          UiPoolDataProviderV3           │ '0x851F44e30C469b9E4Bf9591309611c28eAb85fAb' │
+│        UiIncentiveDataProvider          │ '0xACFd610B51ac6B70F030B277EA8A2A8D2143dC7A' │
+│          UiPoolDataProviderV3           │ '0xC576539371a2f425545B7BF4eb2a14Eee1944a1C' │
 └─────────────────────────────────────────┴──────────────────────────────────────────────┘
 
 Mintable Reserves and Rewards
@@ -174,8 +174,8 @@ Mintable Reserves and Rewards
 3|arbitrum | │         Treasury-Implementation         │ '0xB2c3fB5CE7BDCd6Dea68Ac26Eb27958d567F1706' │
 3|arbitrum | │               WETHGateway               │ '0xF1C72f4e230289970d60046915c79c4A7A94aae5' │
 3|arbitrum | │          WalletBalanceProvider          │ '0xA1B434CC7B9Cf70BE99f19B3721904919CaA5227' │
-3|arbitrum | │        UiIncentiveDataProviderV3        │ '0x8E90a6524931E097DefB662B3DEa33809D410E6c' │
-3|arbitrum | │          UiPoolDataProviderV3           │ '0xa3D26e300df5Aa91713fB5963A6A6C48777243Aa' │
+3|arbitrum | │        UiIncentiveDataProvider          │ '0xfd7dF17EF5Baa6460204D95B4F00e355e5B77544' │
+3|arbitrum | │          UiPoolDataProviderV3           │ '0x4Cfed366cfD75Ec739e0d763f557680Bc656a965' │
 3|arbitrum | │          ERC20Faucet-Arbitrum           │ '0x3BE25d21ee1C417462E97CEF1D53da9011149384' │
 3|arbitrum | │     PoolAddressesProvider-Arbitrum      │ '0xF7158D1412Bdc8EAfc6BF97DB4e2178379c9521c' │
 3|arbitrum | │        PoolDataProvider-Arbitrum        │ '0x9bf4b639C27F7aaF2eE2c1917478fd48370CE390' │
@@ -364,119 +364,6 @@ Mintable Reserves and Rewards
 ```
 {% endtab %}
 
-{% tab title="Optimism Kovan" %}
-```
-|optimism | Accounts after deployment
-2|optimism | ========
-2|optimism | ┌─────────┬──────────────────────────────────┬──────────────────────────────────────────────┬────────────────────────┐
-2|optimism | │ (index) │               name               │                   account                    │        balance         │
-2|optimism | ├─────────┼──────────────────────────────────┼──────────────────────────────────────────────┼────────────────────────┤
-2|optimism | │    0    │            'deployer'            │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | │    1    │            'aclAdmin'            │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | │    2    │         'emergencyAdmin'         │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | │    3    │           'poolAdmin'            │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | │    4    │ 'addressesProviderRegistryOwner' │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | │    5    │       'treasuryProxyAdmin'       │ '0x04c94825C3e3539e0f2bB21d435302d08B2Dbd77' │ '0.049999987636082397' │
-2|optimism | │    6    │      'incentivesProxyAdmin'      │ '0x04c94825C3e3539e0f2bB21d435302d08B2Dbd77' │ '0.049999987636082397' │
-2|optimism | │    7    │   'incentivesEmissionManager'    │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | │    8    │     'incentivesRewardsVault'     │ '0x77c45699A715A64A7a7796d5CEe884cf617D5254' │ '0.899866034761479837' │
-2|optimism | └─────────┴──────────────────────────────────┴──────────────────────────────────────────────┴────────────────────────┘
-2|optimism | 
-2|optimism | Deployments
-2|optimism | ===========
-2|optimism | ┌─────────────────────────────────────────┬──────────────────────────────────────────────┐
-2|optimism | │                 (index)                 │                   address                    │
-2|optimism | ├─────────────────────────────────────────┼──────────────────────────────────────────────┤
-2|optimism | │ AAVE-TestnetPriceAggregator-Optimistic  │ '0xaA5A5AD49CAE9C0F19F46dB76feDA55c1B52daD4' │
-2|optimism | │          ACLManager-Optimistic          │ '0x552626e2E6e35566d53CE0C5Ad97d72E95bC3fc3' │
-2|optimism | │          AaveOracle-Optimistic          │ '0xce87225e5A0ABFe6241C6A60158840d509a84B47' │
-2|optimism | │               BorrowLogic               │ '0x69564eAb943c5990eA4F7129b030608EF048EBBb' │
-2|optimism | │               BridgeLogic               │ '0x5D3ae67aE4d6917d7B858AD55D52B869A624A9b0' │
-2|optimism | │              CalldataLogic              │ '0x051050569eD8A46422F3b9489c529CA5771992C9' │
-2|optimism | │            ConfiguratorLogic            │ '0x87d4802e740934ca8671050b4820561242570077' │
-2|optimism | │  DAI-TestnetPriceAggregator-Optimistic  │ '0x8d493C61838B3A05888bBc5B61d95C5A1edBd431' │
-2|optimism | │               EModeLogic                │ '0x3937800B8EbB13E892f2BC4a7f2fA7aDe02375ca' │
-2|optimism | │         ERC20Faucet-Optimistic          │ '0xed97140B58B97FaF70b70Ae26714Aa59705c74aE' │
-2|optimism | │        FallbackOracle-Optimistic        │ '0x9075aaBA90d54E491EA43498A171e1908b18731c' │
-2|optimism | │             FlashLoanLogic              │ '0x19036f43D29C4A7B0d6Ae1ADF18a9ded6C0635fA' │
-2|optimism | │          L2Pool-Implementation          │ '0x84EEC5bC5543B7Facb1f07290dEa97fB9dC127F4' │
-2|optimism | │ LINK-TestnetPriceAggregator-Optimistic  │ '0x5B3D60512c077A779597031d1C91F828D9a39372' │
-2|optimism | │            LiquidationLogic             │ '0x0008aBb7592559D13185b38d3BeF46eD3ee13064' │
-2|optimism | │    PoolAddressesProvider-Optimistic     │ '0xD15d36975A0200D11B8a8964F4F267982D2a1cFe' │
-2|optimism | │      PoolAddressesProviderRegistry      │ '0x3179C833fF0035D3BD42654f3aCAE4B0908af7A7' │
-2|optimism | │     PoolConfigurator-Implementation     │ '0xAc2F2c1C7Ff2721C5d0B29c98ED5aCd110b4022a' │
-2|optimism | │       PoolDataProvider-Optimistic       │ '0x2f733c0389bfF96a3f930Deb2f6DB1d767Cd3215' │
-2|optimism | │                PoolLogic                │ '0x05aAFF5DE9dc88a9DF9B2113b98730D4Ab8E2983' │
-2|optimism | │           ReservesSetupHelper           │ '0x50463B271c3A3578DB88Ca18F0B2b80F8DF623eC' │
-2|optimism | │ SUSD-TestnetPriceAggregator-Optimistic  │ '0xE9ABd1387226A65E2C8B68929b42E5B2A50A7DDF' │
-2|optimism | │               SupplyLogic               │ '0xb38c10c43871DFe9E76c942A2a4bbb1FB274efD4' │
-2|optimism | │           Treasury-Controller           │ '0x9b791f6A34B2C87c360902F050dA5e0075b7A567' │
-2|optimism | │         Treasury-Implementation         │ '0x83c8bb29D4278c4551da3d5E824Cc4144548E5E0' │
-2|optimism | │              TreasuryProxy              │ '0x733DC8C72B189791B28Dc8c6Fb09D9201b01eF2f' │
-2|optimism | │ USDC-TestnetPriceAggregator-Optimistic  │ '0x95271D9B95fE8b888ED38440fAC50395568DfEC0' │
-2|optimism | │ USDT-TestnetPriceAggregator-Optimistic  │ '0x10E5744B09Fb08b8373D6955952A8831A1285bbe' │
-2|optimism | │        UiIncentiveDataProviderV3        │ '0xe2E3a30E77469397dc3CF74f1Fa35f39493207C2' │
-2|optimism | │          UiPoolDataProviderV3           │ '0xBCb61ecc7997cc736E4802de2D5ce76D0908C97c' │
-2|optimism | │ WBTC-TestnetPriceAggregator-Optimistic  │ '0x3cAF4f17bFBFc776545BF7FAae986523a12A6784' │
-2|optimism | │ WETH-TestnetPriceAggregator-Optimistic  │ '0xdCfe7bf3f8d145a92437b7dc280de060B9Fd73Eb' │
-2|optimism | │               WETHGateway               │ '0x698851Fc324Ff9572289Dd72dfC102DB778b52f1' │
-2|optimism | │          WalletBalanceProvider          │ '0xA8751C0e2383cE144a95386A2E30f7E2BD78236C' │
-2|optimism | │          Pool-Proxy-Optimistic          │ '0x139d8F557f70D1903787e929D7C42165c4667229' │
-2|optimism | │    PoolConfigurator-Proxy-Optimistic    │ '0x12F6E19b968e34fEE34763469c7EAf902Af6914B' │
-2|optimism | │                L2Encoder                │ '0xacC688c1246fb8Fb421D1DDe20dF2F59844178b5' │
-2|optimism | │             IncentivesProxy             │ '0x12d8A50922f634E2c153DcD4D2c67b963644729F' │
-2|optimism | │       IncentivesV2-Implementation       │ '0x36144551a6b2b193edAa2aB467916f8688166B35' │
-2|optimism | │       PullRewardsTransferStrategy       │ '0xD05A0AFF4A64fAB790930156862A6dEece86F279' │
-2|optimism | │            AToken-Optimistic            │ '0xD772d40fb2C14ca80f35EBcb5D1eD85eDA115212' │
-2|optimism | │    DelegationAwareAToken-Optimistic     │ '0x24d5260774901392cc2763310dcCe10f735A5659' │
-2|optimism | │       StableDebtToken-Optimistic        │ '0x728592068F66F935B5F53E9be4c51d21B1a30139' │
-2|optimism | │      VariableDebtToken-Optimistic       │ '0x4737ff5142fA2CC962a0755B5D311753bbF3b8EF' │
-2|optimism | │  ReserveStrategy-rateStrategyStableTwo  │ '0xbAAC1D3Dd2019857836C1Db0E6E28b21b1E42efB' │
-2|optimism | │ ReserveStrategy-rateStrategyVolatileOne │ '0x3DD3FbDcF9D0d64d21EEd9148568363E44ddDEC6' │
-2|optimism | │  ReserveStrategy-rateStrategyStableOne  │ '0x08653Dc107cC46E7429b70F85DeC05c22C2b7B26' │
-2|optimism | │         AAVE-AToken-Optimistic          │ '0x5994ce8E7F595AFE3115D72854e0EAeCbD902ea7' │
-2|optimism | │    AAVE-VariableDebtToken-Optimistic    │ '0xb45966470789847E7bC73E2aEdFefff96c86F821' │
-2|optimism | │     AAVE-StableDebtToken-Optimistic     │ '0xBe7c6a35A2932411A379081a745bcb99d83574EC' │
-2|optimism | │          DAI-AToken-Optimistic          │ '0x4cdb5D85687Fa162446c7Cf263f9be9614E6314B' │
-2|optimism | │    DAI-VariableDebtToken-Optimistic     │ '0x4F02eD54a25CD9D5bc3432f4bD82f39655A9F4bD' │
-2|optimism | │     DAI-StableDebtToken-Optimistic      │ '0xF7f1a6f7A614b12F2f3bcc8a2e0952B2c6bF283d' │
-2|optimism | │         LINK-AToken-Optimistic          │ '0x70713F22F01f0053803F1520d526a2C7b26b318a' │
-2|optimism | │    LINK-VariableDebtToken-Optimistic    │ '0x36B43B427a618cb2Dda78bEc36B7ed7d0b193071' │
-2|optimism | │     LINK-StableDebtToken-Optimistic     │ '0x2074341b6880f6B7FC4f3B2B3B15ef91712182E6' │
-2|optimism | │         SUSD-AToken-Optimistic          │ '0xE603E221fa3a858BdAE91FB51cE09BA6C53B19A5' │
-2|optimism | │    SUSD-VariableDebtToken-Optimistic    │ '0xd3a31fD51e6F0Ca6b4a083e05893bfC6e294cb30' │
-2|optimism | │     SUSD-StableDebtToken-Optimistic     │ '0xF864A79eE389859A33DA2CDec69fb1d723dB319B' │
-2|optimism | │         USDC-AToken-Optimistic          │ '0x0849Cd326DC590bF313a0b1E5a04790CBb4eE387' │
-2|optimism | │    USDC-VariableDebtToken-Optimistic    │ '0x3cB29D1F440d7ffADACCd57762c1332CF7Db9e6c' │
-2|optimism | │     USDC-StableDebtToken-Optimistic     │ '0xE953b08a7908921e179187bAf7dFb4e36f9b40CA' │
-2|optimism | │         USDT-AToken-Optimistic          │ '0x98A978662670A35cA2b4aD12319486a3F294a78b' │
-2|optimism | │    USDT-VariableDebtToken-Optimistic    │ '0x163F2F60F99090E1fF7d7eC768dA0BA77Dd50547' │
-2|optimism | │     USDT-StableDebtToken-Optimistic     │ '0x1b187f0e91934c94aFb324cD9cd03FBa0C7a8B71' │
-2|optimism | │         WBTC-AToken-Optimistic          │ '0x2D89bE7Cfbe21ed728A5AeDdA03cACFCAf04aA08' │
-2|optimism | │    WBTC-VariableDebtToken-Optimistic    │ '0x5a9BaC403F9034852Ed18613Ecac81A1FaE2AdF3' │
-2|optimism | │     WBTC-StableDebtToken-Optimistic     │ '0x4c9D6192E7920b2C56400aBFa8909EC7A572a315' │
-2|optimism | │         WETH-AToken-Optimistic          │ '0xCb5Df0b49BCa05B2478a606074ec39e3fa181a6f' │
-2|optimism | │    WETH-VariableDebtToken-Optimistic    │ '0x90De0e1eBDBfDb421F79D26EccE37cE1Aa84bbA6' │
-2|optimism | │     WETH-StableDebtToken-Optimistic     │ '0x52B61cD2CbC22A386a8F5d2Cec685e938A0379BB' │
-2|optimism | │          MockFlashLoanReceiver          │ '0x5E52dEc931FFb32f609681B8438A51c675cc232d' │
-2|optimism | └─────────────────────────────────────────┴──────────────────────────────────────────────┘
-2|optimism | 
-2|optimism | Mintable Reserves and Rewards
-2|optimism | ┌──────────────────────────────────────┬──────────────────────────────────────────────┐
-2|optimism | │               (index)                │                   address                    │
-2|optimism | ├──────────────────────────────────────┼──────────────────────────────────────────────┤
-2|optimism | │ AAVE-TestnetMintableERC20-Optimistic │ '0xb532118d86765Eb544958e47df77bb8bDDe2F096' │
-2|optimism | │ DAI-TestnetMintableERC20-Optimistic  │ '0xd6B095c27bDf158C462AaB8Cb947BdA9351C0e1d' │
-2|optimism | │ LINK-TestnetMintableERC20-Optimistic │ '0xFbBCcCCA95b5F676D8f044Ec75e7eA5899280efF' │
-2|optimism | │ SUSD-TestnetMintableERC20-Optimistic │ '0x6883D765088f90bAE62048dE45f2202D72985B01' │
-2|optimism | │ USDC-TestnetMintableERC20-Optimistic │ '0x9cCc44Aa7C301b6655ec9891BdaD20fa6eb2b552' │
-2|optimism | │ USDT-TestnetMintableERC20-Optimistic │ '0xeE6b5ad81c7d88a632b24Bcdac055D6f5F469495' │
-2|optimism | │ WBTC-TestnetMintableERC20-Optimistic │ '0xfF5b900f020d663719EEE1731C21778632e6C424' │
-2|optimism | │ WETH-TestnetMintableERC20-Optimistic │ '0x46e213C62d4734C64986879af00eEc5128395776' │
-2|optimism | └──────────────────────────────────────┴──────────────────────────────────────────────┘
-```
-{% endtab %}
-
 {% tab title="Optimism Görli" %}
 ```
 Accounts after deployment
@@ -535,8 +422,8 @@ Deployments
 │ WETH-TestnetPriceAggregator-Optimistic  │ '0xEFFC18fC3b7eb8E676dac549E0c693ad50D1Ce31' │
 │               WETHGateway               │ '0x6f7f2440006221F893c587b88f01afc42B6F8d2e' │
 │          WalletBalanceProvider          │ '0xAEe1FD5CB505aa48E49c01DdE732956eDef8b42f' │
-│        UiIncentiveDataProviderV3        │ '0x596b5804E1f541baC5f265aF7C4bcc5077522876' │
-│          UiPoolDataProviderV3           │ '0x4D8201fB7a3367AB3e4Ba257F7462C81306799d6' │
+│        UiIncentiveDataProvider          │ '0xDfEA20CB063Fef6487E6b696aC93C1B385E6b977' │
+│          UiPoolDataProviderV3           │ '0x7F2CEE177943bBa0C27e77C8F7893A27B4E0F740' │
 │             IncentivesProxy             │ '0x0C501fB73808e1BD73cBDdd0c99237bbc481Bb58' │
 │             EmissionManager             │ '0x46382F2A0E5BF6cbBa72821DFfe3b1CB9630C6E6' │
 │       IncentivesV2-Implementation       │ '0x0B99ec5D3E0F2f2C5908E4CE738dfDC5B2c1742E' │
@@ -628,8 +515,8 @@ Mintable Reserves and Rewards
 5|avalanch | │         Treasury-Implementation         │ '0xc1eB89DA925cc2Ae8B36818d26E12DDF8F8601b0' │
 5|avalanch | │               WETHGateway               │ '0x8f57153F18b7273f9A814b93b31Cb3f9b035e7C2' │
 5|avalanch | │          WalletBalanceProvider          │ '0xd19443202328A66875a51560c28276868B8C61C2' │
-5|avalanch | │        UiIncentiveDataProviderV3        │ '0x036dDd300B57F6a8A6A55e2ede8b50b517A5094f' │
-5|avalanch | │          UiPoolDataProviderV3           │ '0x1D01f7d8B42Ec47837966732f831E1D6321df499' │
+5|avalanch | │        UiIncentiveDataProvider          │ '0x7eEB186F13538e6795a0823e2D7283FEeD2738f5' │
+5|avalanch | │          UiPoolDataProviderV3           │ '0x88138CA1e9E485A1E688b030F85Bb79d63f156BA' │
 5|avalanch | │          ERC20Faucet-Avalanche          │ '0x127277bF2F5fA186bfC6b3a0ca00baefB5472d3a' │
 5|avalanch | │     PoolAddressesProvider-Avalanche     │ '0x1775ECC8362dB6CaB0c7A9C0957cF656A5276c29' │
 5|avalanch | │       PoolDataProvider-Avalanche        │ '0x8e0988b28f9CdDe0134A206dfF94111578498C63' │
@@ -764,8 +651,8 @@ Deployments
 │              TreasuryProxy              │ '0xF49dA7a22463D140f9f8dc7C91468C8721215496' │
 │   USDC-TestnetPriceAggregator-Fantom    │ '0x66FfCBF6430675e16DAEF6C7DE91A78cE07A95d0' │
 │   USDT-TestnetPriceAggregator-Fantom    │ '0xa65E093052D95672D5Fb37f6324c4d5dcA225B0E' │
-│        UiIncentiveDataProviderV3        │ '0x7Ce8eA134935F9FED1606Ba0dfD0509fec5D3a75' │
-│          UiPoolDataProviderV3           │ '0xd0B607bb9e0aA3aFF73a8E99d7EfA54C4bc3d8a9' │
+│        UiIncentiveDataProvider          │ '0xe2E3a30E77469397dc3CF74f1Fa35f39493207C2' │
+│          UiPoolDataProviderV3           │ '0xBCb61ecc7997cc736E4802de2D5ce76D0908C97c' │
 │        VariableDebtToken-Fantom         │ '0x981D8AcaF6af3a46785e7741d22fBE81B25Ebf1e' │
 │   WBTC-TestnetPriceAggregator-Fantom    │ '0x08Dbc45B4e520bd9686E3990d8E792507e83627F' │
 │   WETH-TestnetPriceAggregator-Fantom    │ '0xfB6A6A48e81F8E0a0cC35cca4ea1946869Cc5F00' │
@@ -875,8 +762,8 @@ Deployments
 │              TreasuryProxy              │ '0x3B6E7a4750e478D7f7d6A5d464099A02ef164bCC' │
 │   USDC-TestnetPriceAggregator-Polygon   │ '0x73b4C0C45bfB90FC44D9013FA213eF2C2d908D0A' │
 │   USDT-TestnetPriceAggregator-Polygon   │ '0x28A8E6e41F84e62284970E4bc0867cEe2AAd0DA4' │
-│        UiIncentiveDataProviderV3        │ '0xD4b6566313c1dCd8823226bb456d80fc85B03d8B' │
-│          UiPoolDataProviderV3           │ '0x94E9E8876Fd68574f17B2cd7Fa19AA8342fFaF51' │
+│        UiIncentiveDataProvider          │ '0x26C3249723F2b98be57F49a1a31A9243a4B2cd88' │
+│          UiPoolDataProviderV3           │ '0x74E3445f239f9915D57715Efb810f67b2a7E5758' │
 │   WBTC-TestnetPriceAggregator-Polygon   │ '0x3E937B4881CBd500d05EeDAB7BA203f2b7B3f74f' │
 │   WETH-TestnetPriceAggregator-Polygon   │ '0x09C85Ef96e93f0ae892561052B48AE9DB29F2458' │
 │               WETHGateway               │ '0x2a58E9bbb5434FdA7FF78051a4B82cb0EF669C17' │
