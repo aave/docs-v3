@@ -15,8 +15,8 @@ _Pool_, _PoolConfigurator_, _Incentives_ and _Treasury_ addresses mentioned belo
 | PoolAddressesProvider         | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PoolAddressesProvider.sol)         | 0xa97684ead0e402dC232d5A977953DF7ECBaB3CDb |
 | PoolAddressesProviderRegistry | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol) | 0x770ef9f4fe897e59daCc474EF11238303F9552b6 |
 | PoolDataProvider              | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol)                        | 0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654 |
-| UiIncentiveDataProviderV3     | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/UiIncentiveDataProviderV3.sol)                  | 0xBC3c351349f6A919A419EE1e57F85f3e07E59dd1 |
-| UiPoolDataProviderV3          | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/UiPoolDataProviderV3.sol)                       | 0xdBbFaFC45983B4659E368a3025b81f69Ab6E5093 |
+| UiIncentiveDataProviderV3     | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/UiIncentiveDataProviderV3.sol)                  | 0x027f58ea3B4c81c1ceeFAdE9c56375545a6E75F4 |
+| UiPoolDataProviderV3          | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/UiPoolDataProviderV3.sol)                       | 0xf952959c0F7FBed55786749219FECd8cd0ec8441 |
 | WETHGateway                   | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/WETHGateway.sol)                                | 0xe86B52cE2e4068AdE71510352807597408998a69 |
 | WalletBalanceProvider         | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/misc/WalletBalanceProvider.sol)                      | 0xBc790382B3686abffE4be14A030A96aC6154023a |
 | AaveOracle                    | [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveOracle.sol)                                      | 0x3C90887Ede8D65ccb2777A5d577beAb2548280AD |
