@@ -26,6 +26,7 @@ _Pool_, _PoolConfigurator_, _Incentives_ and _Treasury_ addresses mentioned belo
 | ParaswapRepayAdapter                                                                                           | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapRepayAdapter.sol)                  | [0x1408401B2A7E28cB747b3e258D0831Fc926bAC51](https://ftmscan.com/address/0x1408401B2A7E28cB747b3e258D0831Fc926bAC51#code) |                                                                                                                                |
 | ParaswapLiquiditySwapAdapter                                                                                   | [Github](https://github.com/aave/aave-v3-periphery/blob/master/contracts/adapters/paraswap/ParaSwapLiquiditySwapAdapter.sol)          | [0xe387c6053ce8ec9f8c3fa5ce085af73114a695d3](https://ftmscan.com/address/0xe387c6053ce8ec9f8c3fa5ce085af73114a695d3#code) |                                                                                                                                |
 
+
 ## Tokens
 
 |                                        Token                                        |                                          AToken                                         |                                     Stable Debt Token                                    |                                   Variable Debt Token                                   |                                        Interest Rate Strategy                                       |
