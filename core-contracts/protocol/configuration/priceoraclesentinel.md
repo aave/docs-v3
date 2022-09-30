@@ -1,82 +1,105 @@
 # PriceOracleSentinel
 
-## PriceOracleSentinel
+This contract validates if the operations are allowed depending on the `PriceOracle` health.
 
-This contract validates if the operations are allowed depending on the PriceOracle health.
-
-The `PriceOracle` is considered healthy once its completely up and the grace period has passed.
-
-## View Methods
-
-### isBorrowAllowed
-
-`function isBorrowAllowed()`
-
-Return Value
-
-| Type | Description                                                   |
-| ---- | ------------------------------------------------------------- |
-| bool | Returns true if PriceOracle is up and grace period has passed |
-
-### isLiquidationAllowed
-
-`function isLiquidationAllowed()`
-
-Return Value
-
-| Type | Description                                                   |
-| ---- | ------------------------------------------------------------- |
-| bool | Returns true if PriceOracle is up and grace period has passed |
-
-### getSequencerOracle
-
-`function getSequencerOracle()`
-
-Return Value
-
-| Type    | Description                     |
-| ------- | ------------------------------- |
-| address | Address of the SequencerOracle. |
-
-### getGracePeriod
-
-`function getGracePeriod()`
-
-Return Value
-
-| Type    | Description                                  |
-| ------- | -------------------------------------------- |
-| uint256 | The duration of the grace period in seconds. |
+Once the `PriceOracle` gets up after an outage or downtime, users can make their positions healthy during a grace period. The `PriceOracle` is considered healthy once its completely up and the grace period has passed.
 
 ## Write Methods
 
 ### setSequencerOracle
 
-`function setSequencerOracle(address newSequencerOracle)`
+```solidity
+function setSequencerOracle(address newSequencerOracle) public onlyPoolAdmin
+```
+
+Updates the address of the sequencer oracle.
 
 {% hint style="warning" %}
-Can be called only by PoolAdmin.
+Can only be called by PoolAdmin.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name               | Type    | Description                                  |
-| ------------------ | ------- | -------------------------------------------- |
-| newSequencerOracle | address | address of the new SequecerOracle to be set. |
+| Name               | Type      | Description                                       |
+| :----------------- | :-------- | :------------------------------------------------ |
+| newSequencerOracle | `address` | The address of the new Sequencer Oracle to be set |
 
 ### setGracePeriod
 
-`function setGracePeriod(uint256 newGracePeriod`
+```solidity
+function setGracePeriod(uint256 newGracePeriod) public onlyRiskOrPoolAdmins
+```
+
+Updates the duration of the grace period.
 
 {% hint style="warning" %}
-Can be called only by PoolAdmin or RiskAdmin.
+Can only be called by PoolAdmin or RiskAdmin.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name           | Type    | Description                              |
-| -------------- | ------- | ---------------------------------------- |
-| newGracePeriod | uint256 | duration of new grace period in seconds. |
+| Name           | Type      | Description                                 |
+| :------------- | :-------- | :------------------------------------------ |
+| newGracePeriod | `uint256` | The duration of new grace period in seconds |
+
+## View Methods
+
+### isBorrowAllowed
+
+```solidity
+function isBorrowAllowed() public view override returns (bool)
+```
+
+Returns true if the `borrow` operation is allowed. The operation is not allowed when `PriceOracle` is down or the grace period has not passed.
+
+#### Return Values:
+
+| Type   | Description                                                                                                            |
+| :----- | :--------------------------------------------------------------------------------------------------------------------- |
+| `bool` | Returns true if the `borrow` operation is allowed (the PriceOracle is up and grace period has passed), false otherwise |
+
+### isLiquidationAllowed
+
+```solidity
+function isLiquidationAllowed() public view override returns (bool)
+```
+
+Returns true if the `liquidation` operation is allowed. The operation is not allowed when `PriceOracle` is down or the grace period has not passed.
+
+#### Return Values:
+
+| Type   | Description                                                                                                            |
+| :----- | :--------------------------------------------------------------------------------------------------------------------- |
+| `bool` | Returns true if the `liquidation` operation is allowed (the PriceOracle is up and grace period has passed), false otherwise |
+
+### getSequencerOracle
+
+```solidity
+function getSequencerOracle() public view returns (address)
+```
+
+Returns the SequencerOracle.
+
+#### Return Values: 
+
+| Type      | Description                                  |
+| :-------- | :------------------------------------------- |
+| `address` | The address of the sequencer oracle contract |
+
+### getGracePeriod
+
+```solidity
+function getGracePeriod() public view returns (uint256)
+```
+
+Returns the grace period.
+
+#### Return Values:
+
+Returns the grace period.
+| Type      | Description                                 |
+| :-------- | :------------------------------------------ |
+| `uint256` | The duration of the grace period in seconds |
 
 ## ABI
 <details>

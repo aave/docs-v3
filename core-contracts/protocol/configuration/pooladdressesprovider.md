@@ -1,47 +1,208 @@
 # PoolAddressesProvider
 
-## PoolAddressesProvider
-
-Addresses register of the protocol for a particular market. This contract is immutable and the address will never change.
+Main registry of addresses part of or connected to the protocol for a particular market, including permissioned roles. This contract is owned by the Aave Governance, is immutable and the address will never change.
 
 {% hint style="info" %}
-Whenever the \`Pool\` contract is needed, we recommended you fetch the correct address from the \`PoolAddressesProvider\` smart contract.
+Whenever the `Pool` contract is needed, we recommended you fetch the correct address from the `PoolAddressesProvider` smart contract.
 {% endhint %}
 
-The source code can be [found on Github](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PoolAddressesProvider.sol)
+The source code can be found [here](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PoolAddressesProvider.sol).
+
+## Write Methods
+
+### setMarketId
+
+```solidity
+function setMarketId(string memory newMarketId) external override onlyOwner
+```
+
+Updates the identifier of the Aave market by associating an id with a specific PoolAddressesProvider. This can be used to create an onchain registry of PoolAddressesProviders to identify and validate multiple Aave markets.
+
+#### Input Parameters:
+
+| Name        | Type     | Description              |
+| :---------- | :------- | :----------------------- |
+| newMarketId | `string` | The new id of the market |
+
+### setAddress
+
+```solidity
+function setAddress(bytes32 id, address newAddress) external override onlyOwner
+```
+
+Sets the address of protocol contract stored at the given id, replacing the address saved in the addresses map.
+
+{% hint style="warning" %}
+Use this function carefully, as it will do a hard replacement of the current address in the addresses map.
+{% endhint %}
+
+#### Input Parameters:
+
+| Name        | Type      | Description                                              |
+| :---------- | :-------- | :------------------------------------------------------- |
+| id          | `bytes32` | keccak256 hash of UTF8Bytes string representing contract |
+| newAddress  | `address` | The new address to be set corresponding to the `id`      |
+
+For example, `utils.keccak256(utils.toUtf8Bytes("INCENTIVES_CONTROLLER"))`, is set to the address of `INCENTIVES_CONTROLLER`.
+
+### setAddressAsProxy
+
+```solidity
+function setAddressAsProxy(bytes32 id, address newImplementationAddress) external override onlyOwner
+```
+
+Updates the implementation address of a proxy contract with a specified `id`. 
+
+{% hint style="info" %}
+If there is no proxy registered, it will instantiate one and set the implementation as the `newImplementationAddress`.
+{% endhint %}
+
+{% hint style="warning" %}
+Use this function carefully, only for ids that don't have an explicit setter function in order to avoid unexpected consequences.
+{% endhint %}
+
+#### Input Parameters:
+
+| Name                     | Type      | Description                                                           |
+| :----------------------- | :-------- | :-------------------------------------------------------------------- |
+| id                       | `bytes32` | The id of the proxy contract                                          |
+| newImplementationAddress | `address` | The address of new implementation contract corresponding to the proxy |
+
+### setPoolImpl
+
+```solidity
+function setPoolImpl(address newPoolImpl) external override onlyOwner 
+```
+
+Updates the implementation of the Pool, or creates a proxy.
+
+#### Input Parameters:
+
+| Name        | Type      | Description                                     |
+| :---------- | :-------- | :---------------------------------------------- |
+| newPoolImpl | `address` | The address of new Pool implementation contract |
+
+### setPoolConfiguratorImpl
+
+```solidity
+function setPoolConfiguratorImpl(address newPoolConfiguratorImpl) external override onlyOwner
+```
+
+Updates the implementation of the PoolConfigurator, or creates a proxy.
+
+#### Input Parameters:
+
+| Name                    | Type      | Description                                                 |
+| :---------------------- | :-------- | :---------------------------------------------------------- |
+| newPoolConfiguratorImpl | `address` | The address of new PoolConfigurator implementation contract |
+
+### setPriceOracle
+
+```solidity
+function setPriceOracle(address newPriceOracle) external override onlyOwner
+```
+
+Updates the address of the price oracle.
+
+#### Input Parameters:
+
+| Name           | Type      | Description                    |
+| :------------- | :-------- | :----------------------------- |
+| newPriceOracle | `address` | The address of new PriceOracle |
+
+### setACLManager
+
+```solidity
+function setACLManager(address newAclManager) external override onlyOwner
+```
+
+Updates the address of the Access Control List Manager.
+
+#### Input Parameters:
+
+| Name          | Type      | Description                       |
+| :------------ | :-------- | :-------------------------------- |
+| newAclManager | `address` | The address of the new ACLManager |
+
+### setACLAdmin
+
+```solidity
+function setACLAdmin(address newAclAdmin) external override onlyOwner 
+```
+
+Updates the address of the Access Control List Admin.
+
+#### Input Parameters:
+
+| Name        | Type      | Description                 |
+| :---------- | :-------- | :-------------------------- |
+| newAclAdmin | `address` | The address of new ACLAdmin |
+
+### setPriceOracleSentinel
+
+```solidity
+function setPriceOracleSentinel(address newPriceOracleSentinel) external override onlyOwner
+```
+
+Updates the address of the price oracle sentinel.
+
+#### Input Parameters:
+
+| Name                   | Type      | Description                            |
+| :--------------------- | :-------- | :------------------------------------- |
+| newPriceOracleSentinel | `address` | The address of new PriceOracleSentinel |
+
+### setPoolDataProvider
+
+```solidity
+function setPoolDataProvider(address newDataProvider) external override onlyOwner
+```
+
+Updates the address of the data provider.
+
+#### Input Parameters:
+
+| Name            | Type      | Description                     |
+| :-------------- | :-------- | :------------------------------ |
+| newDataProvider | `address` | The address of new DataProvider |
 
 ## View Methods
 
 ### getMarketId
 
-`function getMarketId() external view override returns (string memory)`
+```solidity
+function getMarketId() external view override returns (string memory)
+```
 
-Fetch the market id of the associated Aave market.
+Returns the market id of the associated Aave market.
 
-Return Values
+#### Return Values:
 
-| Type   | Description                           |
-| ------ | ------------------------------------- |
-| string | A string representation of the market |
+| Type     | Description                              |
+| :------- | :--------------------------------------- |
+| `string` | A string representation of the market id |
 
 ### getAddress
 
-`function getAddress(bytes32 id) public view override returns (address)`
+```solidity
+function getAddress(bytes32 id) public view override returns (address)
+```
 
-Fetch the address of protocol contract stored at given id.
+Returns the address of protocol contract stored at the given id. The returned address might be an EOA or a contract, which may be proxied. It will return ZERO if there is no registered address with the given id.
 
-Call Params
+#### Input Parameters:
 
-| Name | Type    | Description                                         |
-| ---- | ------- | --------------------------------------------------- |
-| id   | bytes32 | id. Example, the Protocol Data Provider uses id 0x1 |
+| Name | Type      | Description                                                 |
+| :--- | :-------- | :---------------------------------------------------------- |
+| id   | `bytes32` | The id. For example, the Protocol Data Provider uses id 0x1 |
 
-Return Values
+#### Return Values:
 
-| Type    | Description                                       |
-| ------- | ------------------------------------------------- |
-| address | The address associated with the bytes32 id passed |
+| Type      | Description                               |
+| :-------- | :---------------------------------------- |
+| `address` | The address associated with the id passed |
 
+#### Example: 
 ```tsx
 // Get address of incentive controller
 import { utils } from '@ethers/lib/utils';
@@ -52,195 +213,101 @@ const address = poolAddressProvider.getAddress(id);
 
 ### getPool
 
-`function getPool() external view override returns (address)`
+```solidity
+function getPool() external view override returns (address)
+```
 
-Fetch the contract of latest pool
+Returns the address of the latest Pool proxy contract.
 
-Return Values
+#### Return Values:
 
-| Type    | Description                        |
-| ------- | ---------------------------------- |
-| address | The address of the associated Pool |
+| Type      | Description                              |
+| :-------- | :--------------------------------------- |
+| `address` | The address of the associated Pool proxy |
 
 ### getPoolConfigurator
 
-`function getPoolConfigurator() external view override returns (address)`
+```solidity
+function getPoolConfigurator() external view override returns (address)
+```
 
-Fetch the `PoolConfigurator` is used for configuration methods, like init reserves or update token implementation etc, of the market.
+Returns the address of the PoolConfigurator proxy. Used for configuration methods, like init reserves or update token implementation etc, of the market.
 
-Return Value
+#### Return Values:
 
-| Type    | Description                                         |
-| ------- | --------------------------------------------------- |
-| address | The address of associated market’s PoolConfigurator |
+| Type      | Description                        |
+| :-------- | :--------------------------------- |
+| `address` | The PoolConfigurator proxy address |
 
 ### getPriceOracle
 
-`function getPriceOracle() external view override returns (address)`
+```solidity
+function getPriceOracle() external view override returns (address)
+```
 
-Fetch Price Oracle used by the market.
+Returns the address of the Price Oracle used by the market.
 
-Return Value
+#### Return Values:
 
-| Type    | Description                                                |
-| ------- | ---------------------------------------------------------- |
-| address | The address of the price oracle used by associated market. |
+| Type      | Description                                                   |
+| :-------- | :------------------------------------------------------------ |
+| `address` | The address of the price oracle used by the associated market |
 
 ### getACLManager
 
-`function getACLManager() external view override returns (address)`
+```solidity
+function getACLManager() external view override returns (address)
+```
 
-Fetch ACLManger that manages the system role of the market
+Returns the address of the Access Control List Manager (ACLManager) that manages the system role of the market.
 
-Return Value
+#### Return Values:
 
-| Type    | Description                                                                              |
-| ------- | ---------------------------------------------------------------------------------------- |
-| address | The address of the ACLManger contract managing the system role of the associated market. |
+| Type      | Description                                                                             |
+| :-------- | :-------------------------------------------------------------------------------------- |
+| `address` | The address of the ACLManger contract managing the system role of the associated market |
 
 ### getACLAdmin
 
-`function getACLAdmin() external view override returns (address)`
+```solidity
+function getACLAdmin() external view override returns (address)
+```
 
-Fetch ACLAdmin of the market which holds the `DEFAULT_ADMIN_ROLE` in ACLManager.
+Returns the address of the Access Control List Admin (ACLAdmin) of the market which holds the `DEFAULT_ADMIN_ROLE` in ACLManager.
 
-Return Value
+#### Return Values:
 
-| Type    | Description                                                            |
-| ------- | ---------------------------------------------------------------------- |
-| address | The address of the access control list admin of the associated market. |
+| Type      | Description                                                           |
+| :-------- | :-------------------------------------------------------------------- |
+| `address` | The address of the Access Control List admin of the associated market |
 
 ### getPriceOracleSentinel
 
-`function getPriceOracleSentinel() external view override returns (address)`
+```solidity
+function getPriceOracleSentinel() external view override returns (address)
+```
 
-Return Value
+Returns the address of the price oracle sentinel.
 
-| Type    | Description                                                        |
-| ------- | ------------------------------------------------------------------ |
-| address | The address of the Price oracle sentinel of the associated market. |
+#### Return Values:
+
+| Type      | Description                                                     |
+| :-------- | :-------------------------------------------------------------- |
+| `address` | The address of the PriceOracleSentinel of the associated market |
 
 ### getPoolDataProvider
 
-`function getPoolDataProvider() external view override returns (address)`
-Fetch address of latest pool data provider.
+```solidity
+function getPoolDataProvider() external view override returns (address)
+```
 
-Return Value
+Returns the address of latest pool data provider.
 
-| Type    | Description                                                     |
-| ------- | --------------------------------------------------------------- |
-| address | The address of the pool data provider of the associated market. |
+#### Return Values:
 
-## Write Methods
-
-### setMarketId
-
-`function setMarketId(string memory newMarketId) external override onlyOwner`
-
-Updates the identifier of the Aave market
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newMarketId | `string` | The new id of the market |
-
-
-### setAddress
-
-`function setAddress(bytes32 id, address newAddress) external override onlyOwner`
-
-Sets the address of protocol contract stored at given id.
-
-Eg. `utils.keccak256(utils.toUtf8Bytes("INCENTIVES_CONTROLLER"))` is set to address of `INCENTIVES_CONTROLLER`
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| id | `bytes32` | keccak256 hash of UTF8Bytes string representing Contract |
-| newAddress | `address` | The new address to be set corresponding to the `id` |
-
-
-### setAddressAsProxy
-
-`function setAddressAsProxy(bytes32 id, address newImplementationAddress) external override onlyOwner`
-
-Sets/updates the implementation address of a specific proxied protocol contract.
-
-{% hint style="info" %}
-If there is no proxy registered with the given identifier, it creates the proxy setting `newAddress` as implementation and calls the initialize() function on the proxy
-{% endhint %}
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| id | `bytes32` | id of Proxy contract |
-| newImplementationAddress | `address` | The address of new implementation contract corresponding to the proxy |
-
-### setPoolImpl
-
-`function setPoolImpl(address newPoolImpl) external override onlyOwner `
-
-Sets/update the implementation of the POOL proxy contract.
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newPoolImpl | `address` | The address of new Pool implementation contract |
-
-### setPoolConfiguratorImp
-
-`function setPoolConfiguratorImpl(address newPoolConfiguratorImpl) external override onlyOwner`
-
-Sets/updates the implementation of the POOL_CONFIGURATOR proxy contract.
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newPoolConfiguratorImpl | `address` | The address of new PoolConfigurator implementation contract |
-
-### setPriceOracle
-
-`function setPriceOracle(address newPriceOracle) external override onlyOwner`
-
-Sets/updates address of the PriceOracle contract.
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newPriceOracle | `address` | The address of new PriceOracle contract |
-
-### setACLAdmin
-
-`function setACLAdmin(address newAclAdmin) external override onlyOwner `
-
-Sets/updates address of the AclAdmin.
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newAclAdmin | `address` | The address of new AclAdming |
-
-### setPriceOracleSentinel
-
-`function setPriceOracleSentinel(address newPriceOracleSentinel) external override onlyOwner`
-
-Sets/updates address of the Price oracle sentinel.
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newPriceOracleSentinel | `address` | The address of new PriceOracleSentinel |
-
-### setPoolDataProvider
-
-`function setPoolDataProvider(address newDataProvider) external override onlyOwner`
-
-Sets/updates address of PoolDataProvider.
-
-Call Params
-| Name        | Type    | Description               |
-| ----------- | ------- | ------------------------- |
-| newDataProvider | `address` | The address of new PoolDataProvider |
+| Type      | Description                                                    |
+| :-------- | :------------------------------------------------------------- |
+| `address` | The address of the pool data provider of the associated market |
 
 ## ABI
 

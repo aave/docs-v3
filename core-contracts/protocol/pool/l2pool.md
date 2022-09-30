@@ -1,182 +1,239 @@
 # L2Pool
 
-The L2Pool.sol is the contract for the L2 optimized user facing methods of the protocol that takes byte encoded input arguments. It exposes the liquidity management methods that can be invoked using either Solidity or Web3 libraries.\
-
+The L2Pool.sol is the contract for the L2 optimized user facing methods of the protocol that takes byte encoded input arguments. It exposes the liquidity management methods that can be invoked using either Solidity or Web3 libraries. Calldata optimized extension of the Pool contract allowing users to pass compact calldata representation to reduce transaction costs on rollups.
 
 {% hint style="info" %}
-Pool methods not exposed in L2Pool.sol (such as flashLoan, setUserEMode etc.) are same on L2 as on other versions of protocol. Refer [Pool](../../core-contracts/pool.md) docs for rest of the methods.&#x20;
+Pool methods not exposed in L2Pool.sol (such as flashLoan, setUserEMode etc.) are the same on L2 as on other versions of protocol. Refer to [Pool](../../core-contracts/pool.md) docs for the rest of the methods.
 {% endhint %}
 
 {% hint style="info" %}
-Since we have a limited set of supported assets that are already given individual id, we use the 16 bit asset id in the encoded arguments instead of 160 bit asset address.
+Since we have a limited set of supported assets that are already given an individual id, we use the 16 bit asset id in the encoded arguments instead of 160 bit asset address.
 {% endhint %}
 
 ## Methods
 
 ### supply
 
-`function supply(bytes32 args) external`
+```solidity
+function supply(bytes32 args) external override
+```
 
-Supplies asset into the protocol, minting the same amount of corresponding aTokens, and transferring them to `msg.sender`.
+Calldata efficient wrapper of the supply function on behalf of the caller. Supplies asset into the protocol, minting the same amount of corresponding aTokens, and transferring them to `msg.sender`.
 
 {% hint style="info" %}
-You can use data returned from [`encodeSupplyParams`](l2encoder.md#encodesupplyparams) method in L2Encoder helper contract to pass to this method.
+You can use data returned from [`encodeSupplyParams`]() method in L2Encoder helper contract to pass to this method.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name | Type      | Description                                                                                                                                                                                                                                                                                                  |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| args | `bytes32` | <p>Encoded supply params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> Shortened amount from original <code>uint256</code><br><code></code>bit 144-159: <code>uint16</code> referral code used for 3rd party integrations</p> |
+| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                            |
+| :--- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the supply function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 144-159: `uint16` referralCode - used for 3rd party integrations</p> |
 
 ### supplyWithPermit
 
-`function supplyWithPermit(bytes32 args, bytes32 r, bytes32 s) external`
+```solidity
+function supplyWithPermit(bytes32 args, bytes32 r, bytes32 s) external override
+```
 
-Supply with transfer approval of supplied asset via permit function. This method removes the need for separate approval tx before supplying asset to the pool.
+Calldata efficient wrapper of the supplyWithPermit function on behalf of the caller. Supply with transfer approval of supplied asset via permit function. This method removes the need for separate approval transaction before supplying asset to the pool.
 
 {% hint style="info" %}
-You can use data returned from [`encodeSupplyWithPermitParams`](l2encoder.md#encodesupplywithpermitparams) method in L2Encoder helper contract to pass to this method.
+You can use data returned from [`encodeSupplyWithPermitParams`]() method in L2Encoder helper contract to pass to this method.
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ---- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| args | `bytes32` | <p>Encoded supply with permit params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> shortened amount from original <code>uint256</code><br><code></code>bit 144-159: <code>uint16</code> referral code used for 3rd party integrations<br>bit 160-191: <code>uint32</code> shortened deadline from original <code>uint256</code><br>bit 192-199: Signature parameter v</p> |
-| r    | `bytes32` | Signature parameter r                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| s    | `bytes32` | Signature parameter s                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the supply function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 144-159: `uint16` referralCode - used for 3rd party integrations<br>bit 160-191: `uint32` shortenedDeadline - shortened deadline from the original `uint256`<br>bit 192-199: `uint8` permitV - the V parameter of ERC712 permit signature</p> |
+| r    | `bytes32` | The R parameter of ERC712 permit signature                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| s    | `bytes32` | The S parameter of ERC712 permit signature                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ### withdraw
 
-`function withdraw(bytes32 args) external`
+```solidity
+function withdraw(bytes32 args) external override
+```
 
-Withdraws `amount` of the underlying `asset`, i.e. redeems the underlying token and burns the aTokens.
+Calldata efficient wrapper of the withdraw function, withdrawing to the caller. Withdraws `amount` of the underlying `asset`, i.e. redeems the underlying token and burns the aTokens.
 
-If user has any existing debt backed by the underlying token, then the max _amount_ available to withdraw is the _amount_ that will not leave user health factor < 1 after withdrawal.
+If user has any existing debt backed by the underlying token, then the maximum amount available to withdraw is the amount that will not leave user with health factor < 1 after withdrawal.
 
 {% hint style="info" %}
-You can use data returned from [`encodeWithdrawParams`](l2encoder.md#encodewithdrawparams) method in L2Encoder helper contract to pass to this method.
+You can use data returned from [`encodeWithdrawParams`]() method in L2Encoder helper contract to pass to this method.
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                                                   |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| args | `bytes32` | <p>Encoded supply params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> Shortened amount from original <code>uint256</code></p> |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                                                                                      |
+| :--- | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the withdraw function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`</p> |
 
 ### borrow
 
-`function borrow(bytes32 args) external`
+```solidity
+function borrow(bytes32 args) external override
+```
 
-Borrows `amount` of `asset` with `interestRateMode`, sending the `amount` to `msg.sender`, with the debt being incurred by `onBehalfOf`.
+Calldata efficient wrapper of the borrow function, borrowing on behalf of the caller. Borrows `amount` of `asset` with `interestRateMode`, sending the `amount` to `msg.sender`, with the debt being incurred by `onBehalfOf`.
 
 {% hint style="info" %}
-You can use data returned from [`encodeBorrowParams`](l2encoder.md#encodeborrowparams) method in L2Encoder helper contract to pass to this method.
+You can use data returned from [`encodeBorrowParams`]() method in L2Encoder helper contract to pass to this method.
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                                    |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| args | `bytes32` | <p>Encoded supply params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> Shortened amount from original <code>uint256</code><br><code></code>bit 144 - 151: <code>uint8</code> shortened InterestRateMode<br>bit 152 - 167: <code>uint16</code> referral code used for 3rd party integrations</p> |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| :--- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the borrow function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 144 - 151: `uint8` shortenedInterestRateMode<br>bit 152 - 167: `uint16` referralCode - used for 3rd party integrations</p> |
 
 ### repay
 
-`function repay(bytes32 args) external returns (uint256)`
+```solidity
+function repay(bytes32 args) external override returns (uint256)
+```
 
-Repays debt of an `asset` for the given `rateMode`.
+Calldata efficient wrapper of the repay function, repaying on behalf of the caller. Repays debt of an `asset` for the given `interestRateMode`.
 
 {% hint style="info" %}
-You can use data returned from [`encodeRepayParams`](l2encoder.md#encoderepayparams) method in L2Encoder helper contract to pass to this method.
+You can use data returned from [`encodeRepayParams`]() method in L2Encoder helper contract to pass to this method.
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                                                                                                                                |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| args | `bytes32` | <p>Encoded supply params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> Shortened amount from original <code>uint256</code><br><code></code>bit 144 - 151: <code>uint8</code> shortened InterestRateMode</p> |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                       |
+| :--- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| args | `bytes32` | <p>Arguments for the repay function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 144 - 151: `uint8` shortenedInterestRateMode</p> |
+
+#### Return Values:
+
+| Type      | Description             |
+| :-------- | :---------------------- |
+| `uint256` | The final amount repaid |
 
 ### repayWithPermit
 
-`function repayWithPermit(bytes32 args, bytes32 r, bytes32 s) external returns (uint256)`
+```solidity
+function repayWithPermit(bytes32 args, bytes32 r, bytes32 s) external override returns (uint256)
+```
 
-Repay with transfer approval of borrowed asset via permit function. This method removes the need for separate approval tx before repaying asset to the pool.
+Calldata efficient wrapper of the repayWithPermit function, repaying on behalf of the caller. Repay with transfer approval of borrowed asset via permit function. This method removes the need for separate approval transaction before repaying asset to the pool.
 
 {% hint style="info" %}
-You can use data returned from [`encodeRepayWithPermitParams`](l2encoder.md#encoderepaywithpermitparams) method in L2Encoder helper contract to pass to this method.​
+You can use data returned from [`encodeRepayWithPermitParams`]() method in L2Encoder helper contract to pass to this method.​
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| args | `bytes32` | <p>Encoded supply with permit params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> shortened amount from original <code>uint256</code><br><code></code>bit 144-151: <code>uint8</code> shortened InterestRateMode<br>bit 152-183: <code>uint32</code> shortened deadline from original <code>uint256</code><br>bit 184-191: Signature parameter v</p> |
-| r    | `bytes32` | Signature parameter r                                                                                                                                                                                                                                                                                                                                                                                                                |
-| s    | `bytes32` | Signature parameter s                                                                                                                                                                                                                                                                                                                                                                                                                |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| :--- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the repayWithPermit function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 144 - 151: `uint8` shortenedInterestRateMode<br>bit 152-183: `uint32` shortenedDeadline - shortened deadline from original `uint256`<br>bit 184-191: `uint8` permitV - the V parameter of ERC712 permit signature</p> |
+| r    | `bytes32` | The R parameter of ERC712 permit signature                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| s    | `bytes32` | The S parameter of ERC712 permit signature                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+#### Return Values:
+
+| Type      | Description             |
+| :-------- | :---------------------- |
+| `uint256` | The final amount repaid |
 
 ### repayWithATokens
 
-`function repayWithATokens(bytes32 args) external override returns (uint256)`
+```solidity
+function repayWithATokens(bytes32 args) external override returns (uint256)
+```
 
-Allows user to repay with _aTokens_ of the underlying debt asset without any approvals eg. Pay DAI debt using aDAI tokens.
+Calldata efficient wrapper of the repayWithATokens function. Allows user to repay with aTokens of the underlying debt asset without any approvals, for example, Pay DAI debt using aDAI tokens.
 
 {% hint style="info" %}
-You can use data data returned from [encodeRepayWithATokensParams](l2encoder.md#encoderepayparams-1) method in L2Encoder helper contract to pass to this method.
+You can use data data returned from [encodeRepayWithATokensParams]() method in L2Encoder helper contract to pass to this method.
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                                                                                                                                |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| args | `bytes32` | <p>Encoded supply params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-143: <code>uint128</code> Shortened amount from original <code>uint256</code><br><code></code>bit 144 - 151: <code>uint8</code> shortened InterestRateMode</p> |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                                                                                                                                                  |
+| :--- | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the repayWithATokens function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-143: `uint128` shortenedAmount - cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 144 - 151: `uint8` shortenedInterestRateMode</p> |
+
+#### Return Values:
+
+| Type      | Description             |
+| :-------- | :---------------------- |
+| `uint256` | The final amount repaid |
 
 ### swapBorrowRateMode
 
-`function swapBorrowRateMode(bytes32 args) external`
+```solidity
+function swapBorrowRateMode(bytes32 args) external override
+```
 
-Swaps `msg.sender`'s borrow rate mode between stable and variable.
+Calldata efficient wrapper of the swapBorrowRateMode function. Swaps `msg.sender`'s borrow rate mode between stable and variable.
 
 {% hint style="info" %}
-You can use data returned from [`encodeSwapBorrowRateMode`](l2encoder.md#encodeswapborrowratemode) method in L2Encoder helper contract to pass to this method.​
+You can use data returned from [`encodeSwapBorrowRateMode`]() method in L2Encoder helper contract to pass to this method.​
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                |
-| ---- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| args | `bytes32` | <p>Encoded params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-23: <code>uint8</code> shortened InterestRateMode</p> |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                           |
+| :--- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the swapBorrowRateMode function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-23: `uint8` shortenedInterestRateMode</p> |
 
 ### rebalanceStableBorrowRate
 
-`function rebalanceStableBorrowRate(bytes32 args) external`
+```solidity
+function rebalanceStableBorrowRate(bytes32 args) external override
+```
 
-Rebalances stable borrow rate of the user for given asset. In case of liquidity crunches on the protocol, stable rate borrows might need to be rebalanced to bring back equilibrium between the borrow and supply rates.
+Calldata efficient wrapper of the rebalanceStableBorrowRate function. Rebalances stable borrow rate of the user for given asset. In case of liquidity crunches on the protocol, stable rate borrows might need to be rebalanced to bring back equilibrium between the borrow and supply rates.
 
 {% hint style="info" %}
-You can use data returned from [`encodeRebalanceStableBorrowRate`](l2encoder.md#encoderebalancestableborrowrate) method in L2Encoder helper contract to pass to this method.​
+You can use data returned from [`encodeRebalanceStableBorrowRate`]() method in L2Encoder helper contract to pass to this method.​
 {% endhint %}
 
+#### Input Parameters:
 
-
-| Name | Type      | Description                                                                                                                                |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| args | `bytes32` | <p>Encoded params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16-175: user address</p> |
+| Name | Type      | Description                                                                                                                                                                              |
+| :--- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args | `bytes32` | <p>Arguments for the rebalanceStableBorrowRate function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16-175: user address</p> |
 
 ### setUserUseReserveAsCollateral
 
-`function setUserUseReserveAsCollateral(bytes32 args) external`
+```solidity
+function setUserUseReserveAsCollateral(bytes32 args) external override
+```
 
-Sets the asset of `msg.sender` to be used as collateral or not.
+Calldata efficient wrapper of the setUserUseReserveAsCollateral function. Sets the asset of `msg.sender` to be used as collateral or not.
 
 {% hint style="info" %}
-You can use data returned from [`encodeSetUserUseReserveAsCollateral`](l2encoder.md#encodesetuserusereserveascollateral) method in L2Encoder helper contract to pass to this method.​
+You can use data returned from [`encodeSetUserUseReserveAsCollateral`]() method in L2Encoder helper contract to pass to this method.​
 {% endhint %}
 
-| Name | Type      | Description                                                                                                                                                                           |
-| ---- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| args | `bytes32` | <p>Encoded params<br>bit 0-15: id of the reserve. based on its position in the list of the active reserves<br>bit 16: 0=> enable use as collateral, 1=> disable use as collateral</p> |
+#### Input Parameters:
+
+| Name | Type      | Description                                                                                                                                                                                                                           |
+| :--- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| args | `bytes32` | <p>Arguments for the setUserUseReserveAsCollateral function packed in one bytes32<br>bit 0-15: `uint16` assetId - the index of the asset in the reservesList<br>bit 16: 0 => enable useAsCollateral, 1 => disable useAsCollateral</p> |
 
 ### liquidationCall
 
-`function liquidationCall(bytes32 args1, bytes32 args2) external`
+```solidity
+function liquidationCall(bytes32 args1, bytes32 args2) external override
+```
 
-Liquidate positions with a **health factor** below 1.
+Calldata efficient wrapper of the liquidationCall function. Liquidate positions with a health factor below 1.
 
 {% hint style="info" %}
-You can use data returned from [`encodeLiquidationCall`](l2encoder.md#liquidationcall) method in L2Encoder helper contract to pass to this method.​
+You can use data returned from [`encodeLiquidationCall`]() method in L2Encoder helper contract to pass to this method.​
 {% endhint %}
 
-| Name  | Type      | Description                                                                                                                                                                                                                                                              |
-| ----- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| args1 | `bytes32` | <p>Encoded params<br>bit 0-15: id of the collateral reserve. based on its position in the list of the active reserves<br>bit 16-31: id of the debt reserve. based on its position in the list of the active reserves<br>bit 32-191: address of user being liquidated</p> |
-| args2 | `bytes32` | <p>Encoded params<br>bit 0-127: <code>uint128</code> shortened debt to cover from the original <code>uint256</code><br>bit 128: 0=> receive aToken, 1=> receive underlying asset</p>                                                                                     |
+#### Input Parameters:
+
+| Name  | Type      | Description                                                                                                                                                                                                                                                                                                                  |
+| :---- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| args1 | `bytes32` | <p>Part of the arguments for the liquidationCall function packed in one bytes32<br>bit 0-15: `uint16` collateralAssetId - the index of the collateral asset in the reservesList<br>bit 16-31: `uint16` debtAssetId - the index of the debt asset in the reservesList<br>bit 32-191: address of the user being liquidated</p> |
+| args2 | `bytes32` | <p>Part of the arguments for the liquidationCall function packed in one bytes32<br>bit 0-127: `uint128` shortenedDebtToCover is cast to 256 bits at decode time, if `type(uint128).max` the value will be expanded to `type(uint256).max`<br>bit 128: receiveAToken - 0 => receive aToken, 1 => receive underlying asset</p> |
 
 ## ABI
 <details>

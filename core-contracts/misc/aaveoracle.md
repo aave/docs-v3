@@ -1,7 +1,5 @@
 # AaveOracle
 
-## AaveOracle
-
 Contract to get asset prices, manage price sources and update the fallback oracle.
 
 Protocol V3 uses Chainlink Aggregators as the source of all asset prices.
@@ -10,57 +8,15 @@ Protocol V3 uses Chainlink Aggregators as the source of all asset prices.
 The fallback oracles from V1 and V2 of the protocol are now deprecated and no longer maintained.
 {% endhint %}
 
-## Methods
+The source code can be found [here](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveOracle.sol).
 
-### View
+## Write Methods
 
-#### getAssetPrice
+### setAssetSources
 
-`function getAssetPrice(address asset)`
-
-Returns the price of the supported `asset` in `BASE_CURRENCY` of the Aave Market in wei.
-
-Return Value
-
-| Type    | Description                                        |
-| ------- | -------------------------------------------------- |
-| uint256 | Price in BASE\_CURRENCY of the Aave market in wei. |
-
-#### getAssetsPrices
-
-`function getAssetsPrices(address[] calldata assets)`
-
-Returns the prices of the supported `assets` in `BASE_CURRENCY` of the Aave Market. All prices are in wei.
-
-Call Params
-
-| Name   | Type       | Description                                                   |
-| ------ | ---------- | ------------------------------------------------------------- |
-| assets | address\[] | The addresses of the assets for which price is being queried. |
-
-Return Value
-
-| Type       | Description                                         |
-| ---------- | --------------------------------------------------- |
-| uint256\[] | Prices in BASE\_CURRENCY of the Aave market in wei. |
-
-#### getSourceOfAsset
-
-`function getSourceOfAsset(address asset)`
-
-Returns the address of the price source for `asset`.
-
-#### getFallbackOracle
-
-`function getFallbackOracle()`
-
-Returns the address of the fallback oracle.
-
-### Write
-
-#### setAssetSources
-
-`function setAssetSources(address[] calldata assets, address[] calldata sources)`
+```solidity
+function setAssetSources(address[] calldata assets, address[] calldata sources) external override onlyAssetListingOrPoolAdmins
+```
 
 Sets the price source for given list of assets.
 
@@ -68,16 +24,18 @@ Sets the price source for given list of assets.
 This method can be called only by `POOL_ADMIN` or `ASSET_LISTING_ADMIN`. Check [ACLManager](aclmanager.md) for details on system roles.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name    | Type       | Description                                                                                 |
-| ------- | ---------- | ------------------------------------------------------------------------------------------- |
-| assets  | address\[] | The addresses of the assets for which source is being set.                                  |
-| sources | address\[] | The address of the source of each asset. Length of assets and sources array should be same. |
+| Name    | Type        | Description                                                                                |
+| :------ | :---------- | :----------------------------------------------------------------------------------------- |
+| assets  | `address[]` | The addresses of the assets for which source is being set                                  |
+| sources | `address[]` | The address of the source of each asset. Length of assets and sources array should be same |
 
-#### setFallbackOracle
+### setFallbackOracle
 
-`function setFallbackOracle(address fallbackOracle)`
+```solidity
+function setFallbackOracle(address fallbackOracle) external override onlyAssetListingOrPoolAdmins
+```
 
 Sets/updates the fallback oracle.
 
@@ -85,11 +43,87 @@ Sets/updates the fallback oracle.
 This method can be called only by `POOL_ADMIN`or`ASSET_LISTING_ADMIN`. Check [ACLManager](aclmanager.md) for details on system roles.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name           | Type    | Description                         |
-| -------------- | ------- | ----------------------------------- |
-| fallbackOracle | address | The address of the fallback oracle. |
+| Name           | Type      | Description                        |
+| :------------- | :-------- | :--------------------------------- |
+| fallbackOracle | `address` | The address of the fallback oracle |
+
+## View Methods
+
+### getAssetPrice
+
+```solidity
+function getAssetPrice(address asset) public view override returns (uint256) 
+```
+
+Returns the price of the supported `asset` in `BASE_CURRENCY` of the Aave Market in wei.
+
+#### Input Parameters:
+
+| Name    | Type      | Description              |
+| :------ | :-------- | :----------------------- |
+| asset   | `address` | The address of the asset |
+
+#### Return Values:
+
+| Type      | Description                                                          |
+| :-------- | :------------------------------------------------------------------- |
+| `uint256` | The price of the asset in `BASE\_CURRENCY` of the Aave market in wei |
+
+### getAssetsPrices
+
+```solidity
+function getAssetsPrices(address[] calldata assets) external view override returns (uint256[] memory)
+```
+
+Returns a list of prices from a list of the supported `assets` addresses in `BASE_CURRENCY` of the Aave Market. All prices are in wei.
+
+#### Input Parameters:
+
+| Name   | Type        | Description                                                   |
+| :----- | :---------- | :------------------------------------------------------------ |
+| assets | `address[]` | The list of assets addresses for which price is being queried |
+
+#### Return Values:
+
+| Type        | Description                                                                  |
+| :---------- | :--------------------------------------------------------------------------- |
+| `uint256[]` | The prices of the given assets in `BASE\_CURRENCY` of the Aave market in wei |
+
+### getSourceOfAsset
+
+```solidity
+function getSourceOfAsset(address asset) external view override returns (address)
+```
+
+Returns the address of the price source for an `asset` address.
+
+#### Input Parameters:
+
+| Name  | Type      | Description              |
+| :---- | :-------- | :----------------------- |
+| asset | `address` | The address of the asset |
+
+#### Return Values:
+
+| Type      | Description               |
+| :-------- | :------------------------ |
+| `address` | The address of the source |
+
+### getFallbackOracle
+
+```solidity
+function getFallbackOracle() external view returns (address)
+```
+
+Returns the address of the fallback oracle.
+
+#### Return Values:
+
+| Type      | Description                        |
+| :-------- | :--------------------------------- |
+| `address` | The address of the fallback oracle |
 
 ## ABI
 <details>
