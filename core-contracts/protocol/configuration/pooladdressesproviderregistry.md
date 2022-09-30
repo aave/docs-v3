@@ -1,44 +1,98 @@
 # PoolAddressesProviderRegistry
 
-## PoolAddressesProviderRegistry
+The main registery of the active [PoolAddressesProvider](./pooladdressesprovider.md) contracts, covering all Aave markets. This contract is immutable and the address will never change.
 
-A register of the active `[PoolAddressesProvider](./pooladdressesprovider.md)` contracts, covering all markets. This contract is immutable and the address will never change.
+This contract is used for indexing purposes of the Aave protocol's markets. The `id` assigned to a `PoolAddressesProvider` refers to the market it is connected with, for example, with `1` for the Aave main market and `2` for the next created.
 
-For example, the Pool address for the main market is different from the Pool address for the AMM market.
+The source code can be found [here](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol).
 
-The source code can be found on [Github](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PoolAddressesProviderRegistry.sol).
+## Write Methods
+
+### registerAddressesProvider
+
+```solidity
+function registerAddressesProvider(address provider, uint256 id) external override onlyOwner
+```
+
+Registers an addresses provider. The `PoolAddressesProvider` must not already be registered in the registry, and the `id` must not be used by an already registered `PoolAddressesProvider`.
+
+#### Input Parameters:
+
+| Name     | Type      | Description                                                                     |
+| :------- | :-------- | :------------------------------------------------------------------------------ |
+| provider | `address` | The address of the new PoolAddressesProvider                                    |
+| id       | `uint256` | The id for the new PoolAddressesProvider, referring to the market it belongs to |
+
+### unregisterAddressesProvider
+
+```solidity
+function unregisterAddressesProvider(address provider) external override onlyOwner
+```
+
+Removes an addresses provider from the list of registered addresses providers.
+
+#### Return Values:
+
+| Name     | Type      | Description                       |
+| :------- | :-------- | :-------------------------------- |
+| provider | `address` | The PoolAddressesProvider address |
 
 ## View Methods
 
-### getAddressesProviderList
+### getAddressesProvidersList
 
-`function getAddressesProvidersList()`
+```solidity
+function getAddressesProvidersList() external view override returns (address[] memory)
+```
 
 Returns a list of active [`PoolAddressesProvider`](pooladdressesprovider.md) contracts for the registered Aave protocol markets.
 
-Returs Values
+#### Return Values:
 
-| Type       | Description                          |
-| ---------- | ------------------------------------ |
-| address\[] | List of active PoolAddressesProvider |
+| Type        | Description                            |
+| :---------- | :------------------------------------- |
+| `address[]` | The list of active addresses providers |
 
 ### getAddressesProviderIdByAddress
 
-`function getAddressesProviderIdByAddress(address addressesProvider)`
+```solidity
+function getAddressesProviderIdByAddress(address addressesProvider) external view override returns (uint256)
+```
 
-Returns Id of `PoolAddressesProvider` .
+Returns the id of a registered `PoolAddressesProvider`.
 
-Call Params
+#### Input Parameters:
 
-| Name              | Type    | Description                          |
-| ----------------- | ------- | ------------------------------------ |
-| addressesProvider | address | Address of the PoolAddressesProvider |
+| Name              | Type      | Description                              |
+| :---------------- | :-------- | :--------------------------------------- |
+| addressesProvider | `address` | The address of the PoolAddressesProvider |
 
-Return Values
+#### Return Values:
 
-| Type    | Description                                                                                       |
-| ------- | ------------------------------------------------------------------------------------------------- |
-| uint256 | Id of the associated PoolAddressesProvider. 0 indicates not a valid PoolAddressesProvider address |
+| Type      | Description                                                                                        |
+| :-------- | :------------------------------------------------------------------------------------------------- |
+| `uint256` | The id of the associated PoolAddressesProvider. 0 indicates the address is not registered or valid |
+
+### getAddressesProviderAddressById
+
+```solidity
+function getAddressesProviderAddressById(uint256 id) external view override returns (address)
+```
+
+Returns the address of a registered `PoolAddressesProvider`.
+
+#### Input Parameters:
+
+| Name | Type      | Description          |
+| :--- | :-------- | :------------------- |
+| id   | `uint256` | The id of the market |
+
+#### Return Values:
+
+| Type      | Description                                                                                        |
+| :-------- | :------------------------------------------------------------------------------------------------- |
+| `address` | The address of the PoolAddressesProvider with the given id or zero address if it is not registered |
+
 
 ## ABI
 <details>

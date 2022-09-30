@@ -1,164 +1,339 @@
 # RewardsController
 
-## RewardsController
-
-All rewards type enabled in Aave V3 are managed by [RewardsDistributor.sol](https://github.com/aave/aave-v3-periphery/blob/master/contracts/rewards/RewardsDistributor.sol). This is the contract used to check rewards data, user’s rewards balance and for claiming the rewards.
-
-## Structs
-
-### AssetData
-
-| Name             | Type                          |
-| ---------------- | ----------------------------- |
-| rewards          | mapping(address ⇒ RewardData) |
-| availableRewards | address\[]                    |
-| decimals         | uint8                         |
-
-### RewardsData
-
-| Name                | Type                        |
-| ------------------- | --------------------------- |
-| emissionPerSecond   | uint88                      |
-| index               | uint104                     |
-| lastUpdateTimestamp | uint32                      |
-| distributionEnd     | uint32                      |
-| usersIndex          | mapping(address => uint256) |
-
-## View Methods
-
-### getRewardsData
-
-`getRewardsData (asset, reward)`
-
-Get the data of the reward emitted for the asset.
-
-**Call Params**
-
-| Name   | Type    | Description                                                              |
-| ------ | ------- | ------------------------------------------------------------------------ |
-| asset  | address | address of the a/s/v Tokens for which incentive information is requested |
-| reward | address | address of the reward token                                              |
-
-**Return Value**
-
-| Type    | Description                                                     |
-| ------- | --------------------------------------------------------------- |
-| uint104 | index of the reward token                                       |
-| uint88  | total reward tokens awarded per second for the given asset pool |
-| uint32  | unix timestamp of last time the emissions were updated          |
-| uint32  | unix timestamp of when the emissions will end                   |
-
-### getRewardsByAsset
-
-`getRewardsByAsset (asset)`
-
-Get list of rewards activated for the asset
-
-Call Params
-
-| Name  | Type    | Description                                                              |
-| ----- | ------- | ------------------------------------------------------------------------ |
-| asset | address | address of the a/s/vTokens for which incentive rewards list is requested |
-
-Return Value
-
-| Type       | Description                                                  |
-| ---------- | ------------------------------------------------------------ |
-| address\[] | list of reward token addresses activated for the given asset |
+Abstract contract template to build Distributors contracts for ERC20 rewards to protocol participants. All rewards type enabled in Aave V3 are managed by [RewardsDistributor.sol](https://github.com/aave/aave-v3-periphery/blob/master/contracts/rewards/RewardsDistributor.sol). This is the contract used to check rewards data, user’s rewards balance and for claiming the rewards.
 
 ## Write Methods
 
+### initialize
+
+```solidity
+function initialize(address emissionManager) external initializer
+```
+
+Initialize for RewardsController.
+
+#### Input Parameters:
+
+| Name            | Type      | Description                        |
+| :-------------- | :-------- | :--------------------------------- |
+| emissionManager | `address` | The address of the EmissionManager |
+
+### configureAssets
+
+```solidity
+function configureAssets(RewardsDataTypes.RewardsConfigInput[] memory config) external override onlyEmissionManager
+```
+
+Configure assets to incentivize with an emission of rewards per second until the end of distribution.
+
+#### Input Parameters:
+
+| Name              | Type                  | Description                                                                                                                                                  |
+| :---------------- | :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| emissionPerSecond | `uint104`             | The emission per second following rewards unit decimals                                                                                                      |
+| totalSupply       | `uint256`             | The total supply of the asset to incentivize                                                                                                                 |
+| distributionEnd   | `uint40`              | The end of the distribution of the incentives for an asset                                                                                                   |
+| asset             | `address`             | The asset address to incentivize                                                                                                                             |
+| reward            | `address`             | The reward token address                                                                                                                                     |
+| transferStrategy  | `ITransferStrategy`   | The TransferStrategy address with the install hook and claim logic                                                                                           |
+| rewardOracle      | `IEACAggregatorProxy` | The Price Oracle of a reward to visualize the incentives at the UI Frontend. Must follow Chainlink Aggregator IEACAggregatorProxy interface to be compatible |
+
+### setTransferStrategy
+
+```solidity
+function setTransferStrategy(address reward, ITransferStrategyBase transferStrategy) external onlyEmissionManager
+```
+
+Sets a TransferStrategy logic contract that determines the logic of the rewards transfer.
+
+#### Input Parameters:
+
+| Name              | Type                  | Description                                        |
+| :---------------- | :-------------------- | :------------------------------------------------- |
+| reward            | `address`             | The address of the reward token                    |
+| transferStrategy  | `ITransferStrategy`   | The address of the TransferStrategy logic contract |
+
+### setRewardOracle
+
+```solidity
+function setRewardOracle(address reward, IEACAggregatorProxy rewardOracle) external onlyEmissionManager
+```
+
+Sets an Aave Oracle contract to enforce rewards with a source of value. At the moment of reward configuration, the Incentives Controller performs a check to see if the reward asset oracle is compatible with IEACAggregator proxy. This check is enforced for integrators to be able to show incentives at the current Aave UI without the need to setup an external price registry.
+
+{% hint style="info" %}
+The `msg.sender` must be an authorised claimer set using `setClaimer()` method, via Governance Vote.
+{% endhint %}
+
+#### Input Parameters:
+
+| Name         | Type                  | Description                                                                |
+| :----------- | :-------------------- | :------------------------------------------------------------------------- |
+| reward       | `address`             | The address of the reward to set the price aggregator                      |
+| rewardOracle | `IEACAggregatorProxy` | The address of price aggregator that follows IEACAggregatorProxy interface |
+
+### handleAction
+
+```solidity 
+function handleAction(address user, uint256 totalSupply, uint256 userBalance) external override
+```
+
+Called by the corresponding asset on any update that affects the rewards distribution.
+
+#### Input Parameters:
+
+| Name        | Type      | Description                   |
+| :---------- | :-------- | :---------------------------- |
+| user        | `address` | The address of the user       |
+| totalSupply | `uint256` | The user balance of the asset |
+| userBalance | `uint256` | The total supply of the asset |
+
 ### claimRewards
 
-`claimRewards (assets, amount, to, reward)`
+```solidity
+function claimRewards(
+    address[] calldata assets,
+    uint256 amount,
+    address to,
+    address reward
+) external override returns (uint256)
+```
 
-Claims single reward type specified by `reward` for the list of assets. Rewards are received by `to` address.
+Claims reward for a user to the desired address, on all the assets of the pool, accumulating the pending rewards. Rewards are received by `to` address.
 
-Call Params
+#### Input Parameters:
 
-| Name   | Type       | Description                                                                                |
-| ------ | ---------- | ------------------------------------------------------------------------------------------ |
-| assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses      |
-| amount | uint256    | amount to claim, expressed in wei. Pass MAX\_UINT to claim entire unclaimed reward balance |
-| to     | address    | address which will receive the reward tokens                                               |
-| reward | address    | address of the reward token being claimed. eg. stkAaave                                    |
+| Name   | Type        | Description                                                                                                |
+| :----- | :---------- | :--------------------------------------------------------------------------------------------------------- |
+| assets | `address[]` | List of assets to check eligible distributions before claiming rewards. Pass a/s/vToken addresses          |
+| amount | `uint256`   | The amount of rewards to claim, expressed in wei. Pass `MAX_UINT` to claim entire unclaimed reward balance |
+| to     | `address`   | The address that will be receiving the rewards                                                             |
+| reward | `address`   | The address of the reward token eg. stkAaave                                                               |
+
+
+#### Return Values:
+
+| Type      | Description                   |
+| :-------- | :---------------------------- |
+| `uint256` | The amount of rewards claimed |
+
 
 ### claimRewardsOnBehalf
 
-`claimRewardsOnBehalfOf (assets, amount, user, to, reward)`
+```solidity
+function claimRewardsOnBehalf(
+    address[] calldata assets,
+    uint256 amount,
+    address user,
+    address to,
+    address reward
+) external override onlyAuthorizedClaimers(msg.sender, user) returns (uint256)
+```
 
-Claims single reward type specified by `reward` for the given list of assets on behalf of the `user`. Rewards are received by `to` address.
+Claims reward for a user on behalf, on all the assets of the pool, accumulating the pending rewards. The  caller must be whitelisted via "allowClaimOnBehalf" function by the RewardsAdmin role manager Rewards are received by `to` address.
 
 {% hint style="info" %}
 The `msg.sender` must be an authorised claimer set using `setClaimer()` method, via Governance Vote.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name   | Type       | Description                                                                                |
-| ------ | ---------- | ------------------------------------------------------------------------------------------ |
-| assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses      |
-| amount | uint256    | amount to claim, expressed in wei. Pass MAX\_UINT to claim entire unclaimed reward balance |
-| user   | address    | address of user who’s rewards are being claimed                                            |
-| to     | address    | address which will receive the reward tokens                                               |
-| reward | address    | address of the reward token being claimed. eg. stkAaave                                    |
+| Name   | Type        | Description                                                                                                |
+| :----- | :---------- | :--------------------------------------------------------------------------------------------------------- |
+| assets | `address[]` | The list of assets to check eligible distributions before claiming rewards. Pass a/s/vToken addresses      |
+| amount | `uint256`   | The amount of rewards to claim, expressed in wei. Pass `MAX_UINT` to claim entire unclaimed reward balance |
+| user   | `address`   | The address to check and claim rewards                                                                     |
+| to     | `address`   | The address that will be receiving the rewards                                                             |
+| reward | `address`   | The address of the reward token being claimed. eg. stkAaave                                                |
+
+#### Return Values:
+
+| Type      | Description                   |
+| :-------- | :---------------------------- |
+| `uint256` | The amount of rewards claimed |
 
 ### claimRewardsToSelf
 
-`claimRewardsToSelf (assets, amount, reward)`
+```solidity
+function claimRewardsToSelf(address[] calldata assets, uint256 amount, address reward) external override returns (uint256)
+```
 
-Claims single reward type accrued by the `msg.sender` specified by `reward` for the given list of assets. Rewards are received by `msg.sender` .
+Claims reward for `msg.sender`, on all the assets of the pool, accumulating the pending rewards. Rewards are received by `msg.sender` .
 
-Call Params
+#### Input Parameters:
 
-| Name   | Type       | Description                                                                                |
-| ------ | ---------- | ------------------------------------------------------------------------------------------ |
-| assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses      |
-| amount | uint256    | amount to claim, expressed in wei. Pass MAX\_UINT to claim entire unclaimed reward balance |
-| reward | address    | address of the reward token being claimed. eg. stkAaave                                    |
+| Name   | Type        | Description                                                                                               |
+| :----- | :---------- | :-------------------------------------------------------------------------------------------------------- |
+| assets | `address[]` | The list of assets to check eligible distributions before claiming rewards. Pass a/s/vToken addresses     |
+| amount | `uint256`   | The amount of rewards to claim, expressed in wei. Pass `MAX_UINT` to claim entire unclaimed reward balance |
+| reward | `address`   | The address of the reward token                                                                           |
+
+#### Return Values:
+
+| Type      | Description                   |
+| :-------- | :---------------------------- |
+| `uint256` | The amount of rewards claimed |
 
 ### claimAllRewards
 
-`claimAllRewards (assets, to)`
+```solidity
+function claimAllRewards(address[] calldata assets, address to) external override returns (address[] memory rewardsList, uint256[] memory claimedAmounts)
+```
 
-Claims all rewards for the list of assets. Rewards are received by `to` address.
+Claims all rewards for a user to the desired address, on all the assets of the pool, accumulating the pending rewards. Rewards are received by `to` address.
 
-Call Params
+#### Input Parameters:
 
-| Name   | Type       | Description                                                                           |
-| ------ | ---------- | ------------------------------------------------------------------------------------- |
-| assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses |
-| to     | address    | address which will receive the reward tokens                                          |
+| Name   | Type        | Description                                                                                           |
+| :----- | :---------- | :---------------------------------------------------------------------------------------------------- |
+| assets | `address[]` | The list of assets to check eligible distributions before claiming rewards. Pass a/s/vToken addresses |
+| to     | `address`   | The address that will be receiving the rewards                                                        |
+
+#### Return Values:
+
+| Name           | Type        | Description                                                                                    |
+| :------------- | :---------- | :--------------------------------------------------------------------------------------------- |
+| rewardsList    | `address[]` | The list of addresses of the reward tokens. Pass a/s/vToken addresses                          |
+| claimedAmounts | `uint256[]` | The list that contains the claimed amount per reward, following the same order as "rewardList" |
 
 ### claimAllRewardsOnBehalf
 
-`claimAllRewardsOnBehalfOf (assets, user, to)`
+```solidity
+function claimAllRewardsOnBehalf(
+    address[] calldata assets,
+    address user,
+    address to
+) external override onlyAuthorizedClaimers(msg.sender, user) returns (address[] memory rewardsList, uint256[] memory claimedAmounts)
+```
 
-Claims all rewards for the given list of assets on behalf of the `user`. Rewards are received by `to` address.
+Claims all rewards for a user on behalf, on all the assets of the pool, accumulating the pending rewards. The caller must be whitelisted via "allowClaimOnBehalf" function by the RewardsAdmin role manager. Rewards are received by `to` address.
 
 {% hint style="info" %}
 The `msg.sender` must be an authorised claimer set using `setClaimer()` method, via Governance Vote.
 {% endhint %}
 
-Call Params
+#### Input Parameters:
 
-| Name   | Type       | Description                                                                           |
-| ------ | ---------- | ------------------------------------------------------------------------------------- |
-| assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses |
-| user   | address    | address of user who’s rewards are being claimed                                       |
-| reward | address    | address of the reward token being claimed. eg. stkAaave                               |
+| Name   | Type        | Description                                                                                           |
+| :----- | :---------- | :---------------------------------------------------------------------------------------------------- |
+| assets | `address[]` | The list of assets to check eligible distributions before claiming rewards. Pass a/s/vToken addresses |
+| user   | `address`   | The address to check and claim rewards                                                                |
+| to     | `address`   | The address that will be receiving the rewards. eg. stkAaave                                          |
+
+#### Return Values:
+
+| Name           | Type        | Description                                                                                    |
+| :------------- | :---------- | :--------------------------------------------------------------------------------------------- |
+| rewardsList    | `address[]` | The list of addresses of the reward tokens. Pass a/s/vToken addresses                          |
+| claimedAmounts | `uint256[]` | The list that contains the claimed amount per reward, following the same order as "rewardList" |
 
 ### claimAllRewardsToSelf
 
-`claimAllRewardsToSelf (assets)`
+```solidity
+function claimAllRewardsToSelf(address[] calldata assets) external override returns (address[] memory rewardsList, uint256[] memory claimedAmounts)
+```
 
-Claims all rewards accrued by `msg.sender` for the given list of assets. Rewards are received by `msg.sender` .
+Claims all rewards accrued by `msg.sender`, on all assets of the pool, accumulating the pending rewards. Rewards are received by `msg.sender`.
 
-Call Params
+#### Input Parameters:
 
-| Name   | Type       | Description                                                                           |
-| ------ | ---------- | ------------------------------------------------------------------------------------- |
-| assets | address\[] | address list of assets for which rewards are being claimed. Pass a/s/vToken addresses |
+| Name   | Type        | Description                                                                                           |
+| :----- | :---------- | :---------------------------------------------------------------------------------------------------- |
+| assets | `address[]` | The list of assets to check eligible distributions before claiming rewards. Pass a/s/vToken addresses |
+
+#### Return Values:
+
+| Name           | Type        | Description                                                                                    |
+| :------------- | :---------- | :--------------------------------------------------------------------------------------------- |
+| rewardsList    | `address[]` | The list of addresses of the reward tokens. Pass a/s/vToken addresses                          |
+| claimedAmounts | `uint256[]` | The list that contains the claimed amount per reward, following the same order as "rewardList" |
+
+### setClaimer
+
+```solidity
+function setClaimer(address user, address caller) external override onlyEmissionManager
+```
+
+Whitelists an address to claim the rewards on behalf of another address.
+
+#### Input Parameters:
+
+| Name   | Type      | Description                                           |
+| :----- | :-------- | :---------------------------------------------------- |
+| user   | `address` | The address of the user. Pass a/s/vToken addresses    | 
+| caller | `address` | The address of the claimer. Pass a/s/vToken addresses |
+
+## View Methods
+
+### getClaimer
+
+```solidity
+function getClaimer(address user) external view override returns (address)
+```
+
+Returns the whitelisted claimer for a certain address (0x0 if not set).
+
+#### Input Parameters:
+
+| Name | Type      | Description             |
+| :--- | :-------- | :---------------------- |
+| user | `address` | The address of the user | 
+
+#### Return Values:
+
+| Type      | Description         |
+| :-------- | :------------------ |
+| `address` | The claimer address |
+
+### getRewardOracle
+
+```solidity
+function getRewardOracle(address reward) external view override returns (address)
+```
+
+Get the price aggregator oracle address.
+
+| Name | Type      | Description               |
+| :--- | :-------- | :------------------------ |
+| user | `address` | The address of the reward | 
+
+#### Return Values:
+
+| Type      | Description                    |
+| :-------- | :----------------------------- |
+| `address` | The price oracle of the reward |
+
+### getTransferStrategy
+
+```solidity
+function getTransferStrategy(address reward) external view override returns (address)
+```
+
+Returns the Transfer Strategy implementation contract address being used for a reward address.
+
+| Name | Type      | Description                 |
+| :--- | :-------- | :-------------------------- |
+| reward | `address` | The address of the reward | 
+
+#### Return Values:
+
+| Type      | Description                                  |
+| :-------- | :------------------------------------------- |
+| `address` | The address of the TransferStrategy contract |
+
+## Pure Methods
+
+```solidity
+function getRevision() internal pure override returns (uint256)
+```
+
+Returns the revision of the implementation contract.
+
+#### Return Values:
+
+| Type      | Description                  |
+| :-------- | :--------------------------- |
+| `uint256` | The current revision version |
 
 ## ABI
 <details>

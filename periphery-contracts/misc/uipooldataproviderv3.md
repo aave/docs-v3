@@ -1,59 +1,141 @@
 # UiPoolDataProviderV3
 
-## UiPoolDataProviderV3
-
 Contract that returns an array of all reserve or user data for a particular market, used by the [Aave Interface](https://github.com/aave/interface/) to display Markets and Dashboard data. Compatible with both V2 and V3 of the Aave Protocol.
 
 The [Aave Utilities SDK](https://github.com/aave/aave-utilities#data-formatting-methods) includes an interface to make calls to this contract, and functions to format the response for frontend use-cases.
 
-## Data Structures
-
-### AggregatedReserveData
-
-View fields of `AggregatedReserveData` defined at [Github](https://github.com/aave/aave-v3-periphery/blob/ed38b6719d4bbd9d17dfbd6b9849326a0bdeea2c/contracts/misc/interfaces/IUiPoolDataProviderV3.sol#L8).
-
-### UserReserveData
-
-| Name                            | Type    | Description                                                                            |
-| ------------------------------- | ------- | -------------------------------------------------------------------------------------- |
-| underlyingAsset                 | address | Address of the underlying asset supplied/borrowed                                      |
-| scaledATokenBalance             | uint256 | <p>scaled balance of aToken<br><br><em>scaledBalance = balance/liquidityIndex</em></p> |
-| usageAsCollateralEnabledOnUser  | bool    | true if supplied asset is enabled to be used as collateral                             |
-| stableBorrowRate                | uint256 | Stable rate at which underlying asset is borrowed by the user. 0 ⇒ no debt             |
-| scaledVariableDebt              | uint256 | <p>scaled balance of vToken<br><br><em>scaledBalance = balance/liquidityIndex</em></p> |
-| principalStableDebt             | uint256 | Principal amount borrowed at stable rate                                               |
-| stableBorrowLastUpdateTimestamp | uint256 | unix timestamp of last update on user’s stable borrow position.                        |
-
-### BaseCurrencyInfo
-
-Info data struct for base currency of the Aave protocol market.
-
-| Name                              | Type    | Description                                       |
-| --------------------------------- | ------- | ------------------------------------------------- |
-| marketReferenceCurrencyUnit       | uint256 | Reference aka base currency of the Aave market    |
-| marketReferenceCurrencyPriceInUsd | int256  | Price of reference aka base currency in USD       |
-| networkBaseTokenPriceInUsd        | int256  | Price of native token of the network/chain in USD |
-| networkBaseTokenPriceDecimals     | uint8   | Decimals of native token of the network/chain     |
-
-## Methods
+## View Methods
 
 ### getReservesList
 
-`function getReservesList(IPoolAddressesProvider provider)`
+```solidity
+function getReservesList(IPoolAddressesProvider provider) public view override returns (address[] memory)
+```
 
 Returns the list of initialised reserves in the Pool associated with the given [`provider`](../core-contracts/pooladdressesprovider.md).
 
+#### Input Parameters:
+
+The pool associated with given [`provider`](../core-contracts/pooladdressesprovider.md).
+
+#### Return Values:
+
+| Type        | Description                                  |
+| :---------- | :------------------------------------------- |
+| `address[]` | The list of initialised reserves in the Pool |
+
 ### getReservesData
 
-`function getReservesData(IPoolAddressesProvider provider)`
+```solidity
+function getReservesData(IPoolAddressesProvider provider) public view override returns (AggregatedReserveData[] memory, BaseCurrencyInfo memory)
+```
 
 Returns `BaseCurrencyInfo` of the Pool and `AggregatedReserveData[]` for all the initialised reserves in the Pool associated with the given [`provider`](../core-contracts/pooladdressesprovider.md).
 
+#### Input Parameters:
+
+The pool associated with given [`provider`](../core-contracts/pooladdressesprovider.md).
+
+#### Return Values:
+
+`AggregatedReserveData[]`
+| Name                           | Type      | Description                                                            |
+| :----------------------------- | :-------- | :--------------------------------------------------------------------- |
+| underlyingAsset                | `address` | The address of the underlying asset of the reserve                     |
+| name                           | `string`  | The name of the underlying reserve asset                               |
+| symbol                         | `string`  | The symbol of the underlying reserve asset                             |
+| decimals                       | `uint256` | The number of decimals of the reserve                                  |
+| baseLTVasCollateral            | `uint256` | The ltv of the reserve                                                 |
+| reserveLiquidationThreshold    | `uint256` | The liquidation threshold of the reserve                               |
+| reserveLiquidationBonus        | `uint256` | The liquidation bonus of the resurve                                   |
+| reserveFactor                  | `uint256` | The reserve factor of the reserve                                      |
+| usageAsCollateralEnabled       | `bool`    | True if the asset is enabled to be used as collateral, false otherwise |
+| borrowingEnabled               | `bool`    | True if borrowing is enabled, false otherwise                          |
+| stableBorrowRateEnabled        | `bool`    | True if stable rate borrowing is enabled, false otherwise              |
+| isActive                       | `bool`    | True if reserve is active, false otherwise                             |
+| isFrozen                       | `bool`    | True if reserve is frozen, false otherwise                             |
+| BASE DATA                      |           |                                                                        |
+| liquidityIndex                 | `uint128` | The liquidity index of the reserve                                     |
+| variableBorrowIndex            | `uint128` | The variable borrow index of the reserve                               |
+| liquidityRate                  | `uint128` | The liquidity rate of the reserve                                      |
+| variableBorrowRate             | `uint128` | The variable borrow rate of the reserve                                |
+| stableBorrowRate               | `uint128` | The stable borrow rate of the reserve                                  |
+| lastUpdateTimestamp            | `uint40`  | The timestamp of the last update of the reserve                        |
+| aTokenAddress                  | `address` | The AToken address of the reserve                                      |
+| stableDebtTokenAddress         | `address` | The StableDebtToken address of the reserve                             |
+| variableDebtTokenAddress       | `address` | The VariableDebtToken address of the reserve                           |
+| interestRateStrategyAddress    | `address` | The address of the Interest Rate strategy                              |
+|                                |           |                                                                        | 
+| availableLiquidity             | `uint256` | The liquidity available                                                |
+| totalPrincipalStableDebt       | `uint256` | The principal stable debt                                              |
+| averageStableRate              | `uint256` | The average stable rate                                                |
+| stableDebtLastUpdateTimestamp  | `uint256` |  The timestamp of the last update of the reserve                       |
+| totalScaledVariableDebt        | `uint256` | The total scaled variable debt                                         |
+| priceInMarketReferenceCurrency | `uint256` | Price of reference aka base currency of Aave market                    |
+| priceOracle                    | `address` | The address of the price oracle used by the associated market          |
+| variableRateSlope1             | `uint256` | The variable rate slope                                                |
+| variableRateSlope2             | `uint256` | The variable rate slope                                                |
+| stableRateSlope1               | `uint256` | The stable rate slope                                                  |
+| stableRateSlope2               | `uint256` | The stable rate slope                                                  |
+| baseStableBorrowRate           | `uint256` | The base stable borrow rate, expressed in ray                          |
+| baseVariableBorrowRate         | `uint256` | The base variable borrow rate, expressed in ray                        |
+| optimalUsageRatio              | `uint256` | The optimal usage ratio                                                |
+|                                |           |                                                                        |
+| V3 ONLY                        |           |                                                                        |
+| isPaused                       | `bool`    | True if the pool is paused, false otherwise                            |
+| isSiloedBorrowing              | `bool`    | True if the asset is siloed for borrowing                              |
+| accruedToTreasury              | `uint128` | The amount of tokens accrued to treasury that is to be minted          |
+| unbacked                       | `uint128` | The amount of unbacked aTokens of the reserve                          |
+| isolationModeTotalDebt         | `uint128` | The outstanding debt borrowed against this asset in isolation mode     |
+|                                |           |                                                                        |
+| debtCeiling                    | `uint256` | The debt ceiling of the reserve                                        |
+| debtCeilingDecimals            | `uint256` | The debt ceiling decimals                                              |
+| eModeCategoryId                | `uint8`   | The eMode id of the reserve                                            |
+| borrowCap                      | `uint256` | The borrow cap of the reserve                                          |
+| supplyCap                      | `uint256` | The supply cap of the reserve                                          |
+| E-MODE                         |           |                                                                        |
+| eModeLtv                       | `uint16`  | The custom Loan to Value for the  eMode category                       |
+| eModeLiquidationThreshold      | `uint16`  | The custom liquidation threshold for the  eMode category               |
+| eModeLiquidationBonus          | `uint16`  | The liquidation bonus for the  eMode category                          |
+| eModePriceSource               | `address` | The custom price source for the  eMode category                        |
+| eModeLabel                     | `string`  | The custom label describing the  eMode category                        |
+| borrowableInIsolation          | `bool`    | True if the asset should be borrowable in isolation, false otherwise   |
+
+`BaseCurrencyInfo`
+| Name                              | Type      | Description                                       |
+| :-------------------------------- | :-------- | :------------------------------------------------ |
+| marketReferenceCurrencyUnit       | `uint256` | Reference aka base currency of the Aave market    |
+| marketReferenceCurrencyPriceInUsd | `int256`  | Price of reference aka base currency in USD       |
+| networkBaseTokenPriceInUsd        | `int256`  | Price of native token of the network/chain in USD |
+| networkBaseTokenPriceDecimals     | `uint8`   | Decimals of native token of the network/chain     |
+
 ### getUserReservesData
 
-`function getUserReservesData(IPoolAddressesProvider provider, address user)`
+```solidity
+function getUserReservesData(IPoolAddressesProvider provider, address user) external view override returns (UserReserveData[] memory, uint8)
+```
 
 Returns `UserReserveData[]` for all user reserves in the Pool associated with the given [`provider`](../core-contracts/pooladdressesprovider.md).
+
+#### Input Parameters:
+
+The pool associated with given [`provider`](../core-contracts/pooladdressesprovider.md).
+
+| Name | Type      | Description             |
+| :--- | :-------- | :---------------------- |
+| user | `address` | The address of the user |
+
+### UserReserveData
+
+| Name                            | Type      | Description                                                                                 |
+| :------------------------------ | :-------- | :------------------------------------------------------------------------------------------ |
+| underlyingAsset                 | `address` | The address of the underlying asset supplied/borrowed                                       |
+| scaledATokenBalance             | `uint256` | The scaled balance of the aToken. scaledBalance = balance/liquidityIndex                    |
+| usageAsCollateralEnabledOnUser  | `bool`    | True if the supplied asset is enabled to be used as collateral, false otherwise             |
+| stableBorrowRate                | `uint256` | The stable rate at which underlying asset is borrowed by the user. 0 means there is no debt |
+| scaledVariableDebt              | `uint256` | The scaled balance of vToken. scaledBalance = balance/liquidityIndex                        |
+| principalStableDebt             | `uint256` | The principal amount borrowed at a stable rate                                              |
+| stableBorrowLastUpdateTimestamp | `uint256` | The unix timestamp of last update on the user’s stable borrow position                      |
 
 ## ABI
 <details>
