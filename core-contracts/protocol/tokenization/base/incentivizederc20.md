@@ -16,8 +16,8 @@ Only Pool Admin can call this methods. To update Incentives Controller on main A
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
+| Name       | Type                        | Description                   |
+| :--------- | :-------------------------- | :---------------------------- |
 | controller | `IAaveIncentivesController` | The new Incentives controller |
 
 ### transfer
@@ -30,15 +30,15 @@ function transfer(address recipient, uint256 amount) external virtual override r
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
-| recipient | `address` | The recipient of the tokens |
-| amount | `uint256` | The amount of tokens to transfer |
+| Name      | Type      | Description                      |
+| :-------- | :-------- | :------------------------------- |
+| recipient | `address` | The recipient of the tokens      |
+| amount    | `uint256` | The amount of tokens to transfer |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type   | Description                                                      |
+| :----- | :--------------------------------------------------------------- |
 | `bool` | Returns true if tokens transferred successfully, false otherwise |
 
 ### approve
@@ -55,15 +55,15 @@ Beware that changing an allowance with this method brings the risk that someone 
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
-| spender | `address` | The address of the spender |
-| amount | `uint256` | The amount of tokens to approve |
+| Name    | Type      | Description                     |
+| :------ | :-------- | :------------------------------ |
+| spender | `address` | The address of the spender      |
+| amount  | `uint256` | The amount of tokens to approve |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type   | Description                                                   |
+| :----- | :------------------------------------------------------------ |
 | `bool` | Returns true if the operation was successful, false otherwise |
 
 ### transferFrom
@@ -76,16 +76,16 @@ Moves `amount` tokens from `sender` to `recipient` using the allowance mechanism
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
-| spender | `address` | The address to send tokens from |
+| Name      | Type      | Description                     |
+| :-------- | :-------- | :------------------------------ |
+| spender   | `address` | The address to send tokens from |
 | recipient | `address` | The amount of tokens to approve |
-| amount | `uint256` | The amount of tokens to approve |
+| amount    | `uint256` | The amount of tokens to approve |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type   | Description                                                   |
+| :----- | :------------------------------------------------------------ |
 | `bool` | Returns true if the operation was successful, false otherwise |
 
 ### increaseAllowance
@@ -98,15 +98,15 @@ Increases the allowance of spender to spend _msgSender() tokens.
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
-| spender | `address` | The user allowed to spend on behalf of _msgSender() |
-| addedValue | `uint256` | The amount being added to the allowance |
+| Name       | Type      | Description                                           |
+| :--------- | :-------- | :---------------------------------------------------- |
+| spender    | `address` | The user allowed to spend on behalf of `_msgSender()` |
+| addedValue | `uint256` | The amount being added to the allowance               |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type   | Description                                                     |
+| :----- | :-------------------------------------------------------------- |
 | `bool` | Returns `true` if the operation was successful, false otherwise |
 
 ### decreaseAllowance
@@ -122,15 +122,15 @@ Decreases the allowance of spender to spend _msgSender() tokens.
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
-| spender | `address` | The user allowed to spend on behalf of _msgSender() |
-| subtractedValue | `uint256` | The amount being subtracted from the allowance |
+| Name            | Type      | Description                                           |
+| :-------------- | :-------- | :---------------------------------------------------- |
+| spender         | `address` | The user allowed to spend on behalf of `_msgSender()` |
+| subtractedValue | `uint256` | The amount being subtracted from the allowance        |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type   | Description                                                     |
+| :----- | :-------------------------------------------------------------- |
 | `bool` | Returns `true` if the operation was successful, false otherwise |
 
 ### name
@@ -143,8 +143,8 @@ Returns the name of the token.
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :------------------- |
+| Type     | Description           |
+| :------- | :-------------------- |
 | `string` | The name of the token |
 
 ### symbol
@@ -157,8 +157,8 @@ Returns the symbol of the token, usually a shorter version of the name.
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type     | Description             |
+| :------- | :---------------------- |
 | `string` | The symbol of the token |
 
 ### decimals
@@ -175,8 +175,8 @@ Tokens usually opt for a value of 18, imitating the relationship between Ether a
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type    | Description                                                |
+| :------ | :--------------------------------------------------------- |
 | `uint8` | The number of decimals used to get its user representation |
 
 ### totalSupply
@@ -189,8 +189,8 @@ Returns the amount of tokens in existence.
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type      | Description                       |
+| :-------- | :-------------------------------- |
 | `uint256` | The amount of tokens in existence |
 
 ### balanceOf
@@ -203,14 +203,14 @@ Returns the amount of tokens owned by `account`.
 
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
+| Name    | Type      | Description                 |
+| :------ | :-------- | :-------------------------- |
 | account | `address` | The balance of this address |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type      | Description                             |
+| :-------- | :-------------------------------------- |
 | `uint256` | The amount of tokens owned by `account` |
 
 ### getIncentivesController
@@ -223,8 +223,8 @@ Returns the address of the Incentives Controller contract.
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type      | Description                              |
+| :-------- | :--------------------------------------- |
 | `uint256` | The address of the Incentives Controller |
 
 ### allowance
@@ -242,13 +242,332 @@ Returns the remaining number of tokens that `spender` will be allowed to spend o
   
 #### Input Parameters:
 
-| Name  | Type      | Description                                         |
-| :---- | :-------- | :-------------------------------------------------- |
-| owner | `address` | The address of the owner of the tokens to allow to spend |
+| Name    | Type      | Description                                                                     |
+| :------ | :-------- | :------------------------------------------------------------------------------ |
+| owner   | `address` | The address of the owner of the tokens to allow to spend                        |
 | spender | `address` | The address of the spender who will be allowed to spend on behalf of the `owner |
 
 #### Return Values:
 
-| Type      | Description                                         |
-| :-------- | :-------------------------------------------------- |
+| Type      | Description                                                                                                      |
+| :-------- | :--------------------------------------------------------------------------------------------------------------- |
 | `uint256` | The remaining number of tokens that `spender` will be allowed to spend on behalf of the `owner`. Zero by default |
+
+## ABI
+<details>
+<summary>IncentivizedERC20 ABI</summary>
+
+```
+[
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Approval",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Transfer",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "POOL",
+        "outputs": [
+            {
+                "internalType": "contract IPool",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }
+        ],
+        "name": "allowance",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "approve",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "subtractedValue",
+                "type": "uint256"
+            }
+        ],
+        "name": "decreaseAllowance",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getIncentivesController",
+        "outputs": [
+            {
+                "internalType": "contract IAaveIncentivesController",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "addedValue",
+                "type": "uint256"
+            }
+        ],
+        "name": "increaseAllowance",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract IAaveIncentivesController",
+                "name": "controller",
+                "type": "address"
+            }
+        ],
+        "name": "setIncentivesController",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transfer",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
+```
+</details>

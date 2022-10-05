@@ -29,16 +29,16 @@ Emitted when an aToken is initialized.
 
 #### Input Parameters:
 
-| Name                 | Type                        | Description                                                              |
-| :------------------- | :-------------------------- | :----------------------------------------------------------------------- |
-| initializingPool     | `IPool`                     | The address of the associated pool                    |
-| treasury             | `address`                   | The address of the treasury |
-| underlyingAsset      | `address`                   | The address of the underlying asset |
-| incentivesController | `IAaveIncentivesController` | The address of the incentives controller for this aToken           |
-| aTokenDecimals       | `uint8`                     | The decimals of the underlying asset   |
-| aTokenName           | `string`                    | The name of the aToken                                      |
-| aTokenSymbol         | `string`                    | The symbol of the aToken                                    |
-| params               | `bytes`                     | A set of encoded parameters for additional initialization                |
+| Name                 | Type                        | Description                                               |
+| :------------------- | :-------------------------- | :-------------------------------------------------------- |
+| initializingPool     | `IPool`                     | The address of the associated pool                        |
+| treasury             | `address`                   | The address of the treasury                               |
+| underlyingAsset      | `address`                   | The address of the underlying asset                       |
+| incentivesController | `IAaveIncentivesController` | The address of the incentives controller for this aToken  |
+| aTokenDecimals       | `uint8`                     | The decimals of the underlying asset                      |
+| aTokenName           | `string`                    | The name of the aToken                                    |
+| aTokenSymbol         | `string`                    | The symbol of the aToken                                  |
+| params               | `bytes`                     | A set of encoded parameters for additional initialization |
  
 ### mint
 
@@ -55,18 +55,18 @@ Mints `amount` aTokens to `user`.
 
 #### Input Parameters:
 
-| Name       | Type      | Description                                                                                                                      |
-| :--------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| caller       | `address` | The address performing the mint |
-| onBehalfOf | `address` | The address of the user that will receive the minted aTokens                                                                                  |
-| amount     | `uint256` | The amount of tokens getting minted                                                                                       |
-| index      | `uint256` | The next liquidity index of the reserve                                                                                          |
+| Name       | Type      | Description                                                  |
+| :--------- | :-------- | :----------------------------------------------------------- |
+| caller     | `address` | The address performing the mint                              |
+| onBehalfOf | `address` | The address of the user that will receive the minted aTokens |
+| amount     | `uint256` | The amount of tokens getting minted                          |
+| index      | `uint256` | The next liquidity index of the reserve                      |
 
 #### Return Values:
 
-| Type      | Description                                                        |
-| :-------- | :----------------------------------------------------------------- |
-| `bool`    | `true` if the the previous balance of the user was 0 |
+| Type   | Description                                          |
+| :----- | :--------------------------------------------------- |
+| `bool` | `true` if the the previous balance of the user was 0 |
 
 ### burn
 
@@ -85,12 +85,12 @@ In some instances, the mint event could be emitted from a burn transaction if th
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
-| from   | `address` | The address from which the aTokens will be burned |
-| receiverOfUnderlying   | `address` | The address that will receive the underlying asset |
-| amount | `uint256` | The amount of tokens that will be burned  |
-| index  | `uint256` | The next liquidity index of the reserve |
+| Name                 | Type      | Description                                        |
+| :------------------- | :-------- | :------------------------------------------------- |
+| from                 | `address` | The address from which the aTokens will be burned  |
+| receiverOfUnderlying | `address` | The address that will receive the underlying asset |
+| amount               | `uint256` | The amount of tokens that will be burned           |
+| index                | `uint256` | The next liquidity index of the reserve            |
 
 ### mintToTreasury
 
@@ -102,10 +102,10 @@ Mints aTokens to the reserve treasury.
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
-| amount   | `uint256` | The amount of tokens getting minted |
-| index   | `uint256` | The address that will receive the underlying asset |
+| Name   | Type      | Description                                        |
+| :----- | :-------- | :------------------------------------------------- |
+| amount | `uint256` | The amount of tokens getting minted                |
+| index  | `uint256` | The address that will receive the underlying asset |
 
 ### transferOnLiquidation
 
@@ -121,11 +121,11 @@ Transfers aTokens in the event of a borrow being liquidated, in case the liquida
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
-| from   | `address` | The address getting liquidated, current owner of the aTokens |
-| to   | `address` | The recipient of aTokens |
-| value   | `uint256` | The amount of tokens getting transferred |
+| Name  | Type      | Description                                                  |
+| :---- | :-------- | :----------------------------------------------------------- |
+| from  | `address` | The address getting liquidated, current owner of the aTokens |
+| to    | `address` | The recipient of aTokens                                     |
+| value | `uint256` | The amount of tokens getting transferred                     |
 
 ### transferUnderlyingTo
 
@@ -139,10 +139,10 @@ Used by the `Pool` to transfer assets in borrow(), withdraw() and flashLoan()
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
+| Name   | Type      | Description                     |
+| :----- | :-------- | :------------------------------ |
 | user   | `address` | The recipient of the underlying |
-| amount   | `uint256` | The amount getting transferred |
+| amount | `uint256` | The amount getting transferred  |
 
 ### handleRepayment
 
@@ -156,10 +156,10 @@ The default implementation is empty as with standard ERC20 tokens, nothing needs
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
+| Name   | Type      | Description                      |
+| :----- | :-------- | :------------------------------- |
 | user   | `address` | The user executing the repayment |
-| amount   | `uint256` | The amount getting repaid |
+| amount | `uint256` | The amount getting repaid        |
 
 ### permit
 
@@ -181,15 +181,15 @@ Implements the permit function as for https://github.com/ethereum/EIPs/blob/8a34
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
-| owner   | `address` | The owner of the funds |
-| spender   | `address` | The spender of the funds |
-| value   | `uint256` | The amount the `spender` is permitted to spend |
-| deadline   | `uint256` | The deadline timestamp, use `type(uint256).max` for max/no deadline |
-| v   | `uint8` | The V signature parameter |
-| r   | `bytes32` | The R signature parameter |
-| s   | `bytes32` | The S signature parameter |
+| Name     | Type      | Description                                                         |
+| :------- | :-------- | :------------------------------------------------------------------ |
+| owner    | `address` | The owner of the funds                                              |
+| spender  | `address` | The spender of the funds                                            |
+| value    | `uint256` | The amount the `spender` is permitted to spend                      |
+| deadline | `uint256` | The deadline timestamp, use `type(uint256).max` for max/no deadline |
+| v        | `uint8`   | The V signature parameter                                           |
+| r        | `bytes32` | The R signature parameter                                           |
+| s        | `bytes32` | The S signature parameter                                           |
 
 ```jsx
 import { signTypedData_v4 } from 'eth-sig-util'
@@ -273,11 +273,11 @@ Rescue and transfer tokens locked in this contract.
 
 #### Input Parameters:
 
-| Name   | Type      | Description                                    |
-| :----- | :-------- | :--------------------------------------------- |
-| token   | `address` | The address of the token |
-| to   | `address` | The address of the recipient |
-| amount   | `uint256` | The amount of token to transfer |
+| Name   | Type      | Description                     |
+| :----- | :-------- | :------------------------------ |
+| token  | `address` | The address of the token        |
+| to     | `address` | The address of the recipient    |
+| amount | `uint256` | The amount of token to transfer |
 
 ## View Methods
   
@@ -298,14 +298,14 @@ Overrides the base function.
 
 #### Input Parameters:
 
-| Name    | Type      | Description                 |
-| :------ | :-------- | :-------------------------- |
+| Name | Type      | Description             |
+| :--- | :-------- | :---------------------- |
 | user | `address` | The address of the user |
 
 #### Return Values:
 
-| Type      | Description                             |
-| :-------- | :-------------------------------------- |
+| Type      | Description                          |
+| :-------- | :----------------------------------- |
 | `uint256` | The amount of tokens owned by `user` |
 
 ### totalSupply
@@ -365,8 +365,8 @@ Overrides the base function to fully implement IAToken.
 
 #### Return Values:
 
-| Type      | Description                         |
-| :-------- | :---------------------------------- |
+| Type      | Description                                        |
+| :-------- | :------------------------------------------------- |
 | `bytes32` | The domain separator of the token at current chain |  
 
 ### nonces
@@ -381,14 +381,14 @@ Overrides the base function to fully implement IAToken.
 
 #### Input Parameters:
 
-| Name    | Type      | Description                 |
-| :------ | :-------- | :-------------------------- |
+| Name  | Type      | Description              |
+| :---- | :-------- | :----------------------- |
 | owner | `address` | The address of the owner |
 
 #### Return Values:
 
-| Type      | Description                             |
-| :-------- | :-------------------------------------- |
+| Type      | Description            |
+| :-------- | :--------------------- |
 | `uint256` | The nonce of the owner |
 
 ```jsx
@@ -413,3 +413,918 @@ Returns `0x1`.
 | Type      | Description         |
 | :-------- | :------------------ |
 | `uint256` | The revision number | 
+
+## ABI
+<details>
+<summary>AToken ABI</summary>
+
+```
+[
+    {
+        "inputs": [
+            {
+                "internalType": "contract IPool",
+                "name": "pool",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Approval",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "BalanceTransfer",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "target",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "balanceIncrease",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "Burn",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "underlyingAsset",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "pool",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "treasury",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "incentivesController",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "aTokenDecimals",
+                "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "aTokenName",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "aTokenSymbol",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "params",
+                "type": "bytes"
+            }
+        ],
+        "name": "Initialized",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "caller",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "onBehalfOf",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "balanceIncrease",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "Mint",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Transfer",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "ATOKEN_REVISION",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "DOMAIN_SEPARATOR",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "EIP712_REVISION",
+        "outputs": [
+            {
+                "internalType": "bytes",
+                "name": "",
+                "type": "bytes"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "PERMIT_TYPEHASH",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "POOL",
+        "outputs": [
+            {
+                "internalType": "contract IPool",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "RESERVE_TREASURY_ADDRESS",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "UNDERLYING_ASSET_ADDRESS",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }
+        ],
+        "name": "allowance",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "approve",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "receiverOfUnderlying",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "burn",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "subtractedValue",
+                "type": "uint256"
+            }
+        ],
+        "name": "decreaseAllowance",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getIncentivesController",
+        "outputs": [
+            {
+                "internalType": "contract IAaveIncentivesController",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "getPreviousIndex",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "getScaledUserBalanceAndSupply",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "handleRepayment",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "addedValue",
+                "type": "uint256"
+            }
+        ],
+        "name": "increaseAllowance",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract IPool",
+                "name": "initializingPool",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "treasury",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "underlyingAsset",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IAaveIncentivesController",
+                "name": "incentivesController",
+                "type": "address"
+            },
+            {
+                "internalType": "uint8",
+                "name": "aTokenDecimals",
+                "type": "uint8"
+            },
+            {
+                "internalType": "string",
+                "name": "aTokenName",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "aTokenSymbol",
+                "type": "string"
+            },
+            {
+                "internalType": "bytes",
+                "name": "params",
+                "type": "bytes"
+            }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "caller",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "onBehalfOf",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "mint",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
+        "name": "mintToTreasury",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }
+        ],
+        "name": "nonces",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "deadline",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "v",
+                "type": "uint8"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "r",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "s",
+                "type": "bytes32"
+            }
+        ],
+        "name": "permit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "rescueTokens",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "scaledBalanceOf",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "scaledTotalSupply",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract IAaveIncentivesController",
+                "name": "controller",
+                "type": "address"
+            }
+        ],
+        "name": "setIncentivesController",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transfer",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferOnLiquidation",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "target",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferUnderlyingTo",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
+```
+</details>
