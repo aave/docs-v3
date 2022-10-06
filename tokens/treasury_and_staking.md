@@ -35,3 +35,31 @@ A portion of the total amount of interest collected by the protocol (denominated
 ## Governance
 
 The treasury is entirely controlled by Aave Governance. Any rewards or usage of collector funds requires a governance voting by the token holders.
+
+## V2 Addresses
+
+| Market | Collector | CollectorController |
+| :--- | :--- | :--- |
+| Ethereum | 0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c | 0x3d569673dAa0575c936c7c67c4E6AedA69CC630C | 
+| Ethereum AMM | 0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c | 0x3d569673dAa0575c936c7c67c4E6AedA69CC630C | 
+| Polygon | 0x7734280A4337F37Fbf4651073Db7c28C80B339e9 | 0xDB89487A449274478e984665b8692AfC67459deF | 
+| Avalanche | 0x467b92aF281d14cB6809913AD016a607b5ba8A36 | address(0) | 
+| Ethereum Goerli | 0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c | address(0) | 
+| Polygon Mumbai | 0x943E44157dC0302a5CEb172374d1749018a00994 | address(0) | 
+| Polygon Mumbai | 0xB45F5C501A22288dfdb897e5f73E189597e09288 | address(0) | 
+
+## V3 Addresses
+
+| Market | Treasury (Collector) | TreasuryController (CollectorController) |
+| :--- | :--- | :--- |
+| Arbitrum | 0x053D55f9B5AF8694c503EB288a1B7E552f590710 | 0x053D55f9B5AF8694c503EB288a1B7E552f590710 | 
+| Avalanche | 0x5ba7fd868c40c16f7aDfAe6CF87121E13FC2F7a0 | 0xaCbE7d574EF8dC39435577eb638167Aca74F79f0 | 
+| Optimism | 0xB2289E329D2F85F1eD31Adbb30eA345278F21bcf | 0xA77E4A084d7d4f064E326C0F6c0aCefd47A5Cb21 | 
+| Polygon | 0xe8599F3cc5D38a9aD6F3684cd5CEa72f10Dbc383 | 0x73D435AFc15e35A9aC63B2a81B5AA54f974eadFe | 
+| Ethereum Goerli | 0xFbAF383eB6c757faCb8cb19B68d5131aEbc5c11e | 0x5665007321915c8f0E72d041315bA1AD15065337 | 
+| Arbitrum Goerli | 0xad848879F9Ac276BdB7D38123F381C692FD6D6dE | 0xff01517f8811E532900a46e6AdB4484BDB3f2B8a | 
+| Avalanche Fuji | 0xBaaCc99123133851Ba2D6d34952aa08CBDf5A4E4 | 0xFCadBDefd30E11258559Ba239C8a5A8A8D28CB00 | 
+| Optimism Goerli | 0x8Ee63E24D91317f9DabFf3c5361d747244c0f16c | 0xADDcE1e19761577d7FBB278B1b3158891679a066 | 
+| Polygon Mumbai | 0x3B6E7a4750e478D7f7d6A5d464099A02ef164bCC | 0x810d913542D399F3680F0E806DEDf6EACf0e3383 | 
+
+
