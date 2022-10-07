@@ -57,6 +57,7 @@
 * [AToken](tokens/atoken.md)
 * [DebtToken](tokens/debttoken.md)
 * [DelegationAwareAToken](tokens/delegationawareatoken.md)
+* [Treasury and Staking](tokens/treasury_and_staking.md)
 
 ## Deployed Contracts
 
