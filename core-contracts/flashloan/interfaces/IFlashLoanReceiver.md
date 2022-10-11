@@ -2,7 +2,9 @@
 
 Defines the basic interface of a flashloan-receiver contract.
 
-Implement this interface to develop a flashloan-compatible [flashLoanReceiver]() contract.
+Implement this interface to develop a flashloan-compatible [flashLoanReceiver](../base/flashloanreceiverbase.md) contract.
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/flashloan/interfaces/IFlashLoanReceiver.sol).
 
 {% tabs %}
 {% tab title="IFlashLoanReceiver.sol" %}
