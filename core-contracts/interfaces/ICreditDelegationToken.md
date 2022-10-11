@@ -1,6 +1,8 @@
 # ICreditDelegationToken
 
-Defines the basic interface for a token supporting credit delegation.
+Defines the [basic interface for a token]((../protocol/tokenization/base/debttokenbase.md)) supporting credit delegation.
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/ICreditDelegationToken.sol).
 
 {% tabs %}
 {% tab title="ICreditDelegationToken.sol" %}

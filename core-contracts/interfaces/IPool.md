@@ -1,6 +1,8 @@
 # IPool
 
-Defines the basic interface for an Aave Pool.
+Defines the basic interface for an [Aave Pool](../protocol/pool/pool.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPool.sol).
 
 {% tabs %}
 {% tab title="IPool.sol" %}

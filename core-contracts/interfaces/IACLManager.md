@@ -1,6 +1,8 @@
 # IACLManager
 
-Defines the basic interface for the ACL Manager.
+Defines the basic interface for the [ACL Manager](../protocol/configuration/aclmanager.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IACLManager.sol).
 
 {% tabs %}
 {% tab title="IACLManager.sol" %}

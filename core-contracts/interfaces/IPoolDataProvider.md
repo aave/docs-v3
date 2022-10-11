@@ -1,6 +1,8 @@
 # IPoolDataProvider
 
-Returns the reserve data.
+Returns the [reserve data](../misc/aaveprotocoldataprovider.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPoolDataProvider.sol).
 
 {% tabs %}
 {% tab title="IPoolDataProvider.sol" %}

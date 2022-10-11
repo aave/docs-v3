@@ -1,6 +1,8 @@
 # IPoolAddressesProviderRegistry
 
-Defines the basic interface for an Aave Pool Addresses Provider Registry.
+Defines the basic interface for an Aave [Pool Addresses Provider Registry](../protocol/configuration/pooladdressesproviderregistry.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPoolAddressesProviderRegistry.sol).
 
 {% tabs %}
 {% tab title="IPoolAddressesProviderRegistry.sol" %}

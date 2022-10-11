@@ -1,6 +1,8 @@
 # IReserveInterestRateStrategy
 
-Interface for the calculation of the interest rates.
+Interface for the calculation of the [interest rates](../protocol/pool/interestratestrategies/defaultreserveinterestratestrategy.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IReserveInterestRateStrategy.sol).
 
 {% tabs %}
 {% tab title="IReserveInterestRateStrategy.sol" %}

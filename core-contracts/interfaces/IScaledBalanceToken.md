@@ -1,6 +1,8 @@
 # IScaledBalanceToken
 
-Defines the basic interface for a scaled balance token.
+Defines the basic interface for a [scaled balance token](../protocol/tokenization/base/scaledbalancetokenbase.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IScaledBalanceToken.sol).
 
 {% tabs %}
 {% tab title="IScaledBalanceToken.sol" %}

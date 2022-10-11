@@ -1,8 +1,10 @@
 # IVariableDebtToken
 
-Defines the basic interface for a variable debt token.
+Defines the basic interface for a [variable debt token](../protocol/tokenization/debttokens/variabledebttoken.md).
 
-IVariableDebtToken inherits the [IScaledBalanceToken]() and [IInitializableDebtToken]() interfaces.
+IVariableDebtToken inherits the [IScaledBalanceToken](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IScaledBalanceToken.sol) and [IInitializableDebtToken](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IInitializableDebtToken.sol) interfaces.
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IVariableDebtToken.sol).
 
 {% tabs %}
 {% tab title="IVariableDebtToken.sol" %}

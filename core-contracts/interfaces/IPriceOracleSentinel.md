@@ -1,6 +1,8 @@
 # IPriceOracleSentinel
 
-Defines the basic interface for the PriceOracleSentinel.
+Defines the basic interface for the [Price Oracle Sentinel](../protocol/configuration/priceoraclesentinel.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleSentinel.sol).
 
 {% tabs %}
 {% tab title="IPriceOracleSentinel.sol" %}
