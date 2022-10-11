@@ -2,7 +2,9 @@
 
 Base contract to develop a flashloan-receiver contract.
 
-Please look at the [IFlashLoanReceiver]() interface and [Flash Loan guide]().
+Please look at the [IFlashLoanReceiver](../interfaces/IFlashLoanReceiver.md) interface and [Flash Loan guide](../../../guides/flash-loans.md).
+
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/flashloan/base/FlashLoanReceiverBase.sol).
 
 ## ABI
 <details>
