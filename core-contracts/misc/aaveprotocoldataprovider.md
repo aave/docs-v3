@@ -2,7 +2,7 @@
 
 Peripheral contract to collect and pre-process information from the Pool.
 
-The source code can be found [here](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol).
+The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol).
 
 ## View Methods
 
@@ -12,9 +12,15 @@ The source code can be found [here](https://github.com/aave/aave-v3-core/blob/ma
 function getAllReservesTokens() external view returns (TokenData[] memory)
 ```
 
-Returns the list of the existing reserves in the pool, pairs of symbols and addresses. Handles MKR and ETH in a different way since they do not have standard `symbol` functions.
+Returns the list of the existing reserves in the pool, pairs include the `symbol` and `tokenAddress`. Handles [MKR](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L25) and [ETH](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L26) in a different way since they do not have standard symbol functions.
 
 #### Return Values:
+
+| Type           | Description                                          | 
+| :------------- | :--------------------------------------------------- | 
+| `TokenData[]`  | The list of reserves, pairs of symbols and addresses | 
+
+The [TokenData](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L28) struct is composed of the following fields:
 
 | Name         | Type      | Description                                 | 
 | :----------- | :-------- | :------------------------------------------ | 
@@ -27,9 +33,15 @@ Returns the list of the existing reserves in the pool, pairs of symbols and addr
 function getAllATokens() external view returns (TokenData[] memory)
 ```
 
-Returns list of the existing ATokens in the pool, pairs of symbols and addresses.
+Returns list of the existing ATokens in the pool, pairs include the `symbol` and `tokenAddress`.
 
 #### Return Values:
+
+| Type           | Description                                         | 
+| :------------- | :-------------------------------------------------- | 
+| `TokenData[]`  | The list of ATokens, pairs of symbols and addresses | 
+
+The [TokenData](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L28) struct is composed of the following fields:
 
 | Name         | Type      | Description                          | 
 | :----------- | :-------- | :----------------------------------- | 
@@ -63,18 +75,18 @@ Returns the configuration data of the reserve as described below. Does not retur
 
 #### Return Values:
 
-| Name                     | Type      | Description                                                 |
-| :------------------------| :-------- | :---------------------------------------------------------- |
-| decimals                 | `uint256` | The number of decimals of the reserve                       |
-| ltv                      | `uint256` | The ltv of the reserve                                      |
-| liquidationThreshold     | `uint256` | The liquidation threshold of the reserve                    |
-| liquidationBonus         | `uint256` | The liquidation bonus of the reserve                        |
-| reserveFactor            | `uint256` | The reserve factor of the reserve                           |
-| usageAsCollateralEnabled | `bool`    | True if the usage as collateral is enabled, false otherwise |
-| borrowingEnabled         | `bool`    | True if borrowing is enabled, false otherwise               |
-| stableBorrowRateEnabled  | `bool`    | True if stable rate borrowing is enabled, false otherwise   |
-| isActive                 | `bool`    | True if reserve is active, false otherwise                  |
-| isFrozen                 | `bool`    | True if reserve is frozen, false otherwise                  |
+| Name                     | Type      | Description                                                     |
+| :------------------------| :-------- | :-------------------------------------------------------------- |
+| decimals                 | `uint256` | The number of decimals of the reserve                           |
+| ltv                      | `uint256` | The ltv of the reserve                                          |
+| liquidationThreshold     | `uint256` | The liquidation threshold of the reserve                        |
+| liquidationBonus         | `uint256` | The liquidation bonus of the reserve                            |
+| reserveFactor            | `uint256` | The reserve factor of the reserve                               |
+| usageAsCollateralEnabled | `bool`    | `true` if the usage as collateral is enabled, `false` otherwise |
+| borrowingEnabled         | `bool`    | `true` if borrowing is enabled, `false` otherwise               |
+| stableBorrowRateEnabled  | `bool`    | `true` if stable rate borrowing is enabled, `false` otherwise   |
+| isActive                 | `bool`    | `true` if reserve is active, `false` otherwise                  |
+| isFrozen                 | `bool`    | `true` if reserve is frozen, `false` otherwise                  |
 
 ### getReserveEModeCategory
 
@@ -123,7 +135,7 @@ Returns the caps parameters of the reserve.
 function getPaused(address asset) external view returns (bool isPaused)
 ```
 
-Returns true if the pool is paused.
+Returns true if the pool `isPaused`.
 
 #### Input Parameters: 
 
@@ -133,9 +145,9 @@ Returns true if the pool is paused.
 
 #### Return Values:
 
-| Name     | Type   | Description                                 |
-| :------- | :----- | :------------------------------------------ |
-| isPaused | `bool` | True if the pool is paused, false otherwise |
+| Name     | Type   | Description                                     |
+| :------- | :----- | :---------------------------------------------- |
+| isPaused | `bool` | `true` if the pool is paused, `false` otherwise |
 
 ### getSiloedBorrowing
 
@@ -143,7 +155,7 @@ Returns true if the pool is paused.
 function getSiloedBorrowing(address asset) external view returns (bool)
 ```
 
-Returns the siloed borrowing flag. It returns true if the asset is [siloed for borrowing](../whats-new/siloed-borrowing.md).
+Returns the siloed borrowing flag. It returns true if the `asset` is [siloed for borrowing](../whats-new/siloed-borrowing.md).
 
 #### Input Parameters: 
 
@@ -153,9 +165,9 @@ Returns the siloed borrowing flag. It returns true if the asset is [siloed for b
 
 #### Return Values:
 
-| Type   | Description                               |
-| :----- | :---------------------------------------- |
-| `bool` | True if the asset is siloed for borrowing |
+| Type   | Description                                 |
+| :----- | :------------------------------------------ |
+| `bool` | `true` if the asset is siloed for borrowing |
 
 
 ### getLiquidationProtocolFee
@@ -268,7 +280,7 @@ Returns the reserve data.
 function getATokenTotalSupply(address asset) external view override returns (uint256)
 ```
 
-Returns the total supply of aTokens for a given asset.
+Returns the total supply of aTokens for a given `asset`.
 
 #### Input Parameters:
 
@@ -288,7 +300,7 @@ Returns the total supply of aTokens for a given asset.
 function getTotalDebt(address asset) external view override returns (uint256)
 ```
 
-Returns the total debt for a given asset.
+Returns the total debt for a given `asset`.
 
 #### Input Parameters:
 
@@ -318,7 +330,7 @@ function getUserReserveData(address asset, address user) external view returns (
 )
 ```
 
-Returns the following user reserve data.
+Returns the following `user` reserve data.
 
 #### Input Parameters:
 
@@ -329,17 +341,17 @@ Returns the following user reserve data.
 
 #### Return Values:
 
-| Name                     | Type      | Description                                                   |
-| :----------------------- | :-------- | :------------------------------------------------------------ |
-| currentATokenBalance     | `uint256` | The current AToken balance of the user                        |
-| currentStableDebt        | `uint256` | The current stable debt of the user                           |
-| currentVariableDebt      | `uint256` | The current variable debt of the user                         |
-| principalStableDebt      | `uint256` | The principal stable debt of the user                         |
-| scaledVariableDebt       | `uint256` | The scaled variable debt of the user                          |
-| stableBorrowRate         | `uint256` | The stable borrow rate of the user                            |
-| liquidityRate            | `uint256` | The liquidity rate of the reserve                             |
-| stableRateLastUpdated    | `uint40`  | The timestamp of the last update of the user stable rate      |
-| usageAsCollateralEnabled | `bool`    | True if the user is using the asset as collateral, else false |
+| Name                     | Type      | Description                                                       |
+| :----------------------- | :-------- | :---------------------------------------------------------------- |
+| currentATokenBalance     | `uint256` | The current AToken balance of the user                            |
+| currentStableDebt        | `uint256` | The   of the user                               |
+| currentVariableDebt      | `uint256` | The current variable debt of the user                             |
+| principalStableDebt      | `uint256` | The principal stable debt of the user                             |
+| scaledVariableDebt       | `uint256` | The scaled variable debt of the user                              |
+| stableBorrowRate         | `uint256` | The stable borrow rate of the user                                |
+| liquidityRate            | `uint256` | The liquidity rate of the reserve                                 |
+| stableRateLastUpdated    | `uint40`  | The timestamp of the last update of the user stable rate          |
+| usageAsCollateralEnabled | `bool`    | `true` if the user is using the asset as collateral, else `false` |
 
 #### getReserveTokensAddresses
 
@@ -351,7 +363,7 @@ function getReserveTokensAddresses(address asset) external view returns (
 )
 ```
 
-Returns the addresses of aToken, stableDebtToken and variableDebtToken of the reserve.
+Returns the addresses of `aToken`, `stableDebtToken` and `variableDebtToken` of the reserve.
 
 #### Input Parameters:
 
@@ -373,7 +385,7 @@ Returns the addresses of aToken, stableDebtToken and variableDebtToken of the re
 function getInterestRateStrategyAddress(address asset) external view returns (address irStrategyAddress)
 ```
 
-Returns the address of the Interest Rate strategy.
+Returns the address of the [Interest Rate strategy](../protocol/pool/interestratestrategies/interestratestrategies.md).
 
 #### Input Parameters:
 
