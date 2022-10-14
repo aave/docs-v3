@@ -1,8 +1,8 @@
 # ReservesSetupHelper
 
-Deployment helper to setup the assets risk parameters at [PoolConfigurator](../protocol/pool/poolconfigurator.md) in batch.
+Deployment helper to setup the assets risk parameters at [`PoolConfigurator`](../protocol/pool/poolconfigurator.md) in batch.
 
-The `ReservesSetupHelper` is an [Ownable](https://github.com/aave/aave-v3-core/blob/master/contracts/dependencies/openzeppelin/contracts/Ownable.sol) contract, so only the deployer or future owners can call this contract.
+The `ReservesSetupHelper` is an [`Ownable`](https://github.com/aave/aave-v3-core/blob/master/contracts/dependencies/openzeppelin/contracts/Ownable.sol) contract, so only the deployer or future owners can call this contract.
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/deployments/ReservesSetupHelper).
 
@@ -19,16 +19,16 @@ function configureReserves(
 
 External function called by the owner account to setup the assets risk parameters in batch.
 
-The [POOL_ADMIN](../protocol/configuration/aclmanager.md#roles) or [RISK_ADMIN](../protocol/configuration/aclmanager.md#roles) admin must transfer the ownership to `ReservesSetupHelper` before calling this function.
+The [`POOL_ADMIN`](../protocol/configuration/aclmanager.md#pooladmin) or [`RISK_ADMIN`](../protocol/configuration/aclmanager.md#riskadmin) admin must transfer the ownership to `ReservesSetupHelper` before calling this function.
 
 #### Input Parameters:
 
-| Name         | Type                      | Description                                                                                                                                                                                       |
-| :----------- | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| configurator | `address`                 | The address of the [PoolConfigurator](../protocol/pool/poolconfigurator.md) contract                                                                                                              |
-| inputParams  | `ConfigureReserveInput[]` | An array of [ConfigureReserveInput](https://github.com/aave/aave-v3-core/blob/master/contracts/deployments/ReservesSetupHelper.sol#L14) struct that contains the assets and their risk parameters |
+| Name         | Type                      | Description                                                                                                                                                                                         |
+| :----------- | :------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| configurator | `address`                 | The address of the [`PoolConfigurator`](../protocol/pool/poolconfigurator.md) contract                                                                                                              |
+| inputParams  | `ConfigureReserveInput[]` | An array of [`ConfigureReserveInput`](https://github.com/aave/aave-v3-core/blob/master/contracts/deployments/ReservesSetupHelper.sol#L14) struct that contains the assets and their risk parameters |
 
-The [ConfigureReserveInput](https://github.com/aave/aave-v3-core/blob/master/contracts/deployments/ReservesSetupHelper.sol#L14) struct is composed of the following fields:
+The [`ConfigureReserveInput`](https://github.com/aave/aave-v3-core/blob/master/contracts/deployments/ReservesSetupHelper.sol#L14) struct is composed of the following fields:
 
 | Name                   | Type      | Description                                                   |
 | :--------------------- | :-------- | :------------------------------------------------------------ |

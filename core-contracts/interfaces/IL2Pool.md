@@ -1,6 +1,6 @@
 # IL2Pool
 
-Defines the basic extension interface for an [L2 Aave Pool](../protocol/pool/l2pool.md).
+Defines the basic extension interface for an Aave [`L2Pool`](../protocol/pool/l2pool.md).
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IL2Pool.sol).
 

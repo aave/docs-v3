@@ -1,10 +1,10 @@
 # IStableDebtToken
 
-Defines the interface for the [stable debt token](../protocol/tokenization/debttokens/stabledebttoken.md).
+Defines the interface for the [`stableDebtToken`](../protocol/tokenization/debttokens/stabledebttoken.md).
 
-It does not inherit from [IERC20](https://github.com/aave/aave-v3-core/blob/master/contracts/dependencies/openzeppelin/contracts/IERC20.sol) to save in code size.
+It does not inherit from [`IERC20`](https://github.com/aave/aave-v3-core/blob/master/contracts/dependencies/openzeppelin/contracts/IERC20.sol) to save in code size.
 
-`IStableDebtToken` inherits the [IInitializableDebtToken](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IInitializableDebtToken.sol) interface.
+`IStableDebtToken` inherits the [`IInitializableDebtToken`](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IInitializableDebtToken.sol) interface.
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IStableDebtToken.sol).
 

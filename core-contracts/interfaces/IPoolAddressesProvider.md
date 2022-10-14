@@ -1,6 +1,6 @@
 # IPoolAddressesProvider
 
-Defines the basic interface for a [Pool Addresses Provider](../protocol/configuration/pooladdressesprovider.md).
+Defines the basic interface for an Aave [`PoolAddressesProvider`](../protocol/configuration/pooladdressesprovider.md).
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPoolAddressesProvider.sol).
 

@@ -1,8 +1,8 @@
 # IAToken
 
-Defines the basic interface for an [AToken](../protocol/tokenization/atoken.md).
+Defines the basic interface for an [`AToken`](../protocol/tokenization/atoken.md).
 
-IAToken inherits the [IERC20](https://github.com/aave/aave-v3-core/blob/master/contracts/dependencies/openzeppelin/contracts/IERC20.sol), [IScaledBalanceToken](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IScaledBalanceToken.sol), and [IInitializableAToken](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IInitializableAToken.sol) interfaces.
+IAToken inherits the [`IERC20`](https://github.com/aave/aave-v3-core/blob/master/contracts/dependencies/openzeppelin/contracts/IERC20.sol), [`IScaledBalanceToken`](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IScaledBalanceToken.sol), and [`IInitializableAToken`](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IInitializableAToken.sol) interfaces.
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IAToken.sol).
 

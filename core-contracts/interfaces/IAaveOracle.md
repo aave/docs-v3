@@ -1,8 +1,8 @@
 # IAaveOracle
 
-Defines the basic interface for the [Aave Oracle](../misc/aaveoracle.md).
+Defines the basic interface for the [`AaveOracle`](../misc/aaveoracle.md).
 
-IAaveOracle inherits the [IPriceOracleGetter](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleGetter.sol) interface.
+IAaveOracle inherits the [`IPriceOracleGetter`](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleGetter.sol) interface.
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IAaveOracle.sol).
 

@@ -1,6 +1,6 @@
 # IPoolConfigurator
 
-Defines the basic interface for a [Pool Configurator](../protocol/pool/poolconfigurator.md).
+Defines the basic interface for an Aave [`PoolConfigurator`](../protocol/pool/poolconfigurator.md).
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPoolConfigurator.sol).
 
