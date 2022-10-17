@@ -1,6 +1,6 @@
 # AaveProtocolDataProvider
 
-Peripheral contract to collect and pre-process information from the Pool.
+Peripheral contract to collect and pre-process information from the [`Pool`](../protocol/pool/pool.md).
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol).
 
@@ -12,7 +12,7 @@ The source code is available on [GitHub](https://github.com/aave/aave-v3-core/bl
 function getAllReservesTokens() external view returns (TokenData[] memory)
 ```
 
-Returns the list of the existing reserves in the pool, pairs include the `symbol` and `tokenAddress`. Handles [MKR](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L25) and [ETH](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L26) in a different way since they do not have standard symbol functions.
+Returns a list of the existing reserves in the pool, pairs include the `symbol` and `tokenAddress`. Handles [`MKR`](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L25) and [`ETH`](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L26) in a different way since they do not have standard symbol functions.
 
 #### Return Values:
 
@@ -20,7 +20,7 @@ Returns the list of the existing reserves in the pool, pairs include the `symbol
 | :------------- | :--------------------------------------------------- | 
 | `TokenData[]`  | The list of reserves, pairs of symbols and addresses | 
 
-The [TokenData](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L28) struct is composed of the following fields:
+The [`TokenData`](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L28) struct is composed of the following fields:
 
 | Name         | Type      | Description                                 | 
 | :----------- | :-------- | :------------------------------------------ | 
@@ -33,7 +33,7 @@ The [TokenData](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/
 function getAllATokens() external view returns (TokenData[] memory)
 ```
 
-Returns list of the existing ATokens in the pool, pairs include the `symbol` and `tokenAddress`.
+Returns a list of the existing ATokens in the pool, pairs include the `symbol` and `tokenAddress`.
 
 #### Return Values:
 
@@ -41,7 +41,7 @@ Returns list of the existing ATokens in the pool, pairs include the `symbol` and
 | :------------- | :-------------------------------------------------- | 
 | `TokenData[]`  | The list of ATokens, pairs of symbols and addresses | 
 
-The [TokenData](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L28) struct is composed of the following fields:
+The [`TokenData`](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/AaveProtocolDataProvider.sol#L28) struct is composed of the following fields:
 
 | Name         | Type      | Description                          | 
 | :----------- | :-------- | :----------------------------------- | 
@@ -344,7 +344,7 @@ Returns the following `user` reserve data.
 | Name                     | Type      | Description                                                       |
 | :----------------------- | :-------- | :---------------------------------------------------------------- |
 | currentATokenBalance     | `uint256` | The current AToken balance of the user                            |
-| currentStableDebt        | `uint256` | The   of the user                               |
+| currentStableDebt        | `uint256` | The current stable debt of the user                               |
 | currentVariableDebt      | `uint256` | The current variable debt of the user                             |
 | principalStableDebt      | `uint256` | The principal stable debt of the user                             |
 | scaledVariableDebt       | `uint256` | The scaled variable debt of the user                              |
@@ -363,7 +363,7 @@ function getReserveTokensAddresses(address asset) external view returns (
 )
 ```
 
-Returns the addresses of `aToken`, `stableDebtToken` and `variableDebtToken` of the reserve.
+Returns the addresses of the `aToken`, `stableDebtToken` and `variableDebtToken` of the reserve.
 
 #### Input Parameters:
 

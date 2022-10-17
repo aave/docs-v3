@@ -1,6 +1,6 @@
 # L2Encoder
 
-Helper contract to encode calldata that is passed to the [L2Pool](../protocol/pool/l2pool.md). It is used to optimize calldata size in `L2Pool` for transaction cost reduction only indented to help generate calldata for users/frontends.
+Helper contract to encode calldata that is passed to the [`L2Pool`](../protocol/pool/l2pool.md). It is used to optimize calldata size in `L2Pool` for transaction cost reduction only indented to help generate calldata for users/frontends.
 
 The source code is available on [GitHub](https://github.com/aave/aave-v3-core/blob/master/contracts/misc/L2Encoder.sol).
 
@@ -12,7 +12,7 @@ The source code is available on [GitHub](https://github.com/aave/aave-v3-core/bl
 function encodeSupplyParams(address asset, uint256 amount, uint16 referralCode) external view returns (bytes32)
 ```
 
-Encodes `supply` parameters from standard input to a compact representation of 1 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [L2Pool](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `bytes32` result to be passed to the [supply()](../protocol/pool/l2pool.md#supply) method of `L2Pool`. 
+Encodes `supply` parameters from standard input to a compact representation of 1 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [`L2Pool`](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `bytes32` result to be passed to the [`supply()`](../protocol/pool/l2pool.md#supply) method of `L2Pool`. 
 
 #### Input Parameters:
 
@@ -42,7 +42,7 @@ function encodeSupplyWithPermitParams(
   ) external view returns (bytes32, bytes32, bytes32)
 ```
 
-Encodes `supplyWithPermit` parameters from standard input to a compact representation of 3 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [L2Pool](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `(bytes32, bytes32, bytes32)` result to be passed to the [supplyWithPermit()](../protocol/pool/l2pool.md#supplywithpermit) method of `L2Pool`.
+Encodes `supplyWithPermit` parameters from standard input to a compact representation of 3 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [`L2Pool`](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `(bytes32, bytes32, bytes32)` result to be passed to the [`supplyWithPermit()`](../protocol/pool/l2pool.md#supplywithpermit) method of `L2Pool`.
 
 Permit signature must be signed by `msg.sender` with spender as pool address.
 
@@ -72,7 +72,7 @@ Permit signature must be signed by `msg.sender` with spender as pool address.
 function encodeWithdrawParams(address asset, uint256 amount) external view returns (bytes32)
 ```
 
-Encodes `withdraw` parameters from standard input to a compact representation of 1 `bytes32`. Without a `to` parameter, as the compact calls to [L2Pool](../protocol/pool/l2pool.md), `msg.sender` will be used as `to`. Returns a `bytes32` result to be passed to the [withdraw()](../protocol/pool/l2pool.md#withdraw) method of [L2Pool](../protocol/pool/l2pool.md). 
+Encodes `withdraw` parameters from standard input to a compact representation of 1 `bytes32`. Without a `to` parameter, as the compact calls to [`L2Pool`](../protocol/pool/l2pool.md), `msg.sender` will be used as `to`. Returns a `bytes32` result to be passed to the [`withdraw()`](../protocol/pool/l2pool.md#withdraw) method of `L2Pool`. 
 
 #### Input Parameters:
 
@@ -98,7 +98,7 @@ function encodeBorrowParams(
 ) external view returns (bytes32)
 ```
 
-Encodes `borrow` parameters from standard input to a compact representation of 1 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [L2Pool](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `bytes32` result to be passed to the [borrow()](../protocol/pool/l2pool.md#borrow) method of `L2Pool`.
+Encodes `borrow` parameters from standard input to a compact representation of 1 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [`L2Pool`](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `bytes32` result to be passed to the [`borrow()`](../protocol/pool/l2pool.md#borrow) method of `L2Pool`.
 
 #### Input Parameters:
 
@@ -121,7 +121,7 @@ Encodes `borrow` parameters from standard input to a compact representation of 1
 function encodeRepayParams(address asset, uint256 amount, uint256 interestRateMode) external view returns (bytes32)
 ```
 
-Encodes `repay` parameters from standard input to a compact representation of 1 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [L2Pool](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `bytes32` result to be passed to the [repay()](../protocol/pool/l2pool.md#repay) method of `L2Pool`.
+Encodes `repay` parameters from standard input to a compact representation of 1 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [`L2Pool`](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `bytes32` result to be passed to the [`repay()`](../protocol/pool/l2pool.md#repay) method of `L2Pool`.
 
 #### Input Parameters:
 
@@ -151,7 +151,7 @@ function encodeRepayWithPermitParams(
 ) external view returns (bytes32, bytes32, bytes32)
 ```
 
-Encodes `repayWithPermit` parameters from standard input to a compact representation of 3 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [L2Pool](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `(bytes32, bytes32, bytes32)` result to be passed to the [repayWithPermit()](../protocol/pool/l2pool.md#repaywithpermit) method of `L2Pool`.
+Encodes `repayWithPermit` parameters from standard input to a compact representation of 3 `bytes32`. Without an `onBehalfOf` parameter, as the compact calls to [`L2Pool`](../protocol/pool/l2pool.md), `msg.sender` will be used as `onBehalfOf`. Returns a `(bytes32, bytes32, bytes32)` result to be passed to the [`repayWithPermit()`](../protocol/pool/l2pool.md#repaywithpermit) method of `L2Pool`.
 
 #### Input Parameters:
 
@@ -179,7 +179,7 @@ Encodes `repayWithPermit` parameters from standard input to a compact representa
 function encodeRepayWithATokensParams(address asset, uint256 amount, uint256 interestRateMode) external view returns (bytes32)
 ```
 
-Encodes `repayWithATokens` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [repayWithATokens()](../protocol/pool/l2pool.md#repaywithatokens) method of [L2Pool](../protocol/pool/l2pool.md).
+Encodes `repayWithATokens` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [`repayWithATokens()`](../protocol/pool/l2pool.md#repaywithatokens) method of [`L2Pool`](../protocol/pool/l2pool.md).
 
 #### Input Parameters:
 
@@ -201,7 +201,7 @@ Encodes `repayWithATokens` parameters from standard input to a compact represent
 function encodeSwapBorrowRateMode(address asset, uint256 interestRateMode) external view returns (bytes32)
 ```
 
-Encodes `swapBorrowRateMode` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [swapBorrowRateMode()](../protocol/pool/l2pool.md#swapborrowratemode) method of [L2Pool](../protocol/pool/l2pool.md).
+Encodes `swapBorrowRateMode` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [`swapBorrowRateMode()`](../protocol/pool/l2pool.md#swapborrowratemode) method of [`L2Pool`](../protocol/pool/l2pool.md).
 
 #### Input Parameters:
 
@@ -222,7 +222,7 @@ Encodes `swapBorrowRateMode` parameters from standard input to a compact represe
 function encodeRebalanceStableBorrowRate(address asset, address user) external view returns (bytes32)
 ```
 
-Encodes `rebalanceStableBorrowRate` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [rebalanceStableBorrowRate()](../protocol/pool/l2pool.md#rebalancestableborrowrate) method of [L2Pool](../protocol/pool/l2pool.md).
+Encodes `rebalanceStableBorrowRate` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [`rebalanceStableBorrowRate()`](../protocol/pool/l2pool.md#rebalancestableborrowrate) method of [`L2Pool`](../protocol/pool/l2pool.md).
 
 #### Input Parameters:
 
@@ -243,7 +243,7 @@ Encodes `rebalanceStableBorrowRate` parameters from standard input to a compact 
 function encodeSetUserUseReserveAsCollateral(address asset, bool useAsCollateral) external view returns (bytes32)
 ```
 
-Encodes `setUserUseReserveAsCollateral` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [setUserUseReserveAsCollateral()](../protocol/pool/l2pool.md#setuserusereserveascollateral) method of [L2Pool](../protocol/pool/l2pool.md).
+Encodes `setUserUseReserveAsCollateral` parameters from standard input to a compact representation of 1 `bytes32`. Returns a `bytes32` result to be passed to the [`setUserUseReserveAsCollateral()`](../protocol/pool/l2pool.md#setuserusereserveascollateral) method of [`L2Pool`](../protocol/pool/l2pool.md).
 
 #### Input Parameters:
 
@@ -270,7 +270,7 @@ function encodeLiquidationCall(
 ) external view returns (bytes32, bytes32)
 ```
 
-Encodes `liquidationCall` parameters from standard input to a compact representation of 2 `bytes32`. Returns a `(bytes32, bytes32)` result to be passed to the [liquidationCall()](../protocol/pool/l2pool.md#liquidationcall) method of [L2Pool](../protocol/pool/l2pool.md).
+Encodes `liquidationCall` parameters from standard input to a compact representation of 2 `bytes32`. Returns a `(bytes32, bytes32)` result to be passed to the [`liquidationCall()`](../protocol/pool/l2pool.md#liquidationcall) method of [`L2Pool`](../protocol/pool/l2pool.md).
 
 #### Input Parameters:
 

@@ -21,7 +21,7 @@ function setAssetSources(address[] calldata assets, address[] calldata sources) 
 Sets the price `sources` for given list of `assets`.
 
 {% hint style="danger" %}
-This method can be called only by [POOL_ADMIN](../protocol/configuration/aclmanager.md#roles) or [ASSET_LISTING_ADMIN](../protocol/configuration/aclmanager.md#roles). Please look at the [ACLManager](../protocol/configuration/aclmanager.md) contract for further details on system roles.
+This method can be called only by a [`POOL_ADMIN`](../protocol/configuration/aclmanager.md#pooladmin) or [`ASSET_LISTING_ADMIN`](../protocol/configuration/aclmanager.md#assetlistingadmin). Please look at the [`ACLManager`](../protocol/configuration/aclmanager.md#roles) contract for further details on system roles.
 {% endhint %}
 
 #### Input Parameters:
@@ -40,7 +40,7 @@ function setFallbackOracle(address fallbackOracle) external override onlyAssetLi
 Sets/updates the `fallbackOracle`.
 
 {% hint style="danger" %}
-This method can be called only by [POOL_ADMIN](../protocol/configuration/aclmanager.md#roles) or [ASSET_LISTING_ADMIN](../protocol/configuration/aclmanager.md#roles). Please look at the [ACLManager](../protocol/configuration/aclmanager.md) contract for further details on system roles.
+This method can be called only by a [`POOL_ADMIN`](../protocol/configuration/aclmanager.md#pooladmin) or [`ASSET_LISTING_ADMIN`](../protocol/configuration/aclmanager.md#assetlistingadmin). Please look at the [`ACLManager`](../protocol/configuration/aclmanager.md#roles) contract for further details on system roles.
 {% endhint %}
 
 #### Input Parameters:
@@ -57,7 +57,7 @@ This method can be called only by [POOL_ADMIN](../protocol/configuration/aclmana
 function getAssetPrice(address asset) public view override returns (uint256) 
 ```
 
-Returns the price of the supported `asset` in [BASE_CURRENCY](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleGetter.sol#L15) of the Aave Market in wei.
+Returns the price of the supported `asset` in [`BASE_CURRENCY`](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleGetter.sol#L15) of the Aave Market in wei.
 
 #### Input Parameters:
 
@@ -77,7 +77,7 @@ Returns the price of the supported `asset` in [BASE_CURRENCY](https://github.com
 function getAssetsPrices(address[] calldata assets) external view override returns (uint256[] memory)
 ```
 
-Returns a list of prices from a list of the supported `assets` addresses in [BASE_CURRENCY](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleGetter.sol#L15) of the Aave Market. All prices are in wei.
+Returns a list of prices from a list of the supported `assets` addresses in [`BASE_CURRENCY`](https://github.com/aave/aave-v3-core/blob/master/contracts/interfaces/IPriceOracleGetter.sol#L15) of the Aave Market. All prices are in wei.
 
 #### Input Parameters:
 
