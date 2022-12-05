@@ -48,6 +48,10 @@ New assets can be listed as _**isolated**_ in Aave protocol V3. Borrowers supply
 
 ![](<.gitbook/assets/image (5).png>)
 
+### [Siloed Borrowing](whats-new/siloed-borrowing.md)
+
+Siloed borrowing allows assets with potentially manipulatable oracles to be listed on Aave as single borrow asset i.e. if a user borrows siloed asset, they cannot borrow any other asset. This helps mitigating the risk associated with such assets from impacting the overall solvency of the protocol. Please see the [Siloed Borrowing](whats-new/siloed-borrowing.md) page for more details.
+
 ## Risk Management
 
 Aave V3 brings a greatly improved set risk parameters and new features to protect the protocol from insolvency.
