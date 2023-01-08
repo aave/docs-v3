@@ -25,7 +25,7 @@ Get the domain separator for the token at current chain.
 Returns the nonce value for address specified as parameter. This is the nonce used when calling `permit()`
 
 ```jsx
-const token = new Contract(aTokenAddres, aToken.abi, provider);
+const token = new Contract(aTokenAddress, aToken.abi, provider);
 await token.nonces(user);
 ```
 
@@ -187,7 +187,7 @@ await aTokenContract.methods
     * AToken transfer will fail if the resulting Health Factor of `user` will end up being below 1.
 *   If I transfer aToken does my pending liquidity rewards get transferred?
 
-    No, liquidity rewards earned prior to the transfer of aToken are accrued by the user/address holding the aTokens originally. Though, all future liquidity rewards will be earned by the new recepient.
+    No, liquidity rewards earned prior to the transfer of aToken are accrued by the user/address holding the aTokens originally. Though, all future liquidity rewards will be earned by the new recipient.
 * What is the difference between ScaledBalance and Balance?
 *   Example please!
 
