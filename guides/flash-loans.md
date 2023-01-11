@@ -12,20 +12,20 @@ Flash-loan allows users to access liquidity of the pool (only for reserves for w
 
 Aave V3 offers two options for flash loans:
 
-* ``[`flashLoan`](../core-contracts/pool.md#flashloan)`:` Allows borrower to access liquidity of _**multiple reserves**_ in single _flashLoan_ transaction. The borrower also has an option to open stable or variabled rate debt position backed by supplied collateral or credit delegation in this case.\
+* [`flashLoan`](../core-contracts/pool.md#flashloan): Allows borrower to access liquidity of _**multiple reserves**_ in single _flashLoan_ transaction. The borrower also has an option to open stable or variabled rate debt position backed by supplied collateral or credit delegation in this case.\
   NOTE: _flash loan fee_ is waived for approved `flashBorrowers` (managed by [ACLManager](../core-contracts/aclmanager.md))
-* ``[`flashLoanSimple`](../core-contracts/pool.md#flashloansimple):  Allows borrower to access liquidity of _single reserve_ for the transaction. In this case flash loan fee is not waived nor can borrower open any debt position at the end of the transaction. This method is gas efficient for those trying take advantage of simple flash loan with single reserve asset.
+* [`flashLoanSimple`](../core-contracts/pool.md#flashloansimple):  Allows borrower to access liquidity of _single reserve_ for the transaction. In this case flash loan fee is not waived nor can borrower open any debt position at the end of the transaction. This method is gas efficient for those trying take advantage of simple flash loan with single reserve asset.
 
 ### Execution Flow
 
 For developers, a helpful mental model to consider when developing your solution:
 
-1. Your contract calls the `Pool` contract, requesting a Flash Loan of a certain `amount(s)` of `reserve(s)` using [flashLoanSimple()](../core-contracts/pool.md#flashloansimple) or [`flashLoan()`](../core-contracts/pool.md#flashloan).
+1. Your contract calls the `Pool` contract, requesting a Flash Loan of a certain `amount(s)` of `reserve(s)` using [`flashLoanSimple()`](../core-contracts/pool.md#flashloansimple) or [`flashLoan()`](../core-contracts/pool.md#flashloan).
 2. After some sanity checks, the `Pool` transfers the requested `amounts` of the `reserves` to your contract, then calls `executeOperation()` on `receiver` contract .
 3. Your contract, now holding the flash loaned `amount(s)`, executes any arbitrary operation in its code.&#x20;
    * If you are performing a **flashLoanSimple**, then when your code has finished, you approve Pool for flash loaned amount + fee.
    * If you are performing **flashLoan,** then for all the reserves either depending on  `interestRateMode` passed for the asset, either the Pool must be approved for flash loaned amount + fee or must or sufficient collateral or credit delegation should be available to open debt position.
-   * If the amount owing is not available (due to a lack of balance or approvaln or insufficient collateral for debt), then the transaction is reverted.
+   * If the amount owing is not available (due to a lack of balance or approval or insufficient collateral for debt), then the transaction is reverted.
 4. All of the above happens in 1 transaction (hence in a single ethereum block).
 
 
