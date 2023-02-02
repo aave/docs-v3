@@ -1,6 +1,6 @@
 # PriceOracleSentinel
 
-## PriceOracleSentinel
+## [PriceOracleSentinel](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol)
 
 This contract validates if the operations are allowed depending on the PriceOracle health.
 
@@ -8,7 +8,7 @@ The `PriceOracle` is considered healthy once its completely up and the grace per
 
 ## View Methods
 
-### isBorrowAllowed
+### [isBorrowAllowed](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol#L62)
 
 `function isBorrowAllowed()`
 
@@ -18,7 +18,7 @@ Return Value
 | ---- | ------------------------------------------------------------- |
 | bool | Returns true if PriceOracle is up and grace period has passed |
 
-### isLiquidationAllowed
+### [isLiquidationAllowed](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol#L67)
 
 `function isLiquidationAllowed()`
 
@@ -28,7 +28,7 @@ Return Value
 | ---- | ------------------------------------------------------------- |
 | bool | Returns true if PriceOracle is up and grace period has passed |
 
-### getSequencerOracle
+### [getSequencerOracle](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol#L93)
 
 `function getSequencerOracle()`
 
@@ -38,7 +38,7 @@ Return Value
 | ------- | ------------------------------- |
 | address | Address of the SequencerOracle. |
 
-### getGracePeriod
+### [getGracePeriod](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol#L98)
 
 `function getGracePeriod()`
 
@@ -50,7 +50,7 @@ Return Value
 
 ## Write Methods
 
-### setSequencerOracle
+### [setSequencerOracle](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol#L81)
 
 `function setSequencerOracle(address newSequencerOracle)`
 
@@ -64,7 +64,7 @@ Call Params
 | ------------------ | ------- | -------------------------------------------- |
 | newSequencerOracle | address | address of the new SequecerOracle to be set. |
 
-### setGracePeriod
+### [setGracePeriod](https://github.com/aave/aave-v3-core/blob/master/contracts/protocol/configuration/PriceOracleSentinel.sol#L87)
 
 `function setGracePeriod(uint256 newGracePeriod`
 
