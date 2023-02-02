@@ -33,7 +33,7 @@ You can get user reward balance for a given reward token or all reward tokens fo
 
 ```typescript
 const unclaimedUserRewards = await rewardsController.getUserRewardsBalance(
-        [aDai.address, aWeth.addresss],
+        [aDai.address, aWeth.address],
         userAddress,
         stkAave.address
       );
@@ -105,7 +105,7 @@ The `msg.sender` must match the user's address that has accrued the rewards
 {% endhint %}
 
 ```tsx
-// claims only stkAave for asset list [aDai, aWETH, ] to receivingAccunt
+// claims only stkAave for asset list [aDai, aWETH, ] to receivingAccount
 const claimStkAave = await rewardsController.claimRewards(
         [aDai.address, aWETH.address, ],
         amountToClaim,
@@ -113,7 +113,7 @@ const claimStkAave = await rewardsController.claimRewards(
         stkAave.address
       );
 
-// claims all reward types for asset list [aDai, aWETH, ] to receivingAccunt
+// claims all reward types for asset list [aDai, aWETH, ] to receivingAccount
 const claimAllRewards = await rewardsController.claimAllRewards(
 				[aDai.address, aWeth.address, ],
 				receivingAccount.address

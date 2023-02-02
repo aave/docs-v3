@@ -16,7 +16,7 @@ The source code can be found on [Github](https://github.com/aave/aave-v3-core/bl
 
 Returns a list of active [`PoolAddressesProvider`](pooladdressesprovider.md) contracts for the registered Aave protocol markets.
 
-Returs Values
+Returns Values
 
 | Type       | Description                          |
 | ---------- | ------------------------------------ |
